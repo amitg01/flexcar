@@ -1,52 +1,10 @@
-import React, {
-  createContext,
-  useContext,
-  useReducer,
-  type ReactNode,
-} from 'react';
-import type { Vehicle } from '../data/vehicles';
+import React, { useReducer, type ReactNode } from 'react';
 import {
   getVehiclesByZipCode,
   getUniqueMakes,
   getUniqueColors,
 } from '../data/vehicles';
-
-// Types
-export type SortOption =
-  | 'price-high-low'
-  | 'price-low-high'
-  | 'make-alphabetical';
-
-interface VehicleState {
-  vehicles: Vehicle[];
-  filteredVehicles: Vehicle[];
-  selectedMake: string;
-  selectedColor: string;
-  sortBy: SortOption;
-  zipCode: string;
-  isLoading: boolean;
-  error: string | null;
-}
-
-type VehicleAction =
-  | { type: 'SET_LOADING'; payload: boolean }
-  | { type: 'SET_ERROR'; payload: string | null }
-  | { type: 'SET_VEHICLES'; payload: Vehicle[] }
-  | { type: 'SET_ZIP_CODE'; payload: string }
-  | { type: 'SET_FILTER_MAKE'; payload: string }
-  | { type: 'SET_FILTER_COLOR'; payload: string }
-  | { type: 'SET_SORT_BY'; payload: SortOption }
-  | { type: 'CLEAR_FILTERS' }
-  | { type: 'APPLY_FILTERS_AND_SORT' };
-
-interface VehicleContextType {
-  state: VehicleState;
-  dispatch: React.Dispatch<VehicleAction>;
-  searchVehicles: (zipCode: string) => Promise<void>;
-  clearFilters: () => void;
-  getAvailableMakes: () => string[];
-  getAvailableColors: () => string[];
-}
+import { VehicleContext, type VehicleState, type VehicleAction, type VehicleContextType } from './VehicleContext';
 
 // Initial state
 const initialState: VehicleState = {
@@ -61,10 +19,7 @@ const initialState: VehicleState = {
 };
 
 // Reducer
-function vehicleReducer(
-  state: VehicleState,
-  action: VehicleAction
-): VehicleState {
+const vehicleReducer = (state: VehicleState, action: VehicleAction): VehicleState => {
   switch (action.type) {
     case 'SET_LOADING':
       return { ...state, isLoading: action.payload };
@@ -101,7 +56,7 @@ function vehicleReducer(
         filteredVehicles: state.vehicles,
       };
 
-    case 'APPLY_FILTERS_AND_SORT':
+    case 'APPLY_FILTERS_AND_SORT': {
       let filtered = [...state.vehicles];
 
       // Apply filters
@@ -131,14 +86,12 @@ function vehicleReducer(
       });
 
       return { ...state, filteredVehicles: filtered };
+    }
 
     default:
       return state;
   }
-}
-
-// Context
-const VehicleContext = createContext<VehicleContextType | undefined>(undefined);
+};
 
 // Provider
 interface VehicleProviderProps {
@@ -157,20 +110,19 @@ export const VehicleProvider: React.FC<VehicleProviderProps> = ({
 
     try {
       // Simulate API delay
-      await new Promise((resolve) => setTimeout(resolve, 200));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
       const vehicles = getVehiclesByZipCode(zipCode);
-
       if (vehicles.length === 0) {
         dispatch({
           type: 'SET_ERROR',
-          payload: `No vehicles found for ZIP code ${zipCode}. Try searching in 10001 or 90210.`,
+          payload: 'No vehicles found for this ZIP code. Please try another location.',
         });
         dispatch({ type: 'SET_VEHICLES', payload: [] });
       } else {
         dispatch({ type: 'SET_VEHICLES', payload: vehicles });
       }
-    } catch (error) {
+    } catch {
       dispatch({
         type: 'SET_ERROR',
         payload: 'An error occurred while searching. Please try again.',
@@ -204,11 +156,4 @@ export const VehicleProvider: React.FC<VehicleProviderProps> = ({
   );
 };
 
-// Hook
-export const useVehicle = () => {
-  const context = useContext(VehicleContext);
-  if (context === undefined) {
-    throw new Error('useVehicle must be used within a VehicleProvider');
-  }
-  return context;
-};
+// Hook is exported from hooks/useVehicle.ts to avoid react-refresh issues

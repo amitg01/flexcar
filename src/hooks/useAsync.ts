@@ -17,7 +17,7 @@ interface UseAsyncOptions {
  * @returns Async state and execute function
  */
 function useAsync<T>(
-  asyncFunction: (...args: any[]) => Promise<T>,
+  asyncFunction: (...args: unknown[]) => Promise<T>,
   options: UseAsyncOptions = { immediate: false }
 ) {
   const [state, setState] = useState<AsyncState<T>>({
@@ -27,7 +27,7 @@ function useAsync<T>(
   });
 
   const execute = useCallback(
-    async (...args: any[]) => {
+    async (...args: unknown[]) => {
       setState((prev) => ({ ...prev, loading: true, error: null }));
 
       try {

@@ -2,7 +2,7 @@ import React, { useMemo, useCallback, useState, useEffect } from 'react';
 import { Grid } from 'react-window';
 import { EmptyState, VehicleGridSkeleton } from '../ui';
 import VehicleCard from './VehicleCard';
-import { useVehicle } from '../../contexts/VehicleContext';
+import { useVehicle } from '../../hooks/useVehicle';
 import type { Vehicle } from '../../data/vehicles';
 
 interface ResponsiveVirtualizedGridProps {

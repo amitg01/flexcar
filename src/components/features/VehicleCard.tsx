@@ -1,5 +1,4 @@
 import React from 'react';
-import { Card, Badge, Button } from '../ui';
 import { type Vehicle } from '../../data/vehicles';
 
 interface VehicleCardProps {

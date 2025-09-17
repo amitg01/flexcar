@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { Card, Select, Button, FilterPanelSkeleton } from '../ui';
-import { useVehicle } from '../../contexts/VehicleContext';
+import { Button, FilterPanelSkeleton } from '../ui';
+import { useVehicle } from '../../hooks/useVehicle';
 
 interface FilterPanelProps {
   className?: string;
@@ -14,6 +14,17 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
     getAvailableMakes,
     getAvailableColors,
   } = useVehicle();
+
+  // Apply filters and sorting when filters change
+  useEffect(() => {
+    dispatch({ type: 'APPLY_FILTERS_AND_SORT' });
+  }, [
+    state.selectedMake,
+    state.selectedColor,
+    state.sortBy,
+    state.vehicles,
+    dispatch,
+  ]);
 
   // Show skeleton while loading
   if (state.isLoading && state.vehicles.length === 0) {
@@ -54,17 +65,6 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
   const handleRemoveColorFilter = () => {
     dispatch({ type: 'SET_FILTER_COLOR', payload: '' });
   };
-
-  // Apply filters and sorting when filters change
-  useEffect(() => {
-    dispatch({ type: 'APPLY_FILTERS_AND_SORT' });
-  }, [
-    state.selectedMake,
-    state.selectedColor,
-    state.sortBy,
-    state.vehicles,
-    dispatch,
-  ]);
 
   return (
     <div

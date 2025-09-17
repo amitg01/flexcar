@@ -1,6 +1,7 @@
 import React from 'react';
 import { ErrorBoundary } from './components/ui';
-import { VehicleProvider, useVehicle } from './contexts/VehicleContext';
+import { VehicleProvider } from './contexts/VehicleContext';
+import { useVehicle } from './hooks/useVehicle';
 import {
   SearchBar,
   FilterPanel,

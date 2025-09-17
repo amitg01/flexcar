@@ -29,7 +29,7 @@ const VehicleDetail: React.FC = () => {
         } else {
           setError('Vehicle not found');
         }
-      } catch (err) {
+      } catch {
         setError('Failed to load vehicle details');
       } finally {
         setLoading(false);
