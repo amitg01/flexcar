@@ -78,7 +78,7 @@ describe('App', () => {
     });
   });
 
-  it('shows error message when no vehicles found', async () => {
+  it('shows error message when no results', async () => {
     const user = userEvent.setup();
     mockGetVehiclesByZipCode.mockReturnValue([]);
     mockGetUniqueMakes.mockReturnValue([]);
@@ -149,7 +149,8 @@ describe('App', () => {
     await user.click(screen.getByRole('button', { name: 'Search' }));
 
     await waitFor(() => {
-      expect(screen.getByText('Toyota Camry')).toBeInTheDocument();
+      expect(screen.getByText('Toyota')).toBeInTheDocument();
+      expect(screen.getByText(/Camry/)).toBeInTheDocument();
       expect(screen.getByText('$28,500')).toBeInTheDocument();
     });
   });
@@ -194,7 +195,7 @@ describe('App', () => {
     await user.click(screen.getByRole('button', { name: 'Search' }));
 
     await waitFor(() => {
-      expect(screen.getByText('2 vehicles found')).toBeInTheDocument();
+      expect(screen.getByText('2 results')).toBeInTheDocument();
     });
 
     // Filter by Toyota
@@ -202,8 +203,9 @@ describe('App', () => {
     await user.selectOptions(makeSelect, 'Toyota');
 
     await waitFor(() => {
-      expect(screen.getByText('1 vehicle found')).toBeInTheDocument();
-      expect(screen.getByText('Toyota Camry')).toBeInTheDocument();
+      expect(screen.getByText('1 results')).toBeInTheDocument();
+      expect(screen.getByText('Toyota')).toBeInTheDocument();
+      expect(screen.getByText(/Camry/)).toBeInTheDocument();
       expect(screen.queryByText('Honda Civic')).not.toBeInTheDocument();
     });
   });
@@ -248,7 +250,7 @@ describe('App', () => {
     await user.click(screen.getByRole('button', { name: 'Search' }));
 
     await waitFor(() => {
-      expect(screen.getByText('2 vehicles found')).toBeInTheDocument();
+      expect(screen.getByText('2 results')).toBeInTheDocument();
     });
 
     // Sort by price low to high

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Card, Select, Button } from '../ui';
+import { Card, Select, Button, FilterPanelSkeleton } from '../ui';
 import { useVehicle } from '../../contexts/VehicleContext';
 
 interface FilterPanelProps {
@@ -15,6 +15,11 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
     getAvailableColors,
   } = useVehicle();
 
+  // Show skeleton while loading
+  if (state.isLoading && state.vehicles.length === 0) {
+    return <FilterPanelSkeleton className={className} />;
+  }
+
   const availableMakes = getAvailableMakes() || [];
   const availableColors = getAvailableColors() || [];
   const hasActiveFilters =
@@ -22,12 +27,12 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
 
   const makeOptions = [
     { value: '', label: 'All Makes' },
-    ...availableMakes.map((make) => ({ value: make, label: make })),
+    ...availableMakes.map(make => ({ value: make, label: make })),
   ];
 
   const colorOptions = [
     { value: '', label: 'All Colors' },
-    ...availableColors.map((color) => ({ value: color, label: color })),
+    ...availableColors.map(color => ({ value: color, label: color })),
   ];
 
   const handleMakeChange = (value: string) => {
@@ -62,63 +67,88 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
   ]);
 
   return (
-    <Card variant='elevated' padding='lg' className={`h-fit ${className}`}>
-      <div className='flex justify-between items-center mb-6'>
-        <h2 className='text-xl font-bold text-gray-900'>Filters</h2>
+    <div
+      className={`bg-white rounded-lg border border-gray-200 p-6 h-fit ${className}`}
+    >
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
         {hasActiveFilters && (
-          <Button onClick={handleClearFilters} variant='ghost' size='sm'>
-            Clear All
-          </Button>
+          <button
+            onClick={handleClearFilters}
+            className="text-blue-600 hover:text-blue-700 text-sm font-medium"
+          >
+            Clear all
+          </button>
         )}
       </div>
 
-      <div className='space-y-6'>
-        <Select
-          label='Make'
-          value={state.selectedMake}
-          onChange={(e) => handleMakeChange(e.target.value)}
-          options={makeOptions}
-        />
+      <div className="space-y-6">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Make & Model
+          </label>
+          <select
+            value={state.selectedMake}
+            onChange={e => handleMakeChange(e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          >
+            {makeOptions.map(option => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
 
-        <Select
-          label='Color'
-          value={state.selectedColor}
-          onChange={(e) => handleColorChange(e.target.value)}
-          options={colorOptions}
-        />
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Exterior color
+          </label>
+          <select
+            value={state.selectedColor}
+            onChange={e => handleColorChange(e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          >
+            {colorOptions.map(option => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       {hasActiveFilters && (
-        <div className='mt-6 pt-6 border-t border-gray-200'>
-          <h3 className='text-sm font-semibold text-gray-700 mb-2'>
+        <div className="mt-6 pt-6 border-t border-gray-200">
+          <h3 className="text-sm font-semibold text-gray-700 mb-2">
             Active Filters:
           </h3>
-          <div className='space-y-1'>
+          <div className="space-y-1">
             {state.selectedMake && (
-              <div className='flex items-center justify-between text-sm'>
-                <span className='text-gray-600'>
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-gray-600">
                   Make: {state.selectedMake}
                 </span>
                 <Button
                   onClick={handleRemoveMakeFilter}
-                  variant='ghost'
-                  size='sm'
-                  className='text-red-500 hover:text-red-700 p-1'
+                  variant="ghost"
+                  size="sm"
+                  className="text-red-500 hover:text-red-700 p-1"
                 >
                   ×
                 </Button>
               </div>
             )}
             {state.selectedColor && (
-              <div className='flex items-center justify-between text-sm'>
-                <span className='text-gray-600'>
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-gray-600">
                   Color: {state.selectedColor}
                 </span>
                 <Button
                   onClick={handleRemoveColorFilter}
-                  variant='ghost'
-                  size='sm'
-                  className='text-red-500 hover:text-red-700 p-1'
+                  variant="ghost"
+                  size="sm"
+                  className="text-red-500 hover:text-red-700 p-1"
                 >
                   ×
                 </Button>
@@ -127,7 +157,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
           </div>
         </div>
       )}
-    </Card>
+    </div>
   );
 };
 

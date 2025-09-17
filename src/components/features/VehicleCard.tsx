@@ -36,60 +36,63 @@ const VehicleCard: React.FC<VehicleCardProps> = ({
   };
 
   return (
-    <Card
-      variant='elevated'
-      padding='none'
-      hover
-      className={`overflow-hidden ${className}`}
+    <div
+      className={`bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200 ${className}`}
     >
-      <div className='relative'>
+      <div className="relative">
         <img
           src={vehicle.image}
           alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
-          className='w-full h-48 object-cover'
+          className="w-full h-48 object-cover rounded-t-lg"
           onError={handleImageError}
-          loading='lazy'
+          loading="lazy"
         />
-        <div className='absolute top-2 right-2'>
-          <Badge variant='primary' size='sm'>
+        <div className="absolute top-3 right-3">
+          <span className="bg-white text-gray-900 px-2 py-1 rounded-md text-sm font-medium shadow-sm">
             {vehicle.year}
-          </Badge>
+          </span>
         </div>
       </div>
 
-      <div className='p-4'>
-        <div className='mb-3'>
-          <h3 className='text-xl font-bold text-gray-900 mb-1 line-clamp-1'>
-            {vehicle.make} {vehicle.model}
+      <div className="p-5">
+        <div className="mb-4">
+          <h3 className="text-lg font-semibold text-gray-900 mb-1">
+            {vehicle.year} {vehicle.make} {vehicle.model}
           </h3>
-          <p className='text-gray-600 text-sm'>{vehicle.trim}</p>
+          <p className="text-gray-600 text-sm">{vehicle.trim}</p>
         </div>
 
-        <div className='space-y-2 mb-4'>
-          <div className='flex justify-between'>
-            <span className='text-gray-600'>Color:</span>
-            <span className='font-medium'>{vehicle.color}</span>
+        <div className="space-y-2 mb-4 text-sm">
+          <div className="flex justify-between">
+            <span className="text-gray-500">Color:</span>
+            <span className="font-medium text-gray-900">{vehicle.color}</span>
           </div>
-          <div className='flex justify-between'>
-            <span className='text-gray-600'>Mileage:</span>
-            <span className='font-medium'>
+          <div className="flex justify-between">
+            <span className="text-gray-500">Mileage:</span>
+            <span className="font-medium text-gray-900">
               {formatMileage(vehicle.mileage)} mi
             </span>
           </div>
         </div>
 
-        <div className='border-t pt-4'>
-          <div className='flex justify-between items-center'>
-            <span className='text-2xl font-bold text-flexcar-blue'>
-              {formatPrice(vehicle.price)}
-            </span>
-            <Button onClick={handleViewDetails} size='sm' variant='primary'>
+        <div className="border-t border-gray-100 pt-4">
+          <div className="flex justify-between items-center">
+            <div>
+              <span className="text-2xl font-bold text-gray-900">
+                {formatPrice(vehicle.price)}
+              </span>
+              <span className="text-gray-500 text-sm ml-1">/mo</span>
+            </div>
+            <button
+              onClick={handleViewDetails}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+            >
               View Details
-            </Button>
+            </button>
           </div>
         </div>
       </div>
-    </Card>
+    </div>
   );
 };
 

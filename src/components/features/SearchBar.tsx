@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Input, Button } from '../ui';
+import { Input, Button, SearchBarSkeleton } from '../ui';
 import { useDebounce } from '../../hooks';
 import { useVehicle } from '../../contexts/VehicleContext';
 
@@ -39,26 +39,27 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '' }) => {
   const isDisabled = !zipCode.trim() || hasError || state.isLoading;
 
   return (
-    <div className={`w-full max-w-md mx-auto mb-8 ${className}`}>
-      <form onSubmit={handleSubmit} className='flex gap-2'>
-        <div className='flex-1'>
+    <div className={`w-full max-w-2xl mx-auto ${className}`}>
+      <form onSubmit={handleSubmit} className="flex gap-3">
+        <div className="flex-1">
           <Input
-            type='text'
+            type="text"
             value={zipCode}
-            onChange={(e) => setZipCode(e.target.value)}
-            placeholder='Enter ZIP code (e.g., 10001)'
+            onChange={e => setZipCode(e.target.value)}
+            placeholder="Enter ZIP code (e.g., 10001)"
             error={
               hasError ? 'Please enter a valid ZIP code (5 digits)' : undefined
             }
             disabled={state.isLoading}
-            className='text-lg'
+            className="text-lg h-14 border-2 border-gray-300 focus:border-blue-500 rounded-lg"
           />
         </div>
         <Button
-          type='submit'
+          type="submit"
           disabled={isDisabled}
           isLoading={state.isLoading}
-          size='lg'
+          size="lg"
+          className="h-14 px-8 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg"
         >
           {state.isLoading ? 'Searching...' : 'Search'}
         </Button>
