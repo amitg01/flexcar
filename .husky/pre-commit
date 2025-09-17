@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+
+echo "🔍 Running pre-commit checks..."
+
+# Run linting on staged files
+echo "📝 Running linter on staged files..."
+npx lint-staged
+
+# Check if lint-staged passed
+if [ $? -ne 0 ]; then
+  echo "❌ Linting failed. Please fix the issues and try again."
+  exit 1
+fi
+
+# Run tests to ensure nothing is broken
+echo "🧪 Running tests..."
+npm run test:run
+
+# Check if tests passed
+if [ $? -ne 0 ]; then
+  echo "❌ Tests failed. Please fix the issues and try again."
+  exit 1
+fi
+
+echo "✅ All pre-commit checks passed!"
