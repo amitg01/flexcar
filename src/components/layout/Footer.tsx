@@ -1,6 +1,36 @@
 import React from 'react';
 
 const Footer: React.FC = () => {
+  const flexcarLinks = [
+    { label: 'FAQ', href: '#' },
+    { label: 'Inventory', href: '#' },
+    { label: 'The Flextra Mile', href: '#' },
+    { label: 'Careers', href: '#' },
+  ];
+
+  const supportLinks = [
+    { label: 'Pickups', href: '#' },
+    { label: 'Delivery', href: '#' },
+    { label: 'Swaps', href: '#' },
+    { label: 'Returns', href: '#' },
+    { label: 'Help center', href: '#' },
+  ];
+
+  const socialLinks = [
+    { label: 'Facebook', href: '#' },
+    { label: 'Instagram', href: '#' },
+    { label: 'Twitter', href: '#' },
+    { label: 'LinkedIn', href: '#' },
+  ];
+
+  const legalLinks = [
+    { label: 'Privacy Policy', href: '#' },
+    { label: 'Terms of Service', href: '#' },
+    { label: 'SMS Privacy Policy', href: '#' },
+    { label: 'Membership Agreement', href: '#' },
+    { label: 'Sitemap', href: '#' },
+  ];
+
   return (
     <footer className="bg-gray-900 text-white py-8 xs:py-12 sm:py-16">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
@@ -18,75 +48,41 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="font-bold mb-2 xs:mb-3 sm:mb-4 text-xs xs:text-sm sm:text-base">Flexcar</h4>
             <ul className="space-y-1 text-xs xs:text-sm sm:text-base text-gray-400">
-              <li>
-                <a href="#" className="hover:text-white">
-                  FAQ
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white">
-                  Inventory
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white">
-                  The Flextra Mile
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white">
-                  Careers
-                </a>
-              </li>
+              {flexcarLinks.map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} className="hover:text-white">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
             <h4 className="font-bold mb-2 xs:mb-3 sm:mb-4 text-xs xs:text-sm sm:text-base">Support</h4>
             <ul className="space-y-1 text-xs xs:text-sm sm:text-base text-gray-400">
-              <li>
-                <a href="#" className="hover:text-white">
-                  Pickups
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white">
-                  Delivery
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white">
-                  Swaps
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white">
-                  Returns
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white">
-                  Help center
-                </a>
-              </li>
+              {supportLinks.map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} className="hover:text-white">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
             <h4 className="font-bold mb-2 xs:mb-3 sm:mb-4 text-xs xs:text-sm sm:text-base">Social</h4>
             <div className="flex flex-wrap gap-2 xs:gap-3 sm:gap-4">
-              <a href="#" className="text-gray-400 hover:text-white text-xs xs:text-sm sm:text-base">
-                Facebook
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white text-xs xs:text-sm sm:text-base">
-                Instagram
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white text-xs xs:text-sm sm:text-base">
-                Twitter
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white text-xs xs:text-sm sm:text-base">
-                LinkedIn
-              </a>
+              {socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="text-gray-400 hover:text-white text-xs xs:text-sm sm:text-base"
+                >
+                  {link.label}
+                </a>
+              ))}
             </div>
           </div>
         </div>
@@ -97,25 +93,14 @@ const Footer: React.FC = () => {
               © 2025 Flexcar, LLC. All rights reserved.
             </p>
             <div className="flex flex-wrap justify-center sm:justify-end gap-1 xs:gap-2 sm:gap-4 text-xs sm:text-sm text-gray-400">
-              <a href="#" className="hover:text-white">
-                Privacy Policy
-              </a>
-              <span>•</span>
-              <a href="#" className="hover:text-white">
-                Terms of Service
-              </a>
-              <span>•</span>
-              <a href="#" className="hover:text-white">
-                SMS Privacy Policy
-              </a>
-              <span>•</span>
-              <a href="#" className="hover:text-white">
-                Membership Agreement
-              </a>
-              <span>•</span>
-              <a href="#" className="hover:text-white">
-                Sitemap
-              </a>
+              {legalLinks.map((link, index) => (
+                <React.Fragment key={link.label}>
+                  <a href={link.href} className="hover:text-white">
+                    {link.label}
+                  </a>
+                  {index < legalLinks.length - 1 && <span>•</span>}
+                </React.Fragment>
+              ))}
               <span>•</span>
               <button className="hover:text-white">Cookie Preferences</button>
             </div>
