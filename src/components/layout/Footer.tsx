@@ -38,17 +38,25 @@ const Footer: React.FC = () => {
           <div className="sm:col-span-2 md:col-span-1">
             <div className="flex items-center space-x-1 xs:space-x-2 mb-2 xs:mb-3 sm:mb-4">
               <div className="w-5 h-5 xs:w-6 xs:h-6 sm:w-8 sm:h-8 bg-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xs sm:text-sm">F</span>
+                <span className="text-white font-bold text-xs sm:text-sm">
+                  F
+                </span>
               </div>
-              <span className="text-base xs:text-lg sm:text-2xl font-bold text-white">FLEXCAR</span>
+              <span className="text-base xs:text-lg sm:text-2xl font-bold text-white">
+                FLEXCAR
+              </span>
             </div>
-            <p className="text-xs xs:text-sm sm:text-base text-gray-400">Live large. Spend small.</p>
+            <p className="text-xs xs:text-sm sm:text-base text-gray-400">
+              Live large. Spend small.
+            </p>
           </div>
 
           <div>
-            <h4 className="font-bold mb-2 xs:mb-3 sm:mb-4 text-xs xs:text-sm sm:text-base">Flexcar</h4>
+            <h4 className="font-bold mb-2 xs:mb-3 sm:mb-4 text-xs xs:text-sm sm:text-base">
+              Flexcar
+            </h4>
             <ul className="space-y-1 text-xs xs:text-sm sm:text-base text-gray-400">
-              {flexcarLinks.map((link) => (
+              {flexcarLinks.map(link => (
                 <li key={link.label}>
                   <a href={link.href} className="hover:text-white">
                     {link.label}
@@ -59,9 +67,11 @@ const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h4 className="font-bold mb-2 xs:mb-3 sm:mb-4 text-xs xs:text-sm sm:text-base">Support</h4>
+            <h4 className="font-bold mb-2 xs:mb-3 sm:mb-4 text-xs xs:text-sm sm:text-base">
+              Support
+            </h4>
             <ul className="space-y-1 text-xs xs:text-sm sm:text-base text-gray-400">
-              {supportLinks.map((link) => (
+              {supportLinks.map(link => (
                 <li key={link.label}>
                   <a href={link.href} className="hover:text-white">
                     {link.label}
@@ -72,9 +82,11 @@ const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h4 className="font-bold mb-2 xs:mb-3 sm:mb-4 text-xs xs:text-sm sm:text-base">Social</h4>
+            <h4 className="font-bold mb-2 xs:mb-3 sm:mb-4 text-xs xs:text-sm sm:text-base">
+              Social
+            </h4>
             <div className="flex flex-wrap gap-2 xs:gap-3 sm:gap-4">
-              {socialLinks.map((link) => (
+              {socialLinks.map(link => (
                 <a
                   key={link.label}
                   href={link.href}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Menu } from 'lucide-react';
 
 const Header: React.FC = () => {
   return (
@@ -23,19 +24,7 @@ const Header: React.FC = () => {
             <span className="text-xs sm:text-sm text-gray-600 xs:hidden">Login</span>
             {/* Mobile menu button */}
             <button className="sm:hidden p-1 ml-1">
-              <svg
-                className="w-4 h-4 text-gray-600"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
+              <Menu className="w-4 h-4 text-gray-600" />
             </button>
           </div>
         </div>

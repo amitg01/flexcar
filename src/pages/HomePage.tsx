@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from '../components/ui';
 import { Header, Footer } from '../components/layout';
+import { MapPin, Play } from 'lucide-react';
 
 const HomePage: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
@@ -70,25 +71,7 @@ const HomePage: React.FC = () => {
                 onClick={handleLocateMe}
                 className="px-4 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors flex items-center gap-2"
               >
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
+                <MapPin className="w-4 h-4" />
                 <span className="hidden xs:inline">Locate me</span>
               </button>
             </div>
@@ -136,13 +119,7 @@ const HomePage: React.FC = () => {
           <div className="aspect-video bg-gray-200 rounded-lg xs:rounded-xl sm:rounded-2xl flex items-center justify-center">
             <div className="text-center">
               <div className="w-12 h-12 xs:w-16 xs:h-16 sm:w-20 sm:h-20 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-2 xs:mb-3 sm:mb-4">
-                <svg
-                  className="w-6 h-6 xs:w-8 xs:h-8 sm:w-10 sm:h-10 text-gray-600"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M8 5v14l11-7z" />
-                </svg>
+                <Play className="w-6 h-6 xs:w-8 xs:h-8 sm:w-10 sm:h-10 text-gray-600" />
               </div>
               <p className="text-xs xs:text-sm sm:text-base text-gray-600">
                 Video: Flexcar in 75 seconds
