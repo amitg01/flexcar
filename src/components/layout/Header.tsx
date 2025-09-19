@@ -8,9 +8,7 @@ const Header: React.FC = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-1 sm:space-x-2">
             <div className="w-5 h-5 sm:w-8 sm:h-8 bg-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xs sm:text-sm">
-                F
-              </span>
+              <span className="text-white font-bold text-xs sm:text-sm">F</span>
             </div>
             <span className="text-base sm:text-2xl font-bold text-purple-600">
               FLEXCAR
@@ -20,8 +18,12 @@ const Header: React.FC = () => {
             <span className="text-xs sm:text-sm text-gray-600 hidden sm:inline">
               How it works
             </span>
-            <span className="text-xs sm:text-sm text-gray-600 hidden xs:inline">Log in</span>
-            <span className="text-xs sm:text-sm text-gray-600 xs:hidden">Login</span>
+            <span className="text-xs sm:text-sm text-gray-600 hidden xs:inline">
+              Log in
+            </span>
+            <span className="text-xs sm:text-sm text-gray-600 xs:hidden">
+              Login
+            </span>
             {/* Mobile menu button */}
             <button className="sm:hidden p-1 ml-1">
               <Menu className="w-4 h-4 text-gray-600" />

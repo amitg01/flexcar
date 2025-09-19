@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from '../components/ui';
 import { Header, Footer } from '../components/layout';
-import { MapPin, Play } from 'lucide-react';
+import { MapPin, Play, ArrowLeft, HelpCircle } from 'lucide-react';
 
 const HomePage: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
+  const [currentStep, setCurrentStep] = useState(1);
   const [zipCode, setZipCode] = useState('');
+  const [age, setAge] = useState('');
+  const [creditScore, setCreditScore] = useState('');
 
   useEffect(() => {
     // Show modal on page load
@@ -15,8 +18,16 @@ const HomePage: React.FC = () => {
   const handleZipSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (zipCode.trim()) {
-      // Handle ZIP code submission
-      console.log('ZIP code submitted:', zipCode);
+      // Move to step 2
+      setCurrentStep(2);
+    }
+  };
+
+  const handleUserInfoSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (age && creditScore) {
+      // Handle user info submission
+      console.log('User info submitted:', { zipCode, age, creditScore });
       setShowModal(false);
     }
   };
@@ -31,59 +42,151 @@ const HomePage: React.FC = () => {
     setShowModal(false);
   };
 
+  const handleBackToStep1 = () => {
+    setCurrentStep(1);
+  };
+
+  const ageOptions = [
+    '18-21', '22-25', '26-30', '31-35', '36-40', '41-45', '46-50', '51-55', '56-60', '61-65', '66+'
+  ];
+
+  const creditScoreOptions = [
+    '300-499 (Poor)', '500-579 (Fair)', '580-669 (Good)', '670-739 (Very Good)', '740-799 (Excellent)', '800+ (Exceptional)'
+  ];
+
   return (
     <div className="min-h-screen bg-white">
-      {/* ZIP Code Modal */}
+      {/* Multi-step Modal */}
       <Modal
         isOpen={showModal}
         onClose={handleCloseModal}
-        title="Find Flexcars near you"
+        title={currentStep === 1 ? "Find Flexcars near you" : "About you"}
         closeOnBackdropClick={true}
       >
-        <div className="mb-6">
-          <div className="text-sm text-gray-500 mb-2">STEP 1 OF 2</div>
-          <p className="text-gray-600 text-sm sm:text-base">
-            Enter your ZIP code to see accurate availability and delivery
-            options in your area.
-          </p>
-        </div>
-
-        <form onSubmit={handleZipSubmit} className="space-y-4">
-          <div>
-            <label
-              htmlFor="zipCode"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Enter ZIP code
-            </label>
-            <div className="flex gap-3">
-              <input
-                type="text"
-                id="zipCode"
-                value={zipCode}
-                onChange={e => setZipCode(e.target.value)}
-                placeholder="12345"
-                className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
-                maxLength={5}
-              />
-              <button
-                type="button"
-                onClick={handleLocateMe}
-                className="px-4 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors flex items-center gap-2"
-              >
-                <MapPin className="w-4 h-4" />
-                <span className="hidden xs:inline">Locate me</span>
-              </button>
+        {currentStep === 1 ? (
+          <>
+            <div className="mb-6">
+              <div className="text-sm text-gray-500 mb-2">STEP 1 OF 2</div>
+              <p className="text-gray-600 text-sm sm:text-base">
+                Enter your ZIP code to see accurate availability and delivery
+                options in your area.
+              </p>
             </div>
-          </div>
 
-          <button
-            type="submit"
-            className="w-full bg-gray-200 text-gray-700 py-3 px-4 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
-          >
-            Next
-          </button>
-        </form>
+            <form onSubmit={handleZipSubmit} className="space-y-4">
+              <div>
+                <label
+                  htmlFor="zipCode"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Enter ZIP code
+                </label>
+                <div className="flex gap-3">
+                  <input
+                    type="text"
+                    id="zipCode"
+                    value={zipCode}
+                    onChange={e => setZipCode(e.target.value)}
+                    placeholder="12345"
+                    className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
+                    maxLength={5}
+                  />
+                  <button
+                    type="button"
+                    onClick={handleLocateMe}
+                    className="px-4 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors flex items-center gap-2"
+                  >
+                    <MapPin className="w-4 h-4" />
+                    <span className="hidden xs:inline">Locate me</span>
+                  </button>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-gray-200 text-gray-700 py-3 px-4 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
+              >
+                Next
+              </button>
+            </form>
+          </>
+        ) : (
+          <>
+            <div className="mb-6">
+              <div className="flex items-center gap-2 mb-2">
+                <button
+                  onClick={handleBackToStep1}
+                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  <ArrowLeft className="w-5 h-5" />
+                </button>
+                <div className="text-sm text-gray-500">STEP 2 OF 2</div>
+              </div>
+            </div>
+
+            <form onSubmit={handleUserInfoSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label
+                    htmlFor="age"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
+                    Age
+                  </label>
+                  <select
+                    id="age"
+                    value={age}
+                    onChange={e => setAge(e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
+                  >
+                    <option value="">Select one</option>
+                    {ageOptions.map(option => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="creditScore"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
+                    Credit score
+                  </label>
+                  <select
+                    id="creditScore"
+                    value={creditScore}
+                    onChange={e => setCreditScore(e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
+                  >
+                    <option value="">Select one</option>
+                    {creditScoreOptions.map(option => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="bg-gray-50 rounded-lg p-4 flex items-start gap-3">
+                <HelpCircle className="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" />
+                <p className="text-sm text-gray-600">
+                  Don't know your score? Just take a guess and we'll confirm later at checkout.
+                </p>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-gray-200 text-gray-700 py-3 px-4 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
+              >
+                View cars
+              </button>
+            </form>
+          </>
+        )}
       </Modal>
       <Header />
 
