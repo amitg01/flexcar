@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Modal } from '../components/ui';
+import { Modal, Select } from '../components/ui';
 import { Header, Footer } from '../components/layout';
 import { MapPin, Play, ArrowLeft, HelpCircle } from 'lucide-react';
 
@@ -47,11 +47,26 @@ const HomePage: React.FC = () => {
   };
 
   const ageOptions = [
-    '18-21', '22-25', '26-30', '31-35', '36-40', '41-45', '46-50', '51-55', '56-60', '61-65', '66+'
+    { value: '18-21', label: '18-21' },
+    { value: '22-25', label: '22-25' },
+    { value: '26-30', label: '26-30' },
+    { value: '31-35', label: '31-35' },
+    { value: '36-40', label: '36-40' },
+    { value: '41-45', label: '41-45' },
+    { value: '46-50', label: '46-50' },
+    { value: '51-55', label: '51-55' },
+    { value: '56-60', label: '56-60' },
+    { value: '61-65', label: '61-65' },
+    { value: '66+', label: '66+' },
   ];
 
   const creditScoreOptions = [
-    '300-499 (Poor)', '500-579 (Fair)', '580-669 (Good)', '670-739 (Very Good)', '740-799 (Excellent)', '800+ (Exceptional)'
+    { value: '300-499', label: '300-499 (Poor)' },
+    { value: '500-579', label: '500-579 (Fair)' },
+    { value: '580-669', label: '580-669 (Good)' },
+    { value: '670-739', label: '670-739 (Very Good)' },
+    { value: '740-799', label: '740-799 (Excellent)' },
+    { value: '800+', label: '800+ (Exceptional)' },
   ];
 
   return (
@@ -60,7 +75,7 @@ const HomePage: React.FC = () => {
       <Modal
         isOpen={showModal}
         onClose={handleCloseModal}
-        title={currentStep === 1 ? "Find Flexcars near you" : "About you"}
+        title={currentStep === 1 ? 'Find Flexcars near you' : 'About you'}
         closeOnBackdropClick={true}
       >
         {currentStep === 1 ? (
@@ -126,55 +141,28 @@ const HomePage: React.FC = () => {
 
             <form onSubmit={handleUserInfoSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label
-                    htmlFor="age"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Age
-                  </label>
-                  <select
-                    id="age"
-                    value={age}
-                    onChange={e => setAge(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
-                  >
-                    <option value="">Select one</option>
-                    {ageOptions.map(option => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+                <Select
+                  label="Age"
+                  value={age}
+                  onChange={e => setAge(e.target.value)}
+                  options={ageOptions}
+                  placeholder="Select one"
+                />
 
-                <div>
-                  <label
-                    htmlFor="creditScore"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Credit score
-                  </label>
-                  <select
-                    id="creditScore"
-                    value={creditScore}
-                    onChange={e => setCreditScore(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
-                  >
-                    <option value="">Select one</option>
-                    {creditScoreOptions.map(option => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+                <Select
+                  label="Credit score"
+                  value={creditScore}
+                  onChange={e => setCreditScore(e.target.value)}
+                  options={creditScoreOptions}
+                  placeholder="Select one"
+                />
               </div>
 
               <div className="bg-gray-50 rounded-lg p-4 flex items-start gap-3">
                 <HelpCircle className="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" />
                 <p className="text-sm text-gray-600">
-                  Don't know your score? Just take a guess and we'll confirm later at checkout.
+                  Don't know your score? Just take a guess and we'll confirm
+                  later at checkout.
                 </p>
               </div>
 
