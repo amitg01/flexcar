@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from '../components/ui';
+import { Header, Footer } from '../components/layout';
 
 const HomePage: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
@@ -101,50 +102,7 @@ const HomePage: React.FC = () => {
           </button>
         </form>
       </Modal>
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 py-2 sm:py-4 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-1 sm:space-x-2">
-              <div className="w-5 h-5 sm:w-8 sm:h-8 bg-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xs sm:text-sm">
-                  F
-                </span>
-              </div>
-              <span className="text-base sm:text-2xl font-bold text-purple-600">
-                FLEXCAR
-              </span>
-            </div>
-            <div className="flex items-center space-x-1 sm:space-x-4">
-              <span className="text-xs sm:text-sm text-gray-600 hidden sm:inline">
-                How it works
-              </span>
-              <span className="text-xs sm:text-sm text-gray-600 hidden xs:inline">
-                Log in
-              </span>
-              <span className="text-xs sm:text-sm text-gray-600 xs:hidden">
-                Login
-              </span>
-              {/* Mobile menu button */}
-              <button className="sm:hidden p-1 ml-1">
-                <svg
-                  className="w-4 h-4 text-gray-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* Hero Section */}
       <section className="relative h-[400px] xs:h-[450px] sm:h-[623px] md:h-[720px] bg-gradient-to-br from-gray-900 to-gray-800">
@@ -439,152 +397,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 sm:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
-            <div className="sm:col-span-2 md:col-span-1">
-              <div className="flex items-center space-x-2 mb-3 sm:mb-4">
-                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-purple-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-xs sm:text-sm">
-                    F
-                  </span>
-                </div>
-                <span className="text-lg sm:text-2xl font-bold text-white">
-                  FLEXCAR
-                </span>
-              </div>
-              <p className="text-sm sm:text-base text-gray-400">
-                Live large. Spend small.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">
-                Flexcar
-              </h4>
-              <ul className="space-y-1 sm:space-y-2 text-sm sm:text-base text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white">
-                    FAQ
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white">
-                    Inventory
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white">
-                    The Flextra Mile
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white">
-                    Careers
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">
-                Support
-              </h4>
-              <ul className="space-y-1 sm:space-y-2 text-sm sm:text-base text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white">
-                    Pickups
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white">
-                    Delivery
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white">
-                    Swaps
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white">
-                    Returns
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white">
-                    Help center
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">
-                Social
-              </h4>
-              <div className="flex flex-wrap gap-3 sm:gap-4">
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white text-sm sm:text-base"
-                >
-                  Facebook
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white text-sm sm:text-base"
-                >
-                  Instagram
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white text-sm sm:text-base"
-                >
-                  Twitter
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white text-sm sm:text-base"
-                >
-                  LinkedIn
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 pt-6 sm:pt-8">
-            <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-              <p className="text-sm sm:text-base text-gray-400 text-center sm:text-left">
-                © 2025 Flexcar, LLC. All rights reserved.
-              </p>
-              <div className="flex flex-wrap justify-center sm:justify-end gap-2 sm:gap-4 text-xs sm:text-sm text-gray-400">
-                <a href="#" className="hover:text-white">
-                  Privacy Policy
-                </a>
-                <span>•</span>
-                <a href="#" className="hover:text-white">
-                  Terms of Service
-                </a>
-                <span>•</span>
-                <a href="#" className="hover:text-white">
-                  SMS Privacy Policy
-                </a>
-                <span>•</span>
-                <a href="#" className="hover:text-white">
-                  Membership Agreement
-                </a>
-                <span>•</span>
-                <a href="#" className="hover:text-white">
-                  Sitemap
-                </a>
-                <span>•</span>
-                <button className="hover:text-white">Cookie Preferences</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
