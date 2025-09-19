@@ -11,23 +11,32 @@ interface VirtualizedVehicleGridProps {
 }
 
 interface GridItemProps {
+  ariaAttributes: {
+    'aria-colindex': number;
+    role: 'gridcell';
+  };
   columnIndex: number;
   rowIndex: number;
   style: React.CSSProperties;
-  data: {
-    vehicles: Vehicle[];
-    columnsPerRow: number;
-    onVehicleClick?: (vehicle: Vehicle) => void;
-  };
+  vehicles: Vehicle[];
+  columnsPerRow: number;
+  onVehicleClick?: (vehicle: Vehicle) => void;
 }
 
-const GridItem: React.FC<GridItemProps> = ({
+interface GridCellProps {
+  vehicles: Vehicle[];
+  columnsPerRow: number;
+  onVehicleClick?: (vehicle: Vehicle) => void;
+}
+
+const GridItem = ({
   columnIndex,
   rowIndex,
   style,
-  data,
-}) => {
-  const { vehicles, columnsPerRow, onVehicleClick } = data;
+  vehicles,
+  columnsPerRow,
+  onVehicleClick,
+}: GridItemProps) => {
   const index = rowIndex * columnsPerRow + columnIndex;
   const vehicle = vehicles[index];
 
@@ -139,19 +148,19 @@ const VirtualizedVehicleGrid: React.FC<VirtualizedVehicleGridProps> = ({
 
   return (
     <div className={`w-full ${className}`}>
-      <Grid
+      <Grid<GridCellProps>
         columnCount={gridConfig.columns}
         columnWidth={gridConfig.columnWidth}
-        height={Math.min(600, gridConfig.rows * gridConfig.rowHeight)}
         rowCount={gridConfig.rows}
         rowHeight={gridConfig.rowHeight}
-        width="100%"
-        itemData={gridData}
-        overscanRowCount={2}
-        overscanColumnCount={1}
-      >
-        {GridItem}
-      </Grid>
+        style={{
+          height: Math.min(600, gridConfig.rows * gridConfig.rowHeight),
+          width: '100%',
+        }}
+        cellProps={gridData}
+        overscanCount={2}
+        cellComponent={GridItem}
+      ></Grid>
     </div>
   );
 };

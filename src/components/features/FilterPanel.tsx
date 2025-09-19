@@ -7,13 +7,7 @@ interface FilterPanelProps {
 }
 
 const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
-  const {
-    state,
-    dispatch,
-    clearFilters,
-    getAvailableMakes,
-    getAvailableColors,
-  } = useVehicle();
+  const { state, dispatch, clearFilters } = useVehicle();
 
   // Apply filters and sorting when filters change
   useEffect(() => {
@@ -31,28 +25,8 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
     return <FilterPanelSkeleton className={className} />;
   }
 
-  const availableMakes = getAvailableMakes() || [];
-  const availableColors = getAvailableColors() || [];
   const hasActiveFilters =
     state.selectedMake !== '' || state.selectedColor !== '';
-
-  const makeOptions = [
-    { value: '', label: 'All Makes' },
-    ...availableMakes.map(make => ({ value: make, label: make })),
-  ];
-
-  const colorOptions = [
-    { value: '', label: 'All Colors' },
-    ...availableColors.map(color => ({ value: color, label: color })),
-  ];
-
-  const handleMakeChange = (value: string) => {
-    dispatch({ type: 'SET_FILTER_MAKE', payload: value });
-  };
-
-  const handleColorChange = (value: string) => {
-    dispatch({ type: 'SET_FILTER_COLOR', payload: value });
-  };
 
   const handleClearFilters = () => {
     clearFilters();
@@ -75,46 +49,216 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
         {hasActiveFilters && (
           <button
             onClick={handleClearFilters}
-            className="text-blue-600 hover:text-blue-700 text-sm font-medium"
+            className="text-purple-600 hover:text-purple-700 text-sm font-medium"
           >
             Clear all
           </button>
         )}
       </div>
 
-      <div className="space-y-6">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Make & Model
+      {/* Quick Filters */}
+      <div className="space-y-3 mb-6">
+        <div className="flex items-center space-x-2">
+          <input
+            type="checkbox"
+            id="local-cars"
+            className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+          />
+          <label htmlFor="local-cars" className="text-sm text-gray-700">
+            Local cars only (214)
           </label>
-          <select
-            value={state.selectedMake}
-            onChange={e => handleMakeChange(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          >
-            {makeOptions.map(option => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+        </div>
+        <div className="flex items-center space-x-2">
+          <input
+            type="checkbox"
+            id="recently-added"
+            className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+          />
+          <label htmlFor="recently-added" className="text-sm text-gray-700">
+            Recently added (84)
+          </label>
+        </div>
+        <div className="flex items-center space-x-2">
+          <input
+            type="checkbox"
+            id="brand-new"
+            className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+          />
+          <label htmlFor="brand-new" className="text-sm text-gray-700">
+            Brand new (13)
+          </label>
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        {/* Monthly Price Filter */}
+        <div>
+          <button className="w-full flex items-center justify-between p-3 border border-gray-300 rounded-md hover:bg-gray-50">
+            <span className="text-sm font-medium text-gray-700">
+              Monthly price
+            </span>
+            <svg
+              className="w-4 h-4 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
         </div>
 
+        {/* Body Type Filter */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Exterior color
-          </label>
-          <select
-            value={state.selectedColor}
-            onChange={e => handleColorChange(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          >
-            {colorOptions.map(option => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+          <button className="w-full flex items-center justify-between p-3 border border-gray-300 rounded-md hover:bg-gray-50">
+            <span className="text-sm font-medium text-gray-700">Body type</span>
+            <svg
+              className="w-4 h-4 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
+        </div>
+
+        {/* Make & Model Filter */}
+        <div>
+          <button className="w-full flex items-center justify-between p-3 border border-gray-300 rounded-md hover:bg-gray-50">
+            <span className="text-sm font-medium text-gray-700">
+              Make & Model
+            </span>
+            <svg
+              className="w-4 h-4 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
+        </div>
+
+        {/* Model Year Filter */}
+        <div>
+          <button className="w-full flex items-center justify-between p-3 border border-gray-300 rounded-md hover:bg-gray-50">
+            <span className="text-sm font-medium text-gray-700">
+              Model year
+            </span>
+            <svg
+              className="w-4 h-4 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
+        </div>
+
+        {/* Mileage Filter */}
+        <div>
+          <button className="w-full flex items-center justify-between p-3 border border-gray-300 rounded-md hover:bg-gray-50">
+            <span className="text-sm font-medium text-gray-700">Mileage</span>
+            <svg
+              className="w-4 h-4 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
+        </div>
+
+        {/* Fuel Type Filter */}
+        <div>
+          <button className="w-full flex items-center justify-between p-3 border border-gray-300 rounded-md hover:bg-gray-50">
+            <span className="text-sm font-medium text-gray-700">Fuel type</span>
+            <svg
+              className="w-4 h-4 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
+        </div>
+
+        {/* MPG Filter */}
+        <div>
+          <button className="w-full flex items-center justify-between p-3 border border-gray-300 rounded-md hover:bg-gray-50">
+            <span className="text-sm font-medium text-gray-700">
+              Miles per gallon (MPG)
+            </span>
+            <svg
+              className="w-4 h-4 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
+        </div>
+
+        {/* Exterior Color Filter */}
+        <div>
+          <button className="w-full flex items-center justify-between p-3 border border-gray-300 rounded-md hover:bg-gray-50">
+            <span className="text-sm font-medium text-gray-700">
+              Exterior color
+            </span>
+            <svg
+              className="w-4 h-4 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
         </div>
       </div>
 

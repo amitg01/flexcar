@@ -11,23 +11,32 @@ interface ResponsiveVirtualizedGridProps {
 }
 
 interface GridItemProps {
+  ariaAttributes: {
+    'aria-colindex': number;
+    role: 'gridcell';
+  };
   columnIndex: number;
   rowIndex: number;
   style: React.CSSProperties;
-  data: {
-    vehicles: Vehicle[];
-    columnsPerRow: number;
-    onVehicleClick?: (vehicle: Vehicle) => void;
-  };
+  vehicles: Vehicle[];
+  columnsPerRow: number;
+  onVehicleClick?: (vehicle: Vehicle) => void;
 }
 
-const GridItem: React.FC<GridItemProps> = ({
+interface GridCellProps {
+  vehicles: Vehicle[];
+  columnsPerRow: number;
+  onVehicleClick?: (vehicle: Vehicle) => void;
+}
+
+const GridItem = ({
   columnIndex,
   rowIndex,
   style,
-  data,
-}) => {
-  const { vehicles, columnsPerRow, onVehicleClick } = data;
+  vehicles,
+  columnsPerRow,
+  onVehicleClick,
+}: GridItemProps) => {
   const index = rowIndex * columnsPerRow + columnIndex;
   const vehicle = vehicles[index];
 
@@ -154,20 +163,17 @@ const ResponsiveVirtualizedGrid: React.FC<ResponsiveVirtualizedGridProps> = ({
         {gridConfig.columns > 1 && ` in ${gridConfig.columns} columns`}
       </div>
 
-      <Grid
+      <Grid<GridCellProps>
         columnCount={gridConfig.columns}
         columnWidth={gridConfig.columnWidth}
-        height={gridHeight}
         rowCount={gridConfig.rows}
         rowHeight={gridConfig.rowHeight}
-        width="100%"
-        itemData={gridData}
-        overscanRowCount={2}
-        overscanColumnCount={1}
+        style={{ height: gridHeight, width: '100%' }}
+        cellProps={gridData}
+        overscanCount={2}
         className="scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
-      >
-        {GridItem}
-      </Grid>
+        cellComponent={GridItem}
+      ></Grid>
     </div>
   );
 };

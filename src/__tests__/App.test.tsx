@@ -1,13 +1,22 @@
 import React from 'react';
-import { render, screen, waitFor } from '../test/test-utils';
+import { render as rtlRender, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
+import '@testing-library/jest-dom';
 import App from '../App';
+import { VehicleProvider } from '../contexts/VehicleContext.tsx';
 import {
   getVehiclesByZipCode,
   getUniqueMakes,
   getUniqueColors,
 } from '../data/vehicles';
+
+// Custom render function with providers
+const render = (ui: React.ReactElement) => {
+  return rtlRender(ui, {
+    wrapper: ({ children }) => <VehicleProvider>{children}</VehicleProvider>,
+  });
+};
 
 // Mock the vehicle data
 vi.mock('../data/vehicles', () => ({
@@ -28,22 +37,19 @@ describe('App', () => {
   it('renders header and search bar', () => {
     render(<App />);
 
-    expect(screen.getByText('FlexCar Vehicle Search')).toBeInTheDocument();
-    expect(
-      screen.getByText('Find your perfect vehicle by ZIP code')
-    ).toBeInTheDocument();
-    expect(
-      screen.getByPlaceholderText('Enter ZIP code (e.g., 10001)')
-    ).toBeInTheDocument();
+    expect(screen.getByText('FLEXCAR')).toBeInTheDocument();
+    expect(screen.getByText('Find Flexcars near you')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Enter ZIP code')).toBeInTheDocument();
   });
 
-  it('shows empty state initially', () => {
+  it('shows modal initially', () => {
     render(<App />);
 
-    expect(screen.getByText('Search for vehicles')).toBeInTheDocument();
+    expect(screen.getByText('STEP 1 OF 2')).toBeInTheDocument();
+    expect(screen.getByText('Find Flexcars near you')).toBeInTheDocument();
     expect(
       screen.getByText(
-        'Enter a ZIP code to find available vehicles in your area.'
+        'Enter your ZIP code to see accurate availability and delivery options in your area.'
       )
     ).toBeInTheDocument();
   });
@@ -69,9 +75,9 @@ describe('App', () => {
 
     render(<App />);
 
-    const input = screen.getByPlaceholderText('Enter ZIP code (e.g., 10001)');
+    const input = screen.getByPlaceholderText('Enter ZIP code');
     await user.type(input, '10001');
-    await user.click(screen.getByRole('button', { name: 'Search' }));
+    await user.click(screen.getByRole('button', { name: 'Next' }));
 
     await waitFor(() => {
       expect(mockGetVehiclesByZipCode).toHaveBeenCalledWith('10001');
@@ -86,16 +92,16 @@ describe('App', () => {
 
     render(<App />);
 
-    const input = screen.getByPlaceholderText('Enter ZIP code (e.g., 10001)');
+    const input = screen.getByPlaceholderText('Enter ZIP code');
     await user.type(input, '99999');
 
     // Submit the form
-    await user.click(screen.getByRole('button', { name: 'Search' }));
+    await user.click(screen.getByRole('button', { name: 'Next' }));
 
     // Since async operations aren't working in test environment,
     // we'll test that the form submission works and the input is valid
     expect(input).toHaveValue('99999');
-    expect(screen.getByRole('button', { name: 'Search' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Next' })).toBeInTheDocument();
   });
 
   it('shows loading state during search', async () => {
@@ -109,16 +115,16 @@ describe('App', () => {
 
     render(<App />);
 
-    const input = screen.getByPlaceholderText('Enter ZIP code (e.g., 10001)');
+    const input = screen.getByPlaceholderText('Enter ZIP code');
     await user.type(input, '10001');
 
     // Submit the form
-    await user.click(screen.getByRole('button', { name: 'Search' }));
+    await user.click(screen.getByRole('button', { name: 'Next' }));
 
     // Since async operations aren't working in test environment,
     // we'll test that the form submission works and the input is valid
     expect(input).toHaveValue('10001');
-    expect(screen.getByRole('button', { name: 'Search' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Next' })).toBeInTheDocument();
   });
 
   it('displays vehicles when found', async () => {
@@ -144,9 +150,9 @@ describe('App', () => {
 
     render(<App />);
 
-    const input = screen.getByPlaceholderText('Enter ZIP code (e.g., 10001)');
+    const input = screen.getByPlaceholderText('Enter ZIP code');
     await user.type(input, '10001');
-    await user.click(screen.getByRole('button', { name: 'Search' }));
+    await user.click(screen.getByRole('button', { name: 'Next' }));
 
     await waitFor(() => {
       expect(screen.getByText('Toyota')).toBeInTheDocument();
@@ -190,9 +196,9 @@ describe('App', () => {
 
     render(<App />);
 
-    const input = screen.getByPlaceholderText('Enter ZIP code (e.g., 10001)');
+    const input = screen.getByPlaceholderText('Enter ZIP code');
     await user.type(input, '10001');
-    await user.click(screen.getByRole('button', { name: 'Search' }));
+    await user.click(screen.getByRole('button', { name: 'Next' }));
 
     await waitFor(() => {
       expect(screen.getByText('2 results')).toBeInTheDocument();
@@ -245,13 +251,17 @@ describe('App', () => {
 
     render(<App />);
 
-    const input = screen.getByPlaceholderText('Enter ZIP code (e.g., 10001)');
+    const input = screen.getByPlaceholderText('Enter ZIP code');
+    await user.clear(input);
     await user.type(input, '10001');
-    await user.click(screen.getByRole('button', { name: 'Search' }));
+    await user.click(screen.getByRole('button', { name: 'Next' }));
 
-    await waitFor(() => {
-      expect(screen.getByText('2 results')).toBeInTheDocument();
-    });
+    await waitFor(
+      () => {
+        expect(screen.getByText('2 results')).toBeInTheDocument();
+      },
+      { timeout: 5000 }
+    );
 
     // Sort by price low to high
     const sortSelect = screen.getByDisplayValue('Price: High to Low');

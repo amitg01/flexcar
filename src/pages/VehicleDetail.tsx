@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { Button, Card, Badge, LoadingSpinner, EmptyState } from '../components/ui';
+import {
+  Button,
+  Card,
+  Badge,
+  LoadingSpinner,
+  EmptyState,
+} from '../components/ui';
 import { getVehiclesByZipCode } from '../data/vehicles';
 import type { Vehicle } from '../data/vehicles';
 
@@ -16,14 +22,16 @@ const VehicleDetail: React.FC = () => {
       try {
         setLoading(true);
         setError(null);
-        
+
         // Simulate API call
         await new Promise(resolve => setTimeout(resolve, 500));
-        
+
         // Find vehicle by ID from all vehicles
-        const allVehicles = getVehiclesByZipCode('10001').concat(getVehiclesByZipCode('90210'));
+        const allVehicles = getVehiclesByZipCode('10001').concat(
+          getVehiclesByZipCode('90210')
+        );
         const foundVehicle = allVehicles.find(v => v.id === id);
-        
+
         if (foundVehicle) {
           setVehicle(foundVehicle);
         } else {
@@ -55,7 +63,8 @@ const VehicleDetail: React.FC = () => {
 
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const target = e.target as HTMLImageElement;
-    target.src = 'https://via.placeholder.com/800x600/0049B7/FFFFFF?text=Vehicle+Image';
+    target.src =
+      'https://via.placeholder.com/800x600/0049B7/FFFFFF?text=Vehicle+Image';
   };
 
   if (loading) {
@@ -74,7 +83,7 @@ const VehicleDetail: React.FC = () => {
           description={error || "The vehicle you're looking for doesn't exist."}
           action={{
             label: 'Back to Search',
-            onClick: () => navigate('/')
+            onClick: () => navigate('/'),
           }}
         />
       </div>
@@ -91,7 +100,11 @@ const VehicleDetail: React.FC = () => {
               FlexCar
             </Link>
             <Link to="/">
-              <Button variant="ghost" size="sm" className="text-white hover:bg-blue-700">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-white hover:bg-blue-700"
+              >
                 ← Back to Search
               </Button>
             </Link>
@@ -108,16 +121,19 @@ const VehicleDetail: React.FC = () => {
               <img
                 src={vehicle.image}
                 alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
-                className="w-full h-96 object-cover"
+                className="w-full h-96 object-cover max-h-96"
                 onError={handleImageError}
                 loading="lazy"
               />
             </Card>
-            
+
             {/* Additional Images Placeholder */}
             <div className="grid grid-cols-3 gap-2">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="aspect-square bg-gray-200 rounded-lg flex items-center justify-center">
+              {[1, 2, 3].map(i => (
+                <div
+                  key={i}
+                  className="aspect-square bg-gray-200 rounded-lg flex items-center justify-center"
+                >
                   <span className="text-gray-400 text-sm">Image {i}</span>
                 </div>
               ))}
@@ -138,7 +154,7 @@ const VehicleDetail: React.FC = () => {
                   {vehicle.year}
                 </Badge>
               </div>
-              
+
               <div className="text-4xl font-bold text-flexcar-blue mb-6">
                 {formatPrice(vehicle.price)}
               </div>
@@ -146,7 +162,9 @@ const VehicleDetail: React.FC = () => {
 
             {/* Key Details */}
             <Card variant="outlined" padding="lg">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Key Details</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                Key Details
+              </h3>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <span className="text-gray-600">Make:</span>
@@ -170,7 +188,9 @@ const VehicleDetail: React.FC = () => {
                 </div>
                 <div>
                   <span className="text-gray-600">Mileage:</span>
-                  <span className="ml-2 font-medium">{formatMileage(vehicle.mileage)} mi</span>
+                  <span className="ml-2 font-medium">
+                    {formatMileage(vehicle.mileage)} mi
+                  </span>
                 </div>
                 <div>
                   <span className="text-gray-600">ZIP Code:</span>
@@ -181,43 +201,49 @@ const VehicleDetail: React.FC = () => {
 
             {/* Action Buttons */}
             <div className="space-y-4">
-              <Button 
-                variant="primary" 
-                size="lg" 
+              <Button
+                variant="primary"
+                size="lg"
                 className="w-full"
                 onClick={() => {
                   // In a real app, this would open a contact form or call-to-action
-                  alert('Contact dealer functionality would be implemented here');
+                  alert(
+                    'Contact dealer functionality would be implemented here'
+                  );
                 }}
               >
                 Contact Dealer
               </Button>
-              
+
               <div className="grid grid-cols-2 gap-3">
-                <Button 
-                  variant="secondary" 
+                <Button
+                  variant="secondary"
                   size="md"
                   onClick={() => {
                     // In a real app, this would add to favorites
-                    alert('Add to favorites functionality would be implemented here');
+                    alert(
+                      'Add to favorites functionality would be implemented here'
+                    );
                   }}
                 >
                   Add to Favorites
                 </Button>
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="secondary"
                   size="md"
                   onClick={() => {
                     // In a real app, this would share the vehicle
-                    navigator.share?.({
-                      title: `${vehicle.year} ${vehicle.make} ${vehicle.model}`,
-                      text: `Check out this ${vehicle.year} ${vehicle.make} ${vehicle.model} for ${formatPrice(vehicle.price)}`,
-                      url: window.location.href
-                    }).catch(() => {
-                      // Fallback to copying URL
-                      navigator.clipboard.writeText(window.location.href);
-                      alert('Link copied to clipboard!');
-                    });
+                    navigator
+                      .share?.({
+                        title: `${vehicle.year} ${vehicle.make} ${vehicle.model}`,
+                        text: `Check out this ${vehicle.year} ${vehicle.make} ${vehicle.model} for ${formatPrice(vehicle.price)}`,
+                        url: window.location.href,
+                      })
+                      .catch(() => {
+                        // Fallback to copying URL
+                        navigator.clipboard.writeText(window.location.href);
+                        alert('Link copied to clipboard!');
+                      });
                   }}
                 >
                   Share

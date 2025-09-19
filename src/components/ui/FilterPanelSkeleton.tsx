@@ -1,8 +1,10 @@
 import React from 'react';
-import { Card } from './Card';
+import Card from './Card';
 import Skeleton from './Skeleton';
 
-const FilterPanelSkeleton: React.FC<{ className?: string }> = ({ className = '' }) => {
+const FilterPanelSkeleton: React.FC<{ className?: string }> = ({
+  className = '',
+}) => {
   return (
     <Card variant="elevated" padding="lg" className={`h-fit ${className}`}>
       {/* Header skeleton */}

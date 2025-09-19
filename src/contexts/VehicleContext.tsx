@@ -4,7 +4,12 @@ import {
   getUniqueMakes,
   getUniqueColors,
 } from '../data/vehicles';
-import { VehicleContext, type VehicleState, type VehicleAction, type VehicleContextType } from './VehicleContext';
+import {
+  VehicleContext,
+  type VehicleState,
+  type VehicleAction,
+  type VehicleContextType,
+} from './VehicleContext';
 
 // Initial state
 const initialState: VehicleState = {
@@ -19,7 +24,10 @@ const initialState: VehicleState = {
 };
 
 // Reducer
-const vehicleReducer = (state: VehicleState, action: VehicleAction): VehicleState => {
+const vehicleReducer = (
+  state: VehicleState,
+  action: VehicleAction
+): VehicleState => {
   switch (action.type) {
     case 'SET_LOADING':
       return { ...state, isLoading: action.payload };
@@ -62,12 +70,12 @@ const vehicleReducer = (state: VehicleState, action: VehicleAction): VehicleStat
       // Apply filters
       if (state.selectedMake) {
         filtered = filtered.filter(
-          (vehicle) => vehicle.make === state.selectedMake
+          vehicle => vehicle.make === state.selectedMake
         );
       }
       if (state.selectedColor) {
         filtered = filtered.filter(
-          (vehicle) => vehicle.color === state.selectedColor
+          vehicle => vehicle.color === state.selectedColor
         );
       }
 
@@ -105,18 +113,19 @@ export const VehicleProvider: React.FC<VehicleProviderProps> = ({
 
   const searchVehicles = async (zipCode: string) => {
     dispatch({ type: 'SET_LOADING', payload: true });
-    dispatch({ type: 'SET_ERROR', payload: null });
+    dispatch({ type: 'SET_ERROR', payload: '' });
     dispatch({ type: 'SET_ZIP_CODE', payload: zipCode });
 
     try {
       // Simulate API delay
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 1000));
 
       const vehicles = getVehiclesByZipCode(zipCode);
       if (vehicles.length === 0) {
         dispatch({
           type: 'SET_ERROR',
-          payload: 'No vehicles found for this ZIP code. Please try another location.',
+          payload:
+            'No vehicles found for this ZIP code. Please try another location.',
         });
         dispatch({ type: 'SET_VEHICLES', payload: [] });
       } else {

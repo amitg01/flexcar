@@ -48,7 +48,7 @@ const VehicleCard: React.FC<VehicleCardProps> = ({
         />
         <div className="absolute top-3 right-3">
           <span className="bg-white text-gray-900 px-2 py-1 rounded-md text-sm font-medium shadow-sm">
-            {vehicle.year}
+            {formatPrice(vehicle.price)}/mo
           </span>
         </div>
       </div>
@@ -58,20 +58,14 @@ const VehicleCard: React.FC<VehicleCardProps> = ({
           <h3 className="text-lg font-semibold text-gray-900 mb-1">
             {vehicle.year} {vehicle.make} {vehicle.model}
           </h3>
-          <p className="text-gray-600 text-sm">{vehicle.trim}</p>
+          <p className="text-gray-600 text-sm">
+            {vehicle.trim} · {formatMileage(vehicle.mileage)} miles ·{' '}
+            {vehicle.color}
+          </p>
         </div>
 
-        <div className="space-y-2 mb-4 text-sm">
-          <div className="flex justify-between">
-            <span className="text-gray-500">Color:</span>
-            <span className="font-medium text-gray-900">{vehicle.color}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-gray-500">Mileage:</span>
-            <span className="font-medium text-gray-900">
-              {formatMileage(vehicle.mileage)} mi
-            </span>
-          </div>
+        <div className="mb-4">
+          <p className="text-sm text-gray-500">Get it by Sep 22</p>
         </div>
 
         <div className="border-t border-gray-100 pt-4">
@@ -84,7 +78,7 @@ const VehicleCard: React.FC<VehicleCardProps> = ({
             </div>
             <button
               onClick={handleViewDetails}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+              className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
             >
               View Details
             </button>
