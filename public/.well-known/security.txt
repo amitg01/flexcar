@@ -1,0 +1,8 @@
+Contact: mailto:security@flexcar.com
+Contact: https://flexcar.com/security
+Expires: 2025-12-31T23:59:59.000Z
+Encryption: https://flexcar.com/pgp-key.txt
+Acknowledgments: https://flexcar.com/security/acknowledgments
+Policy: https://flexcar.com/security-policy
+Preferred-Languages: en
+Canonical: https://flexcar.com/.well-known/security.txt
