@@ -12,6 +12,7 @@ export { default as VehicleCardSkeleton } from './VehicleCardSkeleton';
 export { default as FilterPanelSkeleton } from './FilterPanelSkeleton';
 export { default as SearchBarSkeleton } from './SearchBarSkeleton';
 export { default as VehicleGridSkeleton } from './VehicleGridSkeleton';
+export { default as Modal } from './Modal';
 
 // Re-export types
 export type { SelectOption } from './Select';
