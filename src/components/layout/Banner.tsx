@@ -4,19 +4,20 @@ import { ArrowRight } from 'lucide-react';
 const Banner: React.FC = () => {
   return (
     <div className="w-full">
-      <div className="bg-banner-gradient">
+      <div 
+        className=""
+        style={{
+          backgroundImage: 'linear-gradient(90deg, #5b6374 -14.7%, #0b0c0e 97.44%)'
+        }}
+      >
         <div className="block w-full justify-center py-[8px] text-center px-[12px]">
           <a href="https://www.flexcar.com/vehicles/2025-mercedes">
             {/* Mobile Version */}
             <div className="body3 flex flex-row items-start py-2 md:hidden md:items-center">
               <div>
                 <div className="w-[48px] flex items-center justify-center">
-                  <div
-                    style={{ width: '100%', height: '100%', lineHeight: 0 }}
-                  >
-                    <canvas
-                      style={{ width: '100%', height: '100%' }}
-                    ></canvas>
+                  <div style={{ width: '100%', height: '100%', lineHeight: 0 }}>
+                    <canvas style={{ width: '100%', height: '100%' }}></canvas>
                   </div>
                 </div>
               </div>
