@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Header, Footer } from '@/components/layout';
 import { VehicleGrid, FilterPanel, SortDropdown } from '@/components/features';
 import { useVehicle } from '@/hooks/useVehicle';
+import type { SortOption } from '@/types/contexts/VehicleContext';
 
 const VehicleListingPage: React.FC = () => {
-  const { state, searchVehicles } = useVehicle();
+  const { state, dispatch, searchVehicles } = useVehicle();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  // Load user data from localStorage and search vehicles
   useEffect(() => {
     const userData = localStorage.getItem('flexcar-user-data');
     if (userData) {
@@ -17,14 +19,89 @@ const VehicleListingPage: React.FC = () => {
         }
       } catch (error) {
         console.error('Error parsing user data:', error);
-        // If user data is corrupted, load default vehicles
         searchVehicles('10001');
       }
     } else {
-      // If no user data, load default vehicles instead of redirecting
       searchVehicles('10001');
     }
   }, [searchVehicles]);
+
+  // Load URL parameters on mount and when URL changes
+  useEffect(() => {
+    const make = searchParams.get('make') || '';
+    const color = searchParams.get('color') || '';
+    const sort = searchParams.get('sort') || 'popularity';
+
+    // Update state from URL parameters
+    if (make !== state.selectedMake) {
+      dispatch({ type: 'SET_FILTER_MAKE', payload: make });
+    }
+    if (color !== state.selectedColor) {
+      dispatch({ type: 'SET_FILTER_COLOR', payload: color });
+    }
+    if (sort !== state.sortBy) {
+      dispatch({ type: 'SET_SORT_BY', payload: sort as SortOption });
+    }
+
+    // Apply filters and sort after updating state
+    if (state.vehicles.length > 0) {
+      dispatch({ type: 'APPLY_FILTERS_AND_SORT' });
+    }
+  }, [
+    searchParams,
+    dispatch,
+    state.selectedMake,
+    state.selectedColor,
+    state.sortBy,
+    state.vehicles.length,
+  ]);
+
+  // Update URL when filters or sort change
+  useEffect(() => {
+    const currentParams = new URLSearchParams(searchParams);
+    let hasChanges = false;
+
+    // Update make parameter
+    if (state.selectedMake !== (currentParams.get('make') || '')) {
+      if (state.selectedMake) {
+        currentParams.set('make', state.selectedMake);
+      } else {
+        currentParams.delete('make');
+      }
+      hasChanges = true;
+    }
+
+    // Update color parameter
+    if (state.selectedColor !== (currentParams.get('color') || '')) {
+      if (state.selectedColor) {
+        currentParams.set('color', state.selectedColor);
+      } else {
+        currentParams.delete('color');
+      }
+      hasChanges = true;
+    }
+
+    // Update sort parameter
+    if (state.sortBy !== (currentParams.get('sort') || 'popularity')) {
+      if (state.sortBy !== 'popularity') {
+        currentParams.set('sort', state.sortBy);
+      } else {
+        currentParams.delete('sort');
+      }
+      hasChanges = true;
+    }
+
+    // Only update URL if there are changes
+    if (hasChanges) {
+      setSearchParams(currentParams, { replace: true });
+    }
+  }, [
+    state.selectedMake,
+    state.selectedColor,
+    state.sortBy,
+    searchParams,
+    setSearchParams,
+  ]);
 
   return (
     <div className="min-h-screen bg-white">
@@ -33,10 +110,8 @@ const VehicleListingPage: React.FC = () => {
       <div className="w-full overflow-hidden">
         <div className="max-w-[1440px] mx-auto px-4">
           <div className="flex flex-col lg:flex-row">
-            {/* Main Content */}
             <div className="flex-1 min-w-0 bg-white">
               <div className="p-4 lg:p-6">
-                {/* Results Header */}
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
                   <div className="flex items-center gap-4">
                     <h2 className="text-xl font-semibold text-gray-900">

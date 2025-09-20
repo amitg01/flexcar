@@ -17,8 +17,8 @@ interface VehicleGridProps {
 const VehicleGrid: React.FC<VehicleGridProps> = ({
   onVehicleClick,
   className = '',
-  useVirtualization = true, // eslint-disable-line @typescript-eslint/no-unused-vars
-  virtualizationThreshold = 20, // eslint-disable-line @typescript-eslint/no-unused-vars
+  useVirtualization: _useVirtualization = true, // eslint-disable-line @typescript-eslint/no-unused-vars
+  virtualizationThreshold: _virtualizationThreshold = 20, // eslint-disable-line @typescript-eslint/no-unused-vars
 }) => {
   const { state, clearFilters } = useVehicle();
 
