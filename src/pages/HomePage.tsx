@@ -178,25 +178,43 @@ const HomePage: React.FC = () => {
       </Modal>
 
       {/* Luxury Banner */}
-      <div className="hidden flex-row items-center justify-center py-3 px-4 text-white md:flex bg-banner-gradient">
-        <div className="w-[48px] flex items-center justify-center mr-4">
-          <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-            <div className="w-6 h-6 bg-gray-900 rounded-full flex items-center justify-center">
-              <div className="w-4 h-4 bg-white rounded-full flex items-center justify-center">
-                <div className="w-2 h-2 bg-gray-900 rounded-full"></div>
+      <div className="w-full">
+        <div className="bg-banner-gradient">
+          <div className="block w-full justify-center py-[8px] text-center px-[12px]">
+            <a href="https://www.flexcar.com/vehicles/2025-mercedes">
+              {/* Mobile Version */}
+              <div className="body3 flex flex-row items-start py-2 md:hidden md:items-center">
+                <div>
+                  <div className="w-[48px] flex items-center justify-center">
+                    <div style={{width: '100%', height: '100%', lineHeight: 0}}>
+                      <canvas style={{width: '100%', height: '100%'}}></canvas>
+                    </div>
+                  </div>
+                </div>
+                <div className="text-left text-gray-300">
+                  <span className="text-inter-16-bold text-gray-300">Luxury Unleashed</span> — The smartest way to get a 2025 Mercedes-Benz. <span className="text-inter-16-bold whitespace-nowrap text-gray-300 underline">
+                    Learn more
+                    <ArrowRight className="ml-1 inline h-[14px] w-[14px] align-text-bottom" />
+                  </span>
+                </div>
               </div>
-            </div>
+              
+              {/* Desktop Version */}
+              <div className="body3 hidden flex-row items-center justify-center py-1 text-gray-300 md:flex">
+                <div className="w-[48px] flex items-center justify-center">
+                  <div style={{width: '100%', height: '100%', lineHeight: 0}}>
+                    <canvas style={{width: '100%', height: '100%'}} width="48" height="24"></canvas>
+                  </div>
+                </div>
+                <div className="text-left text-gray-300">
+                  <span className="text-inter-16-bold text-gray-300">Luxury Unleashed</span> — The smartest way to get a 2025 Mercedes-Benz. <span className="text-inter-16-bold whitespace-nowrap text-gray-300 underline">
+                    Learn more
+                    <ArrowRight className="ml-1 inline h-[14px] w-[14px] align-text-bottom" />
+                  </span>
+                </div>
+              </div>
+            </a>
           </div>
-        </div>
-        <div className="text-left text-white">
-          <span className="text-inter-16-bold text-white">
-            Luxury Unleashed
-          </span>{' '}
-          — The smartest way to get a 2025 Mercedes-Benz.{' '}
-          <span className="text-inter-16-bold whitespace-nowrap text-white underline cursor-pointer hover:text-gray-300 transition-colors">
-            Learn more
-            <ArrowRight className="ml-1 inline h-[14px] w-[14px] align-text-bottom" />
-          </span>
         </div>
       </div>
 
