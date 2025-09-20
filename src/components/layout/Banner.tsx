@@ -1,5 +1,6 @@
 import React from 'react';
-import { ArrowRight, Car } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import MercedesIcon from '../../assets/mercedes.svg';
 
 const Banner: React.FC = () => {
   return (
@@ -40,7 +41,7 @@ const Banner: React.FC = () => {
                     fontWeight: 600,
                   }}
                 >
-                  <Car className="inline w-4 h-4 mr-1" />
+                  <img src={MercedesIcon} alt="Mercedes" className="inline w-4 h-4 mr-1" />
                   Luxury Unleashed
                 </span>{' '}
                 — The smartest way to get a 2025 Mercedes-Benz.{' '}
@@ -96,7 +97,7 @@ const Banner: React.FC = () => {
                     fontWeight: 600,
                   }}
                 >
-                  <Car className="inline w-4 h-4 mr-1" />
+                  <img src={MercedesIcon} alt="Mercedes" className="inline w-4 h-4 mr-1" />
                   Luxury Unleashed
                 </span>{' '}
                 — The smartest way to get a 2025 Mercedes-Benz.{' '}
