@@ -5,7 +5,7 @@ import { VehicleGrid, FilterPanel, SortDropdown } from '@/components/features';
 import { useVehicle } from '@/hooks/useVehicle';
 import { useOnboarding } from '@/hooks/useOnboarding';
 import OnboardingModal from '@/pages/HomePage/OnboardingModal';
-import { VehicleGridSkeleton, FilterPanelSkeleton } from '@/components/ui';
+import { LoadingSpinner } from '@/components/ui';
 import type { SortOption } from '@/types/contexts/VehicleContext';
 
 const VehicleListingPage: React.FC = () => {
@@ -132,23 +132,12 @@ const VehicleListingPage: React.FC = () => {
             <div className="flex-1 min-w-0 bg-white">
               <div className="p-4 lg:p-6">
                 {isInitialLoad ? (
-                  <>
-                    {/* Skeleton for results header */}
-                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
-                      <div className="flex items-center gap-4">
-                        <div className="h-6 w-24 bg-gray-200 rounded animate-pulse"></div>
-                        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
-                      </div>
-                      <div className="w-full sm:w-auto">
-                        <div className="h-10 w-32 bg-gray-200 rounded animate-pulse"></div>
-                      </div>
+                  <div className="flex items-center justify-center min-h-[400px]">
+                    <div className="text-center">
+                      <LoadingSpinner size="lg" />
+                      <p className="mt-4 text-gray-600">Loading vehicles...</p>
                     </div>
-
-                    {/* Skeleton for vehicle grid */}
-                    <div className="overflow-hidden">
-                      <VehicleGridSkeleton />
-                    </div>
-                  </>
+                  </div>
                 ) : (
                   <>
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
@@ -182,7 +171,7 @@ const VehicleListingPage: React.FC = () => {
             {/* Filters Sidebar - Right Side */}
             <div className="w-full lg:w-80 lg:border-l border-gray-200 lg:min-h-screen">
               <div className="p-4 lg:p-6">
-                {isInitialLoad ? <FilterPanelSkeleton /> : <FilterPanel />}
+                <FilterPanel />
               </div>
             </div>
           </div>
