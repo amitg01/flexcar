@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Header, Footer, Banner } from '@/components/layout';
 import {
   HeroSection,
@@ -14,15 +14,11 @@ import OnboardingModal from './OnboardingModal';
 import { useOnboarding } from '@/hooks/useOnboarding';
 
 const HomePage: React.FC = () => {
-  const { setShowModal } = useOnboarding();
-
-  useEffect(() => {
-    setShowModal(true);
-  }, [setShowModal]);
+  const { showModal } = useOnboarding();
 
   return (
     <div className="min-h-screen bg-white">
-      <OnboardingModal />
+      {showModal && <OnboardingModal />}
       <Banner />
       <Header />
       <HeroSection />

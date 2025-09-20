@@ -58,11 +58,7 @@ const VehicleGrid: React.FC<VehicleGridProps> = ({
       className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ${className}`}
     >
       {state.filteredVehicles.map(vehicle => (
-        <VehicleCard
-          key={vehicle.id}
-          vehicle={vehicle}
-          onViewDetails={() => onVehicleClick?.(vehicle)}
-        />
+        <VehicleCard key={vehicle.id} vehicle={vehicle} />
       ))}
     </div>
   );

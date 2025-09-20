@@ -6,7 +6,6 @@ import { useVehicle } from '@/hooks/useVehicle';
 import type { Vehicle } from '@/data/vehicles';
 
 interface ResponsiveVirtualizedGridProps {
-  onVehicleClick?: (vehicle: Vehicle) => void;
   className?: string;
 }
 
@@ -20,13 +19,11 @@ interface GridItemProps {
   style: React.CSSProperties;
   vehicles: Vehicle[];
   columnsPerRow: number;
-  onVehicleClick?: (vehicle: Vehicle) => void;
 }
 
 interface GridCellProps {
   vehicles: Vehicle[];
   columnsPerRow: number;
-  onVehicleClick?: (vehicle: Vehicle) => void;
 }
 
 const GridItem = ({
@@ -35,7 +32,6 @@ const GridItem = ({
   style,
   vehicles,
   columnsPerRow,
-  onVehicleClick,
 }: GridItemProps) => {
   const index = rowIndex * columnsPerRow + columnIndex;
   const vehicle = vehicles[index];
@@ -46,17 +42,12 @@ const GridItem = ({
 
   return (
     <div style={style} className="p-3">
-      <VehicleCard
-        vehicle={vehicle}
-        onViewDetails={() => onVehicleClick?.(vehicle)}
-        className="h-full"
-      />
+      <VehicleCard vehicle={vehicle} className="h-full" />
     </div>
   );
 };
 
 const ResponsiveVirtualizedGrid: React.FC<ResponsiveVirtualizedGridProps> = ({
-  onVehicleClick,
   className = '',
 }) => {
   const { state, clearFilters } = useVehicle();
@@ -129,9 +120,8 @@ const ResponsiveVirtualizedGrid: React.FC<ResponsiveVirtualizedGridProps> = ({
     () => ({
       vehicles: state.filteredVehicles,
       columnsPerRow: gridConfig.columns,
-      onVehicleClick,
     }),
-    [state.filteredVehicles, gridConfig.columns, onVehicleClick]
+    [state.filteredVehicles, gridConfig.columns]
   );
 
   if (state.isLoading) {

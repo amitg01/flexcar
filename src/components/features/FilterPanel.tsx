@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Button, FilterPanelSkeleton } from '@/components/ui';
 import { useVehicle } from '@/hooks/useVehicle';
 
@@ -8,15 +8,39 @@ interface FilterPanelProps {
 
 const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
   const { state, dispatch, clearFilters } = useVehicle();
+  const lastAppliedFilters = useRef({
+    selectedMake: '',
+    selectedColor: '',
+    sortBy: 'popularity',
+    vehiclesLength: 0,
+  });
 
   // Apply filters and sorting when filters change
   useEffect(() => {
-    dispatch({ type: 'APPLY_FILTERS_AND_SORT' });
+    const currentFilters = {
+      selectedMake: state.selectedMake,
+      selectedColor: state.selectedColor,
+      sortBy: state.sortBy,
+      vehiclesLength: state.vehicles.length,
+    };
+
+    // Only apply filters if something actually changed
+    if (
+      lastAppliedFilters.current.selectedMake !== currentFilters.selectedMake ||
+      lastAppliedFilters.current.selectedColor !==
+        currentFilters.selectedColor ||
+      lastAppliedFilters.current.sortBy !== currentFilters.sortBy ||
+      lastAppliedFilters.current.vehiclesLength !==
+        currentFilters.vehiclesLength
+    ) {
+      dispatch({ type: 'APPLY_FILTERS_AND_SORT' });
+      lastAppliedFilters.current = currentFilters;
+    }
   }, [
     state.selectedMake,
     state.selectedColor,
     state.sortBy,
-    state.vehicles,
+    state.vehicles.length,
     dispatch,
   ]);
 
@@ -65,7 +89,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
             className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
           />
           <label htmlFor="local-cars" className="text-sm text-gray-700">
-            Local cars only (214)
+            Local cars only (199)
           </label>
         </div>
         <div className="flex items-center space-x-2">
@@ -75,7 +99,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
             className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
           />
           <label htmlFor="recently-added" className="text-sm text-gray-700">
-            Recently added (84)
+            Recently added (74)
           </label>
         </div>
         <div className="flex items-center space-x-2">

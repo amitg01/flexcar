@@ -1,4 +1,4 @@
-import React, { useReducer, type ReactNode } from 'react';
+import React, { useReducer, useCallback, type ReactNode } from 'react';
 import {
   getVehiclesByZipCode,
   getUniqueMakes,
@@ -17,7 +17,7 @@ const initialState: VehicleState = {
   filteredVehicles: [],
   selectedMake: '',
   selectedColor: '',
-  sortBy: 'price-high-low',
+  sortBy: 'popularity',
   zipCode: '',
   isLoading: false,
   error: null,
@@ -82,6 +82,9 @@ const vehicleReducer = (
       // Apply sorting
       filtered.sort((a, b) => {
         switch (state.sortBy) {
+          case 'popularity':
+            // For demo purposes, sort by price (lower price = more popular)
+            return a.price - b.price;
           case 'price-high-low':
             return b.price - a.price;
           case 'price-low-high':
@@ -111,7 +114,7 @@ export const VehicleProvider: React.FC<VehicleProviderProps> = ({
 }) => {
   const [state, dispatch] = useReducer(vehicleReducer, initialState);
 
-  const searchVehicles = async (zipCode: string) => {
+  const searchVehicles = useCallback(async (zipCode: string) => {
     dispatch({ type: 'SET_LOADING', payload: true });
     dispatch({ type: 'SET_ERROR', payload: '' });
     dispatch({ type: 'SET_ZIP_CODE', payload: zipCode });
@@ -137,19 +140,19 @@ export const VehicleProvider: React.FC<VehicleProviderProps> = ({
         payload: 'An error occurred while searching. Please try again.',
       });
     }
-  };
+  }, []);
 
-  const clearFilters = () => {
+  const clearFilters = useCallback(() => {
     dispatch({ type: 'CLEAR_FILTERS' });
-  };
+  }, []);
 
-  const getAvailableMakes = () => {
+  const getAvailableMakes = useCallback(() => {
     return getUniqueMakes(state.vehicles);
-  };
+  }, [state.vehicles]);
 
-  const getAvailableColors = () => {
+  const getAvailableColors = useCallback(() => {
     return getUniqueColors(state.vehicles);
-  };
+  }, [state.vehicles]);
 
   const value: VehicleContextType = {
     state,

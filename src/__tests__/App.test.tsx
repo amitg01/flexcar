@@ -23,6 +23,8 @@ vi.mock('../data/vehicles', () => ({
 describe('App', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    // Clear localStorage to ensure modal shows
+    localStorage.clear();
   });
 
   it('renders header and modal', () => {
