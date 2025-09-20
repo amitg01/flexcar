@@ -3,7 +3,7 @@ import {
   getVehiclesByZipCode,
   getUniqueMakes,
   getUniqueColors,
-} from '../data/vehicles';
+} from '@/data/vehicles';
 import {
   VehicleContext,
   type VehicleState,

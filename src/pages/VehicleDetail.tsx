@@ -6,9 +6,9 @@ import {
   Badge,
   LoadingSpinner,
   EmptyState,
-} from '../components/ui';
-import { getVehiclesByZipCode } from '../data/vehicles';
-import type { Vehicle } from '../data/vehicles';
+} from '@/components/ui';
+import { getVehiclesByZipCode } from '@/data/vehicles';
+import type { Vehicle } from '@/data/vehicles';
 
 const VehicleDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();

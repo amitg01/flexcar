@@ -1,34 +1,6 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
-
-interface OnboardingContextType {
-  showModal: boolean;
-  currentStep: number;
-  zipCode: string;
-  age: string;
-  creditScore: string;
-  setShowModal: (show: boolean) => void;
-  setCurrentStep: (step: number) => void;
-  setZipCode: (zipCode: string) => void;
-  setAge: (age: string) => void;
-  setCreditScore: (creditScore: string) => void;
-  handleZipSubmit: (e: React.FormEvent) => void;
-  handleUserInfoSubmit: (e: React.FormEvent) => void;
-  handleLocateMe: () => void;
-  handleCloseModal: () => void;
-  handleBackToStep1: () => void;
-}
-
-const OnboardingContext = createContext<OnboardingContextType | undefined>(
-  undefined
-);
-
-export const useOnboarding = () => {
-  const context = useContext(OnboardingContext);
-  if (context === undefined) {
-    throw new Error('useOnboarding must be used within an OnboardingProvider');
-  }
-  return context;
-};
+import React, { useState, type ReactNode } from 'react';
+import type { OnboardingContextType } from './OnboardingContext.types';
+import { OnboardingContext } from './OnboardingContextInstance';
 
 interface OnboardingProviderProps {
   children: ReactNode;

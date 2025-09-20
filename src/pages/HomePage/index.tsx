@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Header, Footer, Banner } from '../../components/layout';
+import { Header, Footer, Banner } from '@/components/layout';
 import {
   HeroSection,
   VideoSection,
@@ -11,7 +11,7 @@ import {
   AppDownloadSection,
 } from './components';
 import OnboardingModal from './OnboardingModal';
-import { useOnboarding } from '../../contexts/OnboardingContext';
+import { useOnboarding } from '@/hooks/useOnboarding';
 
 const HomePage: React.FC = () => {
   const { setShowModal } = useOnboarding();

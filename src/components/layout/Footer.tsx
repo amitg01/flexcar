@@ -1,5 +1,5 @@
 import React from 'react';
-import BrandLogo from '../../assets/brand-logo.svg';
+import BrandLogo from '@/assets/brand-logo.svg';
 
 const Footer: React.FC = () => {
   const flexcarLinks = [

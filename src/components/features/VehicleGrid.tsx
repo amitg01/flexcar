@@ -1,9 +1,9 @@
 import React from 'react';
-import { EmptyState, VehicleGridSkeleton } from '../ui';
+import { EmptyState, VehicleGridSkeleton } from '@/components/ui';
 import VehicleCard from './VehicleCard';
 import ResponsiveVirtualizedGrid from './ResponsiveVirtualizedGrid';
-import { useVehicle } from '../../hooks/useVehicle';
-import type { Vehicle } from '../../data/vehicles';
+import { useVehicle } from '@/hooks/useVehicle';
+import type { Vehicle } from '@/data/vehicles';
 
 interface VehicleGridProps {
   onVehicleClick?: (vehicle: Vehicle) => void;

@@ -3,13 +3,13 @@ import { render as rtlRender, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import '@testing-library/jest-dom';
-import App from '../App';
-import { VehicleProvider } from '../contexts/VehicleContext.tsx';
+import App from '@/App';
+import { VehicleProvider } from '@/contexts/VehicleContext.tsx';
 import {
   getVehiclesByZipCode,
   getUniqueMakes,
   getUniqueColors,
-} from '../data/vehicles';
+} from '@/data/vehicles';
 
 // Custom render function with providers
 const render = (ui: React.ReactElement) => {

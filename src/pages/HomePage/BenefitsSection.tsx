@@ -47,13 +47,6 @@ const BenefitsSection: React.FC = () => {
                   View cars
                 </button>
               </div>
-              <div className="order-1 md:order-2">
-                <img
-                  src="https://via.placeholder.com/600x400/3A00E5/FFFFFF?text=Highway+Robbery"
-                  alt="Traditional car ownership is highway robbery"
-                  className="w-full rounded-xl xs:rounded-2xl sm:rounded-3xl"
-                />
-              </div>
             </div>
           </div>
         </div>

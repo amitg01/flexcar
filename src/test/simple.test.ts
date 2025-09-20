@@ -3,7 +3,7 @@ import {
   getVehiclesByZipCode,
   getUniqueMakes,
   getUniqueColors,
-} from '../data/vehicles';
+} from '@/data/vehicles';
 
 describe('Vehicle Data Functions', () => {
   it('should return vehicles for valid ZIP code', () => {

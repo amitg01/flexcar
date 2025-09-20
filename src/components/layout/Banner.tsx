@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
-import MercedesIcon from '../../assets/mercedes.svg';
+import MercedesIcon from '@/assets/mercedes.svg';
 
 const Banner: React.FC = () => {
   return (

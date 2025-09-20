@@ -1,5 +1,5 @@
 import React from 'react';
-import { type Vehicle } from '../../data/vehicles';
+import { type Vehicle } from '@/data/vehicles';
 
 interface VehicleCardProps {
   vehicle: Vehicle;

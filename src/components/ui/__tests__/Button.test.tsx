@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Button from '../Button';
+import Button from '@/Button';
 
 describe('Button', () => {
   it('renders with children', () => {
@@ -33,21 +33,21 @@ describe('Button', () => {
   });
 
   it('applies variant classes correctly', () => {
-    const { rerender } = render(<Button variant='primary'>Primary</Button>);
+    const { rerender } = render(<Button variant="primary">Primary</Button>);
     expect(screen.getByRole('button')).toHaveClass('bg-flexcar-blue');
 
-    rerender(<Button variant='secondary'>Secondary</Button>);
+    rerender(<Button variant="secondary">Secondary</Button>);
     expect(screen.getByRole('button')).toHaveClass('bg-gray-200');
 
-    rerender(<Button variant='danger'>Danger</Button>);
+    rerender(<Button variant="danger">Danger</Button>);
     expect(screen.getByRole('button')).toHaveClass('bg-red-500');
   });
 
   it('applies size classes correctly', () => {
-    const { rerender } = render(<Button size='sm'>Small</Button>);
+    const { rerender } = render(<Button size="sm">Small</Button>);
     expect(screen.getByRole('button')).toHaveClass('px-3', 'py-1.5', 'text-sm');
 
-    rerender(<Button size='lg'>Large</Button>);
+    rerender(<Button size="lg">Large</Button>);
     expect(screen.getByRole('button')).toHaveClass('px-6', 'py-3', 'text-lg');
   });
 });

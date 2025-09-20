@@ -1,7 +1,10 @@
 import { createContext } from 'react';
-import type { Vehicle } from '../data/vehicles';
+import type { Vehicle } from '@/data/vehicles';
 
-export type SortOption = 'price-high-low' | 'price-low-high' | 'make-alphabetical';
+export type SortOption =
+  | 'price-high-low'
+  | 'price-low-high'
+  | 'make-alphabetical';
 
 export interface VehicleState {
   vehicles: Vehicle[];
@@ -34,4 +37,6 @@ export interface VehicleContextType {
   getAvailableColors: () => string[];
 }
 
-export const VehicleContext = createContext<VehicleContextType | undefined>(undefined);
+export const VehicleContext = createContext<VehicleContextType | undefined>(
+  undefined
+);

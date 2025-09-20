@@ -18,24 +18,6 @@ const FreedomSection: React.FC = () => {
                 Learn more about swaps
               </button>
             </div>
-
-            {/* Freedom Images */}
-            <div className="grid md:grid-cols-2 gap-4 xs:gap-6 sm:gap-8 items-center">
-              <div className="order-2 md:order-1">
-                <img
-                  src="https://via.placeholder.com/600x400/3A00E5/FFFFFF?text=Freedom+to+choose"
-                  alt="Freedom to choose"
-                  className="w-full rounded-xl xs:rounded-2xl sm:rounded-3xl"
-                />
-              </div>
-              <div className="order-1 md:order-2">
-                <img
-                  src="https://via.placeholder.com/600x400/25BCB6/FFFFFF?text=Freedom+to+change"
-                  alt="Freedom to change"
-                  className="w-full rounded-xl xs:rounded-2xl sm:rounded-3xl"
-                />
-              </div>
-            </div>
           </div>
         </div>
       </div>

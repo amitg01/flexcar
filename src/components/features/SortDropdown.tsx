@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { useVehicle } from '../../hooks/useVehicle';
-import type { SortOption } from '../../contexts/VehicleContext';
+import { useVehicle } from '@/hooks/useVehicle';
+import type { SortOption } from '@/contexts/VehicleContext';
 
 interface SortDropdownProps {
   className?: string;

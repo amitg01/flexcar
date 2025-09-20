@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { Button, FilterPanelSkeleton } from '../ui';
-import { useVehicle } from '../../hooks/useVehicle';
+import { Button, FilterPanelSkeleton } from '@/components/ui';
+import { useVehicle } from '@/hooks/useVehicle';
 
 interface FilterPanelProps {
   className?: string;

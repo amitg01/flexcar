@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Input, Button } from '../ui';
-import { useDebounce } from '../../hooks';
-import { useVehicle } from '../../hooks/useVehicle';
+import { Input, Button } from '@/components/ui';
+import { useDebounce } from '@/hooks';
+import { useVehicle } from '@/hooks/useVehicle';
 
 interface SearchBarProps {
   className?: string;

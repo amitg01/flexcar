@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu } from 'lucide-react';
-import BrandLogo from '../../assets/brand-logo.svg';
+import BrandLogo from '@/assets/brand-logo.svg';
 
 const Header: React.FC = () => {
   return (

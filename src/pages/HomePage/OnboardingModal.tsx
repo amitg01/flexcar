@@ -1,11 +1,11 @@
 import React from 'react';
-import { Modal, Select } from '../../components/ui';
+import { Modal, Select } from '@/components/ui';
 import { MapPin, ArrowLeft, HelpCircle } from 'lucide-react';
-import { useOnboarding } from '../../contexts/OnboardingContext';
+import { useOnboarding } from '@/hooks/useOnboarding';
 import {
   AGE_OPTIONS,
   CREDIT_SCORE_OPTIONS,
-} from '../../constants/onboarding-constants';
+} from '@/constants/onboarding-constants';
 
 const OnboardingModal: React.FC = () => {
   const {
