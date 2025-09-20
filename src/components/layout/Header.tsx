@@ -8,7 +8,9 @@ const Header: React.FC = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-1 sm:space-x-2">
             <div className="w-5 h-5 sm:w-8 sm:h-8 bg-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white text-inter-16-bold text-xs sm:text-sm">F</span>
+              <span className="text-white text-inter-16-bold text-xs sm:text-sm">
+                F
+              </span>
             </div>
             <span className="text-base sm:text-2xl text-inter-16-bold text-purple-600">
               FLEXCAR
@@ -19,7 +21,7 @@ const Header: React.FC = () => {
               How it works
             </span>
             <span className="text-inter-16-semibold text-black xs:hidden">
-              Login
+              Log in
             </span>
             {/* Mobile menu button */}
             <button className="sm:hidden p-1 ml-1">

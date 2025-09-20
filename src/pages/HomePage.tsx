@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Select } from '../components/ui';
 import { Header, Footer } from '../components/layout';
-import { MapPin, Play, ArrowLeft, HelpCircle } from 'lucide-react';
+import { MapPin, Play, ArrowLeft, HelpCircle, ArrowRight } from 'lucide-react';
 
 const HomePage: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
@@ -177,6 +177,21 @@ const HomePage: React.FC = () => {
         )}
       </Modal>
       <Header />
+
+      {/* Luxury Banner */}
+      <div className="body3 hidden flex-row items-center justify-center py-1 text-gray-600 md:flex bg-gray-50">
+        <div className="w-[48px] flex items-center justify-center">
+          <div style={{width: '100%', height: '100%', lineHeight: 0}}>
+            <canvas style={{width: '100%', height: '100%'}} width="48" height="24"></canvas>
+          </div>
+        </div>
+        <div className="text-left text-gray-600">
+          <span className="text-inter-16-bold text-gray-600">Luxury Unleashed</span> — The smartest way to get a 2025 Mercedes-Benz. <span className="text-inter-16-bold whitespace-nowrap text-gray-600 underline cursor-pointer hover:text-gray-800 transition-colors">
+            Learn more
+            <ArrowRight className="ml-1 inline h-[14px] w-[14px] align-text-bottom" />
+          </span>
+        </div>
+      </div>
 
       {/* Hero Section */}
       <section
