@@ -70,7 +70,11 @@ const OnboardingModal: React.FC = () => {
   // Check if current step is valid
   const isCurrentStepValid = React.useMemo(() => {
     if (currentStep === 1) {
-      return watchedValues.zipCode && !errors.zipCode;
+      return (
+        watchedValues.zipCode &&
+        watchedValues.zipCode.length === 5 &&
+        !errors.zipCode
+      );
     } else {
       return (
         watchedValues.age &&
@@ -146,8 +150,16 @@ const OnboardingModal: React.FC = () => {
             </div>
 
             <button
-              type="submit"
+              type="button"
               disabled={!isCurrentStepValid}
+              onClick={() => {
+                const formData = {
+                  zipCode: watchedValues.zipCode || '',
+                  age: watchedValues.age || '',
+                  creditScore: watchedValues.creditScore || '',
+                };
+                handleZipSubmit(formData);
+              }}
               className={`w-full py-3 px-4 rounded-lg font-semibold transition-colors ${
                 isCurrentStepValid
                   ? 'bg-black text-white hover:bg-gray-800'
