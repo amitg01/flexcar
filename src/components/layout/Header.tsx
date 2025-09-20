@@ -48,7 +48,7 @@ const Header: React.FC = () => {
               onClick={() => navigate('/')}
             />
             {isInventoryPage && userData && (
-              <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-3 text-sm text-gray-600 ml-6">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 text-sm text-gray-600 ml-6">
                 <div
                   className="flex items-center space-x-1 bg-gray-100 rounded-md p-2 cursor-pointer hover:bg-gray-200 transition-colors"
                   onClick={handleZipCodeClick}
@@ -59,25 +59,28 @@ const Header: React.FC = () => {
                     {userData.zipCode}
                   </span>
                 </div>
-                <div
-                  className="flex items-center space-x-1 bg-gray-100 rounded-md p-2 cursor-pointer hover:bg-gray-200 transition-colors"
-                  onClick={handleAgeClick}
-                  title="Click to change age"
-                >
-                  <User className="w-4 h-4" />
-                  <span className="text-sm font-semibold text-black">
-                    {userData.age}
-                  </span>
-                </div>
-                <div
-                  className="flex items-center space-x-1 bg-gray-100 rounded-md p-2 cursor-pointer hover:bg-gray-200 transition-colors"
-                  onClick={handleCreditScoreClick}
-                  title="Click to change credit score"
-                >
-                  <CreditCard className="w-4 h-4" />
-                  <span className="text-sm font-semibold text-black">
-                    {userData.creditScore}+
-                  </span>
+                <div className="flex items-center space-x-1 bg-gray-100 rounded-md p-2">
+                  <div
+                    className="flex items-center space-x-1 cursor-pointer hover:bg-gray-200 transition-colors rounded px-1 py-1 -mx-1 -my-1"
+                    onClick={handleAgeClick}
+                    title="Click to change age"
+                  >
+                    <User className="w-4 h-4" />
+                    <span className="text-sm font-semibold text-black">
+                      {userData.age}
+                    </span>
+                  </div>
+                  <span className="text-sm font-semibold text-gray-400">|</span>
+                  <div
+                    className="flex items-center space-x-1 cursor-pointer hover:bg-gray-200 transition-colors rounded px-1 py-1 -mx-1 -my-1"
+                    onClick={handleCreditScoreClick}
+                    title="Click to change credit score"
+                  >
+                    <CreditCard className="w-4 h-4" />
+                    <span className="text-sm font-semibold text-black">
+                      {userData.creditScore}+
+                    </span>
+                  </div>
                 </div>
               </div>
             )}
