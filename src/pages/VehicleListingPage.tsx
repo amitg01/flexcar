@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Header, Footer } from '@/components/layout';
 import { VehicleGrid, FilterPanel, SortDropdown } from '@/components/features';
@@ -8,6 +8,7 @@ import type { SortOption } from '@/types/contexts/VehicleContext';
 const VehicleListingPage: React.FC = () => {
   const { state, dispatch, searchVehicles } = useVehicle();
   const [searchParams, setSearchParams] = useSearchParams();
+  const isUpdatingFromURL = useRef(false);
 
   useEffect(() => {
     const userData = localStorage.getItem('flexcar-user-data');
@@ -32,32 +33,37 @@ const VehicleListingPage: React.FC = () => {
     const color = searchParams.get('color') || '';
     const sort = searchParams.get('sort') || 'popularity';
 
-    // Update state from URL parameters
-    if (make !== state.selectedMake) {
-      dispatch({ type: 'SET_FILTER_MAKE', payload: make });
-    }
-    if (color !== state.selectedColor) {
-      dispatch({ type: 'SET_FILTER_COLOR', payload: color });
-    }
-    if (sort !== state.sortBy) {
-      dispatch({ type: 'SET_SORT_BY', payload: sort as SortOption });
-    }
+    // Only update if values are different and we're not already updating from URL
+    if (!isUpdatingFromURL.current) {
+      isUpdatingFromURL.current = true;
 
-    // Apply filters and sort after updating state
-    if (state.vehicles.length > 0) {
-      dispatch({ type: 'APPLY_FILTERS_AND_SORT' });
-    }
-  }, [
-    searchParams,
-    dispatch,
-    state.selectedMake,
-    state.selectedColor,
-    state.sortBy,
-    state.vehicles.length,
-  ]);
+      // Update state from URL parameters
+      if (make !== state.selectedMake) {
+        dispatch({ type: 'SET_FILTER_MAKE', payload: make });
+      }
+      if (color !== state.selectedColor) {
+        dispatch({ type: 'SET_FILTER_COLOR', payload: color });
+      }
+      if (sort !== state.sortBy) {
+        dispatch({ type: 'SET_SORT_BY', payload: sort as SortOption });
+      }
 
-  // Update URL when filters or sort change
+      // Apply filters and sort after updating state
+      if (state.vehicles.length > 0) {
+        dispatch({ type: 'APPLY_FILTERS_AND_SORT' });
+      }
+
+      // Reset the flag after a short delay
+      setTimeout(() => {
+        isUpdatingFromURL.current = false;
+      }, 100);
+    }
+  }, [searchParams, dispatch, state.vehicles.length]);
+
+  // Update URL when filters or sort change (but not when updating from URL)
   useEffect(() => {
+    if (isUpdatingFromURL.current) return;
+
     const currentParams = new URLSearchParams(searchParams);
     let hasChanges = false;
 
