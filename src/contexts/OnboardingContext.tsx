@@ -30,29 +30,41 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
     }
   }, []);
 
-  const handleZipSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (zipCode.trim()) {
-      // Move to step 2
-      setCurrentStep(2);
-    }
+  const handleZipSubmit = (formData: {
+    zipCode: string;
+    age: string;
+    creditScore: string;
+  }) => {
+    setZipCode(formData.zipCode);
+    setAge(formData.age);
+    setCreditScore(formData.creditScore);
+    setCurrentStep(2);
   };
 
-  const handleUserInfoSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (age && creditScore) {
-      // Store user data in localStorage
-      const userData = { zipCode, age, creditScore };
-      localStorage.setItem('flexcar-user-data', JSON.stringify(userData));
+  const handleUserInfoSubmit = (formData: {
+    zipCode: string;
+    age: string;
+    creditScore: string;
+  }) => {
+    setZipCode(formData.zipCode);
+    setAge(formData.age);
+    setCreditScore(formData.creditScore);
 
-      // Handle user info submission
-      setShowModal(false);
-      setIsEditMode(false);
+    // Store user data in localStorage
+    const userData = {
+      zipCode: formData.zipCode,
+      age: formData.age,
+      creditScore: formData.creditScore,
+    };
+    localStorage.setItem('flexcar-user-data', JSON.stringify(userData));
 
-      // Only navigate to vehicle listing page if not in edit mode
-      if (!isEditMode) {
-        navigate('/inventory');
-      }
+    // Handle user info submission
+    setShowModal(false);
+    setIsEditMode(false);
+
+    // Only navigate to vehicle listing page if not in edit mode
+    if (!isEditMode) {
+      navigate('/inventory');
     }
   };
 

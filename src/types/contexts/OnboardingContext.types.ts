@@ -11,8 +11,16 @@ export interface OnboardingContextType {
   setCreditScore: (score: string) => void;
   isEditMode: boolean;
   setIsEditMode: (isEdit: boolean) => void;
-  handleZipSubmit: (e: React.FormEvent) => void;
-  handleUserInfoSubmit: (e: React.FormEvent) => void;
+  handleZipSubmit: (formData: {
+    zipCode: string;
+    age: string;
+    creditScore: string;
+  }) => void;
+  handleUserInfoSubmit: (formData: {
+    zipCode: string;
+    age: string;
+    creditScore: string;
+  }) => void;
   handleLocateMe: () => void;
   handleCloseModal: () => void;
   handleBackToStep1: () => void;

@@ -1,11 +1,17 @@
 import React from 'react';
-import { Modal, Select } from '@/components/ui';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Modal } from '@/components/ui';
 import { MapPin, ArrowLeft, HelpCircle } from 'lucide-react';
 import { useOnboarding } from '@/hooks/useOnboarding';
 import {
   AGE_OPTIONS,
   CREDIT_SCORE_OPTIONS,
 } from '@/constants/onboarding-constants';
+import {
+  onboardingSchema,
+  type OnboardingFormData,
+} from '@/validation/onboarding';
 
 const OnboardingModal: React.FC = () => {
   const {
@@ -15,15 +21,64 @@ const OnboardingModal: React.FC = () => {
     age,
     creditScore,
     isEditMode,
-    setZipCode,
-    setAge,
-    setCreditScore,
-    handleZipSubmit,
-    handleUserInfoSubmit,
     handleLocateMe,
     handleCloseModal,
     handleBackToStep1,
   } = useOnboarding();
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+    reset,
+  } = useForm<OnboardingFormData>({
+    resolver: zodResolver(onboardingSchema),
+    mode: 'onChange',
+    defaultValues: {
+      zipCode: zipCode || '',
+      age: age || '',
+      creditScore: creditScore || '',
+    },
+  });
+
+  // Watch form values for real-time validation
+  const watchedValues = watch();
+
+  // Update form when context values change (for edit mode)
+  React.useEffect(() => {
+    if (isEditMode) {
+      reset({
+        zipCode: zipCode || '',
+        age: age || '',
+        creditScore: creditScore || '',
+      });
+    }
+  }, [zipCode, age, creditScore, isEditMode, reset]);
+
+  const { handleZipSubmit, handleUserInfoSubmit } = useOnboarding();
+
+  const onSubmit = (data: OnboardingFormData) => {
+    if (currentStep === 1) {
+      handleZipSubmit(data);
+    } else {
+      handleUserInfoSubmit(data);
+    }
+  };
+
+  // Check if current step is valid
+  const isCurrentStepValid = React.useMemo(() => {
+    if (currentStep === 1) {
+      return watchedValues.zipCode && !errors.zipCode;
+    } else {
+      return (
+        watchedValues.age &&
+        watchedValues.creditScore &&
+        !errors.age &&
+        !errors.creditScore
+      );
+    }
+  }, [currentStep, watchedValues, errors]);
 
   return (
     <Modal
@@ -54,7 +109,7 @@ const OnboardingModal: React.FC = () => {
             </p>
           </div>
 
-          <form onSubmit={handleZipSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
               <label
                 htmlFor="zipCode"
@@ -66,10 +121,11 @@ const OnboardingModal: React.FC = () => {
                 <input
                   type="text"
                   id="zipCode"
-                  value={zipCode}
-                  onChange={e => setZipCode(e.target.value)}
+                  {...register('zipCode')}
                   placeholder="12345"
-                  className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
+                  className={`flex-1 px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none ${
+                    errors.zipCode ? 'border-red-500' : 'border-gray-300'
+                  }`}
                   maxLength={5}
                 />
                 <button
@@ -81,11 +137,21 @@ const OnboardingModal: React.FC = () => {
                   <span className="hidden xs:inline">Locate me</span>
                 </button>
               </div>
+              {errors.zipCode && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.zipCode.message}
+                </p>
+              )}
             </div>
 
             <button
               type="submit"
-              className="w-full bg-gray-200 text-gray-700 py-3 px-4 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
+              disabled={!isCurrentStepValid}
+              className={`w-full py-3 px-4 rounded-lg font-semibold transition-colors ${
+                isCurrentStepValid
+                  ? 'bg-black text-white hover:bg-gray-800'
+                  : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+              }`}
               data-testid="zip-next-button"
             >
               {isEditMode ? 'Update Location' : 'Next'}
@@ -114,23 +180,55 @@ const OnboardingModal: React.FC = () => {
             )}
           </div>
 
-          <form onSubmit={handleUserInfoSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <Select
-                label="Age"
-                value={age}
-                onChange={e => setAge(e.target.value)}
-                options={AGE_OPTIONS}
-                placeholder="Select one"
-              />
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Age
+                </label>
+                <select
+                  {...register('age')}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none ${
+                    errors.age ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                >
+                  <option value="">Select one</option>
+                  {AGE_OPTIONS.map(option => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+                {errors.age && (
+                  <p className="mt-1 text-sm text-red-600">
+                    {errors.age.message}
+                  </p>
+                )}
+              </div>
 
-              <Select
-                label="Credit score"
-                value={creditScore}
-                onChange={e => setCreditScore(e.target.value)}
-                options={CREDIT_SCORE_OPTIONS}
-                placeholder="Select one"
-              />
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Credit score
+                </label>
+                <select
+                  {...register('creditScore')}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none ${
+                    errors.creditScore ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                >
+                  <option value="">Select one</option>
+                  {CREDIT_SCORE_OPTIONS.map(option => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+                {errors.creditScore && (
+                  <p className="mt-1 text-sm text-red-600">
+                    {errors.creditScore.message}
+                  </p>
+                )}
+              </div>
             </div>
 
             <div className="bg-gray-50 rounded-lg p-4 flex items-start gap-3">
@@ -143,7 +241,12 @@ const OnboardingModal: React.FC = () => {
 
             <button
               type="submit"
-              className="w-full bg-gray-200 text-gray-700 py-3 px-4 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
+              disabled={!isCurrentStepValid}
+              className={`w-full py-3 px-4 rounded-lg font-semibold transition-colors ${
+                isCurrentStepValid
+                  ? 'bg-black text-white hover:bg-gray-800'
+                  : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+              }`}
               data-testid="modal-view-cars-button"
             >
               {isEditMode ? 'Update Profile' : 'View cars'}
