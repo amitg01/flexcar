@@ -48,12 +48,16 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[60] p-4"
       onClick={handleBackdropClick}
     >
-      <div className={`bg-white rounded-2xl max-w-md w-full p-6 sm:p-8 ${className}`}>
+      <div
+        className={`bg-white rounded-2xl max-w-md w-full p-6 sm:p-8 ${className}`}
+      >
         <div className="flex justify-between items-start mb-6">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">{title}</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
+            {title}
+          </h2>
           {showCloseButton && (
             <button
               onClick={onClose}
