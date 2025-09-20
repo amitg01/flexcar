@@ -1,5 +1,5 @@
 import React, { useState, type ReactNode } from 'react';
-import type { OnboardingContextType } from './OnboardingContext.types';
+import type { OnboardingContextType } from '@/types/contexts/OnboardingContext.types';
 import { OnboardingContext } from './OnboardingContextInstance';
 
 interface OnboardingProviderProps {

@@ -43,7 +43,10 @@ const HeroSection: React.FC = () => {
               Once you Flex, you'll never buy a car again.
             </p>
             <div className="mx-auto mt-8 w-fit md:mx-0 md:mt-12">
-              <button className="font-sans text-base font-medium leading-6 hover:cursor-pointer flex h-12 w-[174px] items-center justify-center rounded-[40px] border border-solid border-gray-300 bg-white px-12 py-3 text-gray-900 shadow-lg ring-transparent hover:text-blue-600 hover:ring-transparent active:text-blue-600 md:h-14">
+              <button
+                className="font-sans text-base font-medium leading-6 hover:cursor-pointer flex h-12 w-[174px] items-center justify-center rounded-[40px] border border-solid border-gray-300 bg-white px-12 py-3 text-gray-900 shadow-lg ring-transparent hover:text-blue-600 hover:ring-transparent active:text-blue-600 md:h-14"
+                data-testid="hero-view-cars-button"
+              >
                 View cars
               </button>
             </div>

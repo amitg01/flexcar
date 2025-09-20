@@ -74,6 +74,7 @@ const OnboardingModal: React.FC = () => {
             <button
               type="submit"
               className="w-full bg-gray-200 text-gray-700 py-3 px-4 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
+              data-testid="zip-next-button"
             >
               Next
             </button>
@@ -86,6 +87,7 @@ const OnboardingModal: React.FC = () => {
               <button
                 onClick={handleBackToStep1}
                 className="text-gray-400 hover:text-gray-600 transition-colors"
+                data-testid="back-to-step1-button"
               >
                 <ArrowLeft className="w-5 h-5" />
               </button>
@@ -123,6 +125,7 @@ const OnboardingModal: React.FC = () => {
             <button
               type="submit"
               className="w-full bg-gray-200 text-gray-700 py-3 px-4 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
+              data-testid="modal-view-cars-button"
             >
               View cars
             </button>

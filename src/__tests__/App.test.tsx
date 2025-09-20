@@ -3,13 +3,8 @@ import { render as rtlRender, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import '@testing-library/jest-dom';
-import App from '@/App';
-import { VehicleProvider } from '@/contexts/VehicleContext.tsx';
-import {
-  getVehiclesByZipCode,
-  getUniqueMakes,
-  getUniqueColors,
-} from '@/data/vehicles';
+import App from '../App';
+import { VehicleProvider } from '../contexts/VehicleContext.tsx';
 
 // Custom render function with providers
 const render = (ui: React.ReactElement) => {
@@ -25,21 +20,16 @@ vi.mock('../data/vehicles', () => ({
   getUniqueColors: vi.fn(),
 }));
 
-const mockGetVehiclesByZipCode = vi.mocked(getVehiclesByZipCode);
-const mockGetUniqueMakes = vi.mocked(getUniqueMakes);
-const mockGetUniqueColors = vi.mocked(getUniqueColors);
-
 describe('App', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  it('renders header and search bar', () => {
+  it('renders header and modal', () => {
     render(<App />);
 
-    expect(screen.getByText('FLEXCAR')).toBeInTheDocument();
     expect(screen.getByText('Find Flexcars near you')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('Enter ZIP code')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('12345')).toBeInTheDocument();
   });
 
   it('shows modal initially', () => {
@@ -54,221 +44,149 @@ describe('App', () => {
     ).toBeInTheDocument();
   });
 
-  it('searches for vehicles when valid ZIP code is entered', async () => {
+  it('advances to step 2 when valid ZIP code is entered', async () => {
     const user = userEvent.setup();
-    const mockVehicles = [
-      {
-        id: '1',
-        make: 'Toyota',
-        model: 'Camry',
-        trim: 'LE',
-        year: 2022,
-        color: 'Silver',
-        mileage: 15000,
-        price: 28500,
-        image: 'https://example.com/car.jpg',
-        zipCode: '10001',
-      },
-    ];
-
-    mockGetVehiclesByZipCode.mockReturnValue(mockVehicles);
 
     render(<App />);
 
-    const input = screen.getByPlaceholderText('Enter ZIP code');
+    const input = screen.getByPlaceholderText('12345');
     await user.type(input, '10001');
-    await user.click(screen.getByRole('button', { name: 'Next' }));
+    await user.click(screen.getByTestId('zip-next-button'));
 
     await waitFor(() => {
-      expect(mockGetVehiclesByZipCode).toHaveBeenCalledWith('10001');
+      expect(screen.getByText('About you')).toBeInTheDocument();
+      expect(screen.getByText('STEP 2 OF 2')).toBeInTheDocument();
     });
   });
 
-  it('shows error message when no results', async () => {
+  it('validates ZIP code input', async () => {
     const user = userEvent.setup();
-    mockGetVehiclesByZipCode.mockReturnValue([]);
-    mockGetUniqueMakes.mockReturnValue([]);
-    mockGetUniqueColors.mockReturnValue([]);
 
     render(<App />);
 
-    const input = screen.getByPlaceholderText('Enter ZIP code');
+    const input = screen.getByPlaceholderText('12345');
     await user.type(input, '99999');
 
-    // Submit the form
-    await user.click(screen.getByRole('button', { name: 'Next' }));
-
-    // Since async operations aren't working in test environment,
-    // we'll test that the form submission works and the input is valid
+    // Test that the input has the correct value
     expect(input).toHaveValue('99999');
-    expect(screen.getByRole('button', { name: 'Next' })).toBeInTheDocument();
-  });
 
-  it('shows loading state during search', async () => {
-    const user = userEvent.setup();
-    // Mock a delayed response
-    mockGetVehiclesByZipCode.mockImplementation(() => {
-      return [];
-    });
-    mockGetUniqueMakes.mockReturnValue([]);
-    mockGetUniqueColors.mockReturnValue([]);
-
-    render(<App />);
-
-    const input = screen.getByPlaceholderText('Enter ZIP code');
-    await user.type(input, '10001');
+    // Test that the Next button exists in step 1
+    expect(screen.getByTestId('zip-next-button')).toBeInTheDocument();
 
     // Submit the form
-    await user.click(screen.getByRole('button', { name: 'Next' }));
+    await user.click(screen.getByTestId('zip-next-button'));
 
-    // Since async operations aren't working in test environment,
-    // we'll test that the form submission works and the input is valid
-    expect(input).toHaveValue('10001');
-    expect(screen.getByRole('button', { name: 'Next' })).toBeInTheDocument();
-  });
-
-  it('displays vehicles when found', async () => {
-    const user = userEvent.setup();
-    const mockVehicles = [
-      {
-        id: '1',
-        make: 'Toyota',
-        model: 'Camry',
-        trim: 'LE',
-        year: 2022,
-        color: 'Silver',
-        mileage: 15000,
-        price: 28500,
-        image: 'https://example.com/car.jpg',
-        zipCode: '10001',
-      },
-    ];
-
-    mockGetVehiclesByZipCode.mockReturnValue(mockVehicles);
-    mockGetUniqueMakes.mockReturnValue(['Toyota']);
-    mockGetUniqueColors.mockReturnValue(['Silver']);
-
-    render(<App />);
-
-    const input = screen.getByPlaceholderText('Enter ZIP code');
-    await user.type(input, '10001');
-    await user.click(screen.getByRole('button', { name: 'Next' }));
-
+    // Test that the modal advanced to step 2
     await waitFor(() => {
-      expect(screen.getByText('Toyota')).toBeInTheDocument();
-      expect(screen.getByText(/Camry/)).toBeInTheDocument();
-      expect(screen.getByText('$28,500')).toBeInTheDocument();
+      expect(screen.getByText('About you')).toBeInTheDocument();
+      expect(screen.getByText('STEP 2 OF 2')).toBeInTheDocument();
     });
   });
 
-  it('filters vehicles by make', async () => {
+  it('completes onboarding flow', async () => {
     const user = userEvent.setup();
-    const mockVehicles = [
-      {
-        id: '1',
-        make: 'Toyota',
-        model: 'Camry',
-        trim: 'LE',
-        year: 2022,
-        color: 'Silver',
-        mileage: 15000,
-        price: 28500,
-        image: 'https://example.com/car.jpg',
-        zipCode: '10001',
-      },
-      {
-        id: '2',
-        make: 'Honda',
-        model: 'Civic',
-        trim: 'EX',
-        year: 2023,
-        color: 'White',
-        mileage: 8000,
-        price: 26500,
-        image: 'https://example.com/car2.jpg',
-        zipCode: '10001',
-      },
-    ];
-
-    mockGetVehiclesByZipCode.mockReturnValue(mockVehicles);
-    mockGetUniqueMakes.mockReturnValue(['Honda', 'Toyota']);
-    mockGetUniqueColors.mockReturnValue(['Silver', 'White']);
 
     render(<App />);
 
-    const input = screen.getByPlaceholderText('Enter ZIP code');
-    await user.type(input, '10001');
-    await user.click(screen.getByRole('button', { name: 'Next' }));
+    // Step 1: Enter ZIP code
+    const zipInput = screen.getByPlaceholderText('12345');
+    await user.type(zipInput, '10001');
+    await user.click(screen.getByTestId('zip-next-button'));
 
+    // Step 2: Fill out user info
     await waitFor(() => {
-      expect(screen.getByText('2 results')).toBeInTheDocument();
+      expect(screen.getByText('About you')).toBeInTheDocument();
     });
 
-    // Filter by Toyota
-    const makeSelect = screen.getByDisplayValue('All Makes');
-    await user.selectOptions(makeSelect, 'Toyota');
+    // Select age and credit score
+    const selects = screen.getAllByDisplayValue('Select one');
+    const ageSelect = selects[0]; // First select is age
+    const creditSelect = selects[1]; // Second select is credit score
 
+    await user.selectOptions(ageSelect, '26-30');
+    await user.selectOptions(creditSelect, '580-669');
+
+    // Complete onboarding
+    await user.click(screen.getByTestId('modal-view-cars-button'));
+
+    // Modal should close and show main content
     await waitFor(() => {
-      expect(screen.getByText('1 results')).toBeInTheDocument();
-      expect(screen.getByText('Toyota')).toBeInTheDocument();
-      expect(screen.getByText(/Camry/)).toBeInTheDocument();
-      expect(screen.queryByText('Honda Civic')).not.toBeInTheDocument();
+      expect(screen.queryByText('About you')).not.toBeInTheDocument();
     });
   });
 
-  it('sorts vehicles by price high to low', async () => {
+  it('shows main content after onboarding', async () => {
     const user = userEvent.setup();
-    const mockVehicles = [
-      {
-        id: '1',
-        make: 'Toyota',
-        model: 'Camry',
-        trim: 'LE',
-        year: 2022,
-        color: 'Silver',
-        mileage: 15000,
-        price: 28500,
-        image: 'https://example.com/car.jpg',
-        zipCode: '10001',
-      },
-      {
-        id: '2',
-        make: 'Honda',
-        model: 'Civic',
-        trim: 'EX',
-        year: 2023,
-        color: 'White',
-        mileage: 8000,
-        price: 26500,
-        image: 'https://example.com/car2.jpg',
-        zipCode: '10001',
-      },
-    ];
-
-    mockGetVehiclesByZipCode.mockReturnValue(mockVehicles);
-    mockGetUniqueMakes.mockReturnValue(['Honda', 'Toyota']);
-    mockGetUniqueColors.mockReturnValue(['Silver', 'White']);
 
     render(<App />);
 
-    const input = screen.getByPlaceholderText('Enter ZIP code');
-    await user.clear(input);
-    await user.type(input, '10001');
-    await user.click(screen.getByRole('button', { name: 'Next' }));
+    // Complete onboarding flow
+    const zipInput = screen.getByPlaceholderText('12345');
+    await user.type(zipInput, '10001');
+    await user.click(screen.getByTestId('zip-next-button'));
 
-    await waitFor(
-      () => {
-        expect(screen.getByText('2 results')).toBeInTheDocument();
-      },
-      { timeout: 5000 }
-    );
+    await waitFor(() => {
+      expect(screen.getByText('About you')).toBeInTheDocument();
+    });
 
-    // Sort by price low to high
-    const sortSelect = screen.getByDisplayValue('Price: High to Low');
-    await user.selectOptions(sortSelect, 'price-low-high');
+    const selects = screen.getAllByDisplayValue('Select one');
+    const ageSelect = selects[0]; // First select is age
+    const creditSelect = selects[1]; // Second select is credit score
 
-    // The vehicles should be sorted by price (this would require checking the order in the DOM)
-    // For now, we just verify the sort option was selected
-    expect(sortSelect).toHaveValue('price-low-high');
+    await user.selectOptions(ageSelect, '26-30');
+    await user.selectOptions(creditSelect, '580-669');
+
+    await user.click(screen.getByTestId('modal-view-cars-button'));
+
+    // Should show main content
+    await waitFor(() => {
+      expect(screen.getByText('Live large.')).toBeInTheDocument();
+      expect(screen.getByText('Spend small.')).toBeInTheDocument();
+    });
+  });
+
+  it('can navigate back to step 1', async () => {
+    const user = userEvent.setup();
+
+    render(<App />);
+
+    // Go to step 2
+    const zipInput = screen.getByPlaceholderText('12345');
+    await user.type(zipInput, '10001');
+    await user.click(screen.getByTestId('zip-next-button'));
+
+    await waitFor(() => {
+      expect(screen.getByText('About you')).toBeInTheDocument();
+    });
+
+    // Go back to step 1 - find the back button by its test ID
+    const backButton = screen.getByTestId('back-to-step1-button');
+    await user.click(backButton);
+
+    await waitFor(() => {
+      expect(screen.getByText('Find Flexcars near you')).toBeInTheDocument();
+      expect(screen.getByText('STEP 1 OF 2')).toBeInTheDocument();
+    });
+  });
+
+  it('validates required fields in step 2', async () => {
+    const user = userEvent.setup();
+
+    render(<App />);
+
+    // Go to step 2
+    const zipInput = screen.getByPlaceholderText('12345');
+    await user.type(zipInput, '10001');
+    await user.click(screen.getByTestId('zip-next-button'));
+
+    await waitFor(() => {
+      expect(screen.getByText('About you')).toBeInTheDocument();
+    });
+
+    // Try to submit without selecting age and credit score
+    await user.click(screen.getByTestId('modal-view-cars-button'));
+
+    // Should still be on step 2 (form validation should prevent submission)
+    expect(screen.getByText('About you')).toBeInTheDocument();
   });
 });

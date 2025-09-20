@@ -9,7 +9,7 @@ import {
   type VehicleState,
   type VehicleAction,
   type VehicleContextType,
-} from './VehicleContext';
+} from '@/types/contexts/VehicleContext';
 
 // Initial state
 const initialState: VehicleState = {
@@ -164,5 +164,3 @@ export const VehicleProvider: React.FC<VehicleProviderProps> = ({
     <VehicleContext.Provider value={value}>{children}</VehicleContext.Provider>
   );
 };
-
-// Hook is exported from hooks/useVehicle.ts to avoid react-refresh issues

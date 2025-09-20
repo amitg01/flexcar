@@ -43,7 +43,10 @@ const BenefitsSection: React.FC = () => {
                   </div>
                 </div>
 
-                <button className="mt-4 xs:mt-6 sm:mt-8 bg-gray-900 text-white px-4 xs:px-6 sm:px-8 py-2 xs:py-3 sm:py-4 rounded-full text-inter-16-semibold hover:bg-gray-800 transition-colors w-full sm:w-auto">
+                <button
+                  className="mt-4 xs:mt-6 sm:mt-8 bg-gray-900 text-white px-4 xs:px-6 sm:px-8 py-2 xs:py-3 sm:py-4 rounded-full text-inter-16-semibold hover:bg-gray-800 transition-colors w-full sm:w-auto"
+                  data-testid="benefits-view-cars-button"
+                >
                   View cars
                 </button>
               </div>
