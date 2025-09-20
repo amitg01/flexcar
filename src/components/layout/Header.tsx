@@ -48,7 +48,7 @@ const Header: React.FC = () => {
               onClick={() => navigate('/')}
             />
             {isInventoryPage && userData && (
-              <div className="flex items-center space-x-4 text-sm text-gray-600 ml-6">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 text-sm text-gray-600 ml-6">
                 <div
                   className="flex items-center space-x-1 bg-gray-100 rounded-md p-2 cursor-pointer hover:bg-gray-200 transition-colors"
                   onClick={handleZipCodeClick}
