@@ -176,10 +176,9 @@ const HomePage: React.FC = () => {
           </>
         )}
       </Modal>
-      <Header />
 
       {/* Luxury Banner */}
-      <div className="hidden flex-row items-center justify-center py-3 px-4 text-white md:flex bg-gray-900">
+      <div className="hidden flex-row items-center justify-center py-3 px-4 text-white md:flex bg-gradient-to-r from-gray-900 to-gray-800">
         <div className="w-[48px] flex items-center justify-center mr-4">
           <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
             <div className="w-6 h-6 bg-gray-900 rounded-full flex items-center justify-center">
@@ -200,6 +199,8 @@ const HomePage: React.FC = () => {
           </span>
         </div>
       </div>
+
+      <Header />
 
       {/* Hero Section */}
       <section
