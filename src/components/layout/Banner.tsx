@@ -40,7 +40,7 @@ const Banner: React.FC = () => {
                     fontWeight: 600,
                   }}
                 >
-                  <Car className="inline w-3 h-3 mr-1" />
+                  <Car className="inline w-4 h-4 mr-1" />
                   Luxury Unleashed
                 </span>{' '}
                 — The smartest way to get a 2025 Mercedes-Benz.{' '}
@@ -96,7 +96,7 @@ const Banner: React.FC = () => {
                     fontWeight: 600,
                   }}
                 >
-                  <Car className="inline w-3 h-3 mr-1" />
+                  <Car className="inline w-4 h-4 mr-1" />
                   Luxury Unleashed
                 </span>{' '}
                 — The smartest way to get a 2025 Mercedes-Benz.{' '}
