@@ -1,0 +1,9 @@
+export { default as HeroSection } from './HeroSection';
+export { default as VideoSection } from './VideoSection';
+export { default as FreedomSection } from './FreedomSection';
+export { default as VehicleCategoriesSection } from './VehicleCategoriesSection';
+export { default as BenefitsSection } from './BenefitsSection';
+export { default as ReviewsSection } from './ReviewsSection';
+export { default as CTASection } from './CTASection';
+export { default as AppDownloadSection } from './AppDownloadSection';
+export { default as OnboardingModal } from './OnboardingModal';

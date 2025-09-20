@@ -1,9 +1,14 @@
 import React from 'react';
 import { ErrorBoundary } from './components/ui';
 import HomePage from './pages/HomePage';
+import { OnboardingProvider } from './contexts/OnboardingContext';
 
 const AppContent: React.FC = () => {
-  return <HomePage />;
+  return (
+    <OnboardingProvider>
+      <HomePage />
+    </OnboardingProvider>
+  );
 };
 
 const App: React.FC = () => {
@@ -15,4 +20,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-// Test comment
