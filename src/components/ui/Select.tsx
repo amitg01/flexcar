@@ -130,7 +130,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
         const focusedElement = listRef.current.children[
           focusedIndex
         ] as HTMLElement;
-        if (focusedElement) {
+        if (focusedElement && focusedElement.scrollIntoView) {
           focusedElement.scrollIntoView({ block: 'nearest' });
         }
       }

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { VehicleContext } from '@/types/contexts/VehicleContext';
+import { VehicleContext } from '@/contexts/VehicleContextInstance';
 
 // Export hook separately to avoid react-refresh issues
 export const useVehicle = () => {

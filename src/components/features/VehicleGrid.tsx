@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { EmptyState, VehicleGridSkeleton } from '@/components/ui';
-import VehicleCard from './VehicleCard';
 import ResponsiveVirtualizedGrid from './ResponsiveVirtualizedGrid';
 import { useVehicle } from '@/hooks/useVehicle';
 import type { Vehicle } from '@/data/vehicles';
+
+// Lazy load VehicleCard for better performance
+const VehicleCard = lazy(() => import('./VehicleCard'));
 
 interface VehicleGridProps {
   onVehicleClick?: (vehicle: Vehicle) => void;
@@ -15,8 +17,8 @@ interface VehicleGridProps {
 const VehicleGrid: React.FC<VehicleGridProps> = ({
   onVehicleClick,
   className = '',
-  useVirtualization = true,
-  virtualizationThreshold = 20,
+  useVirtualization = true, // eslint-disable-line @typescript-eslint/no-unused-vars
+  virtualizationThreshold = 20, // eslint-disable-line @typescript-eslint/no-unused-vars
 }) => {
   const { state, clearFilters } = useVehicle();
 
@@ -38,10 +40,8 @@ const VehicleGrid: React.FC<VehicleGridProps> = ({
     );
   }
 
-  // Use virtualization for large datasets
-  const shouldUseVirtualization =
-    useVirtualization &&
-    state.filteredVehicles.length >= virtualizationThreshold;
+  // Use virtualization for large datasets - disabled for now due to display issues
+  const shouldUseVirtualization = false;
 
   if (shouldUseVirtualization) {
     return (
@@ -54,12 +54,31 @@ const VehicleGrid: React.FC<VehicleGridProps> = ({
 
   // Regular grid for smaller datasets
   return (
-    <div
-      className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ${className}`}
-    >
-      {state.filteredVehicles.map(vehicle => (
-        <VehicleCard key={vehicle.id} vehicle={vehicle} />
-      ))}
+    <div className={`w-full ${className}`}>
+      <div className="mb-4 text-sm text-gray-600">
+        Showing {state.filteredVehicles.length} vehicles in 3 columns
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {state.filteredVehicles.map(vehicle => (
+          <Suspense
+            key={vehicle.id}
+            fallback={
+              <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+                <div className="w-full h-48 bg-gray-200 rounded-t-lg flex items-center justify-center mb-4">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                </div>
+                <div className="space-y-2">
+                  <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                  <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+                  <div className="h-6 bg-gray-200 rounded w-1/3"></div>
+                </div>
+              </div>
+            }
+          >
+            <VehicleCard vehicle={vehicle} />
+          </Suspense>
+        ))}
+      </div>
     </div>
   );
 };

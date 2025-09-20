@@ -101,12 +101,26 @@ describe('App', () => {
     });
 
     // Select age and credit score
-    const selects = screen.getAllByDisplayValue('Select one');
-    const ageSelect = selects[0]; // First select is age
-    const creditSelect = selects[1]; // Second select is credit score
+    const selectButtons = screen.getAllByRole('button', {
+      name: /select one/i,
+    });
+    const ageSelect = selectButtons[0]; // First select is age
+    const creditSelect = selectButtons[1]; // Second select is credit score
 
-    await user.selectOptions(ageSelect, '26-30');
-    await user.selectOptions(creditSelect, '580-669');
+    // Click to open dropdowns and select options
+    await user.click(ageSelect);
+    // Wait for dropdown to open and find the option
+    await waitFor(() => {
+      expect(screen.getByText('26-30')).toBeInTheDocument();
+    });
+    await user.click(screen.getByText('26-30'));
+
+    await user.click(creditSelect);
+    // Wait for dropdown to open and find the option
+    await waitFor(() => {
+      expect(screen.getByText('580-669 (Good)')).toBeInTheDocument();
+    });
+    await user.click(screen.getByText('580-669 (Good)'));
 
     // Complete onboarding
     await user.click(screen.getByTestId('modal-view-cars-button'));
@@ -131,12 +145,18 @@ describe('App', () => {
       expect(screen.getByText('About you')).toBeInTheDocument();
     });
 
-    const selects = screen.getAllByDisplayValue('Select one');
-    const ageSelect = selects[0]; // First select is age
-    const creditSelect = selects[1]; // Second select is credit score
+    const selectButtons = screen.getAllByRole('button', {
+      name: /select one/i,
+    });
+    const ageSelect = selectButtons[0]; // First select is age
+    const creditSelect = selectButtons[1]; // Second select is credit score
 
-    await user.selectOptions(ageSelect, '26-30');
-    await user.selectOptions(creditSelect, '580-669');
+    // Click to open dropdowns and select options
+    await user.click(ageSelect);
+    await user.click(screen.getByRole('option', { name: '26-30' }));
+
+    await user.click(creditSelect);
+    await user.click(screen.getByRole('option', { name: '580-669' }));
 
     await user.click(screen.getByTestId('modal-view-cars-button'));
 

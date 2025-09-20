@@ -218,7 +218,8 @@ export const vehicles: Vehicle[] = [
     color: 'White',
     mileage: 12000,
     price: 42000,
-    image: 'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=Audi+A4',
+    image:
+      'https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
   },
   {
@@ -230,7 +231,8 @@ export const vehicles: Vehicle[] = [
     color: 'Silver',
     mileage: 8000,
     price: 48000,
-    image: 'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=Mercedes+C-Class',
+    image:
+      'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
   },
   {
@@ -242,7 +244,8 @@ export const vehicles: Vehicle[] = [
     color: 'Black',
     mileage: 15000,
     price: 45000,
-    image: 'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=Lexus+ES',
+    image:
+      'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
   },
   {
@@ -254,7 +257,8 @@ export const vehicles: Vehicle[] = [
     color: 'Red',
     mileage: 6000,
     price: 38000,
-    image: 'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=Infiniti+Q50',
+    image:
+      'https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
   },
   {
@@ -266,7 +270,8 @@ export const vehicles: Vehicle[] = [
     color: 'Blue',
     mileage: 18000,
     price: 41000,
-    image: 'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=Acura+TLX',
+    image:
+      'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
   },
   {
@@ -278,7 +283,8 @@ export const vehicles: Vehicle[] = [
     color: 'Gray',
     mileage: 4000,
     price: 43000,
-    image: 'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=Volvo+S60',
+    image:
+      'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
   },
   {
@@ -290,7 +296,8 @@ export const vehicles: Vehicle[] = [
     color: 'White',
     mileage: 10000,
     price: 47000,
-    image: 'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=Genesis+G80',
+    image:
+      'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
   },
   {
@@ -302,7 +309,8 @@ export const vehicles: Vehicle[] = [
     color: 'Black',
     mileage: 3000,
     price: 52000,
-    image: 'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=Cadillac+CT5',
+    image:
+      'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
   },
   {
@@ -314,7 +322,8 @@ export const vehicles: Vehicle[] = [
     color: 'Silver',
     mileage: 14000,
     price: 55000,
-    image: 'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=Lincoln+Continental',
+    image:
+      'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
   },
   {
@@ -326,7 +335,8 @@ export const vehicles: Vehicle[] = [
     color: 'Blue',
     mileage: 7000,
     price: 49000,
-    image: 'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=Jaguar+XF',
+    image:
+      'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
   },
   // More vehicles for 90210
@@ -363,7 +373,8 @@ export const vehicles: Vehicle[] = [
     color: 'Orange',
     mileage: 1000,
     price: 220000,
-    image: 'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=Lamborghini+Huracan',
+    image:
+      'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=Lamborghini+Huracan',
     zipCode: '90210',
   },
   {
@@ -375,7 +386,8 @@ export const vehicles: Vehicle[] = [
     color: 'Black',
     mileage: 3000,
     price: 300000,
-    image: 'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=McLaren+720S',
+    image:
+      'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=McLaren+720S',
     zipCode: '90210',
   },
   {
@@ -387,19 +399,20 @@ export const vehicles: Vehicle[] = [
     color: 'White',
     mileage: 1500,
     price: 200000,
-    image: 'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=Bentley+Continental',
+    image:
+      'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=Bentley+Continental',
     zipCode: '90210',
   },
 ];
 
 export const getVehiclesByZipCode = (zipCode: string): Vehicle[] => {
-  return vehicles.filter((vehicle) => vehicle.zipCode === zipCode);
+  return vehicles.filter(vehicle => vehicle.zipCode === zipCode);
 };
 
 export const getUniqueMakes = (vehicles: Vehicle[]): string[] => {
-  return [...new Set(vehicles.map((vehicle) => vehicle.make))].sort();
+  return [...new Set(vehicles.map(vehicle => vehicle.make))].sort();
 };
 
 export const getUniqueColors = (vehicles: Vehicle[]): string[] => {
-  return [...new Set(vehicles.map((vehicle) => vehicle.color))].sort();
+  return [...new Set(vehicles.map(vehicle => vehicle.color))].sort();
 };

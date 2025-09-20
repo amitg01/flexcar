@@ -5,11 +5,11 @@ import {
   getUniqueColors,
 } from '@/data/vehicles';
 import {
-  VehicleContext,
   type VehicleState,
   type VehicleAction,
   type VehicleContextType,
 } from '@/types/contexts/VehicleContext';
+import { VehicleContext } from './VehicleContextInstance';
 
 // Initial state
 const initialState: VehicleState = {
@@ -115,6 +115,7 @@ export const VehicleProvider: React.FC<VehicleProviderProps> = ({
   const [state, dispatch] = useReducer(vehicleReducer, initialState);
 
   const searchVehicles = useCallback(async (zipCode: string) => {
+    console.log('🔍 searchVehicles called with zipCode:', zipCode);
     dispatch({ type: 'SET_LOADING', payload: true });
     dispatch({ type: 'SET_ERROR', payload: '' });
     dispatch({ type: 'SET_ZIP_CODE', payload: zipCode });
@@ -124,17 +125,38 @@ export const VehicleProvider: React.FC<VehicleProviderProps> = ({
       await new Promise(resolve => setTimeout(resolve, 1000));
 
       const vehicles = getVehiclesByZipCode(zipCode);
+      console.log(
+        '🚗 Found vehicles:',
+        vehicles.length,
+        'for zipCode:',
+        zipCode
+      );
       if (vehicles.length === 0) {
-        dispatch({
-          type: 'SET_ERROR',
-          payload:
-            'No vehicles found for this ZIP code. Please try another location.',
-        });
-        dispatch({ type: 'SET_VEHICLES', payload: [] });
+        console.log(
+          '❌ No vehicles found for',
+          zipCode,
+          '- trying default zipCode 10001'
+        );
+        // Try default zipCode if no vehicles found for user's zipCode
+        const defaultVehicles = getVehiclesByZipCode('10001');
+        if (defaultVehicles.length > 0) {
+          console.log('✅ Found default vehicles:', defaultVehicles.length);
+          dispatch({ type: 'SET_VEHICLES', payload: defaultVehicles });
+        } else {
+          console.log('❌ No vehicles found even for default zipCode');
+          dispatch({
+            type: 'SET_ERROR',
+            payload:
+              'No vehicles found for this ZIP code. Please try another location.',
+          });
+          dispatch({ type: 'SET_VEHICLES', payload: [] });
+        }
       } else {
+        console.log('✅ Setting vehicles:', vehicles.length);
         dispatch({ type: 'SET_VEHICLES', payload: vehicles });
       }
-    } catch {
+    } catch (error) {
+      console.error('searchVehicles - Error:', error);
       dispatch({
         type: 'SET_ERROR',
         payload: 'An error occurred while searching. Please try again.',
