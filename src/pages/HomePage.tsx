@@ -179,14 +179,22 @@ const HomePage: React.FC = () => {
       <Header />
 
       {/* Luxury Banner */}
-      <div className="body3 hidden flex-row items-center justify-center py-1 text-gray-600 md:flex bg-gray-50">
-        <div className="w-[48px] flex items-center justify-center">
-          <div style={{width: '100%', height: '100%', lineHeight: 0}}>
-            <canvas style={{width: '100%', height: '100%'}} width="48" height="24"></canvas>
+      <div className="hidden flex-row items-center justify-center py-3 px-4 text-white md:flex bg-gray-900">
+        <div className="w-[48px] flex items-center justify-center mr-4">
+          <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+            <div className="w-6 h-6 bg-gray-900 rounded-full flex items-center justify-center">
+              <div className="w-4 h-4 bg-white rounded-full flex items-center justify-center">
+                <div className="w-2 h-2 bg-gray-900 rounded-full"></div>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="text-left text-gray-600">
-          <span className="text-inter-16-bold text-gray-600">Luxury Unleashed</span> — The smartest way to get a 2025 Mercedes-Benz. <span className="text-inter-16-bold whitespace-nowrap text-gray-600 underline cursor-pointer hover:text-gray-800 transition-colors">
+        <div className="text-left text-white">
+          <span className="text-inter-16-bold text-white">
+            Luxury Unleashed
+          </span>{' '}
+          — The smartest way to get a 2025 Mercedes-Benz.{' '}
+          <span className="text-inter-16-bold whitespace-nowrap text-white underline cursor-pointer hover:text-gray-300 transition-colors">
             Learn more
             <ArrowRight className="ml-1 inline h-[14px] w-[14px] align-text-bottom" />
           </span>
