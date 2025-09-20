@@ -179,7 +179,13 @@ const HomePage: React.FC = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative h-[400px] xs:h-[450px] sm:h-[623px] md:h-[720px] bg-cover bg-center bg-no-repeat" style={{backgroundImage: 'url(https://d3lxvmq39yvk72.cloudfront.net/web/images/homepage-live-large/hero-mercedes.webp)'}}>
+      <section
+        className="relative h-[400px] xs:h-[450px] sm:h-[623px] md:h-[720px] bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage:
+            'url(https://d3lxvmq39yvk72.cloudfront.net/web/images/homepage-live-large/hero-mercedes.webp)',
+        }}
+      >
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         <div className="relative max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-full flex items-center">
           <div className="w-full text-center sm:text-left">
@@ -194,7 +200,7 @@ const HomePage: React.FC = () => {
               freedom shouldn't come with a contract. Once you Flex, you'll
               never buy a car again.
             </p>
-            <button className="bg-white text-gray-900 px-4 xs:px-6 sm:px-8 py-2 xs:py-3 sm:py-4 rounded-full font-semibold text-sm xs:text-base sm:text-lg hover:bg-gray-100 transition-colors w-full sm:w-auto">
+            <button className="bg-white text-gray-900 px-4 xs:px-6 sm:px-8 py-2 xs:py-3 sm:py-4 rounded-full text-inter-16-semibold hover:bg-gray-100 transition-colors w-full sm:w-auto">
               View cars
             </button>
           </div>
@@ -231,9 +237,9 @@ const HomePage: React.FC = () => {
             <p className="text-sm xs:text-lg sm:text-xl text-gray-600 mb-4 xs:mb-6 sm:mb-8">
               Cancel anytime. Swap cars on demand.
             </p>
-            <button className="bg-gray-900 text-white px-4 xs:px-6 sm:px-8 py-2 xs:py-3 sm:py-4 rounded-full font-semibold hover:bg-gray-800 transition-colors w-full sm:w-auto text-sm xs:text-base">
-              Learn more about swaps
-            </button>
+                  <button className="bg-gray-900 text-white px-4 xs:px-6 sm:px-8 py-2 xs:py-3 sm:py-4 rounded-full text-inter-16-semibold hover:bg-gray-800 transition-colors w-full sm:w-auto">
+                    Learn more about swaps
+                  </button>
           </div>
 
           {/* Freedom Images */}
@@ -309,9 +315,9 @@ const HomePage: React.FC = () => {
             </div>
           </div>
           <div className="text-center mt-6 xs:mt-8 sm:mt-12">
-            <button className="bg-gradient-to-r from-teal-400 to-purple-600 text-white px-4 xs:px-6 sm:px-8 py-2 xs:py-3 sm:py-4 rounded-full font-semibold hover:shadow-lg transition-all w-full sm:w-auto text-sm xs:text-base">
-              View all cars
-            </button>
+                  <button className="bg-gradient-to-r from-teal-400 to-purple-600 text-white px-4 xs:px-6 sm:px-8 py-2 xs:py-3 sm:py-4 rounded-full text-inter-16-semibold hover:shadow-lg transition-all w-full sm:w-auto">
+                    View all cars
+                  </button>
           </div>
         </div>
       </section>
@@ -356,9 +362,9 @@ const HomePage: React.FC = () => {
                 </div>
               </div>
 
-              <button className="mt-4 xs:mt-6 sm:mt-8 bg-gray-900 text-white px-4 xs:px-6 sm:px-8 py-2 xs:py-3 sm:py-4 rounded-full font-semibold hover:bg-gray-800 transition-colors w-full sm:w-auto text-sm xs:text-base">
-                View cars
-              </button>
+                    <button className="mt-4 xs:mt-6 sm:mt-8 bg-gray-900 text-white px-4 xs:px-6 sm:px-8 py-2 xs:py-3 sm:py-4 rounded-full text-inter-16-semibold hover:bg-gray-800 transition-colors w-full sm:w-auto">
+                      View cars
+                    </button>
             </div>
             <div className="order-1 md:order-2">
               <img
@@ -380,9 +386,9 @@ const HomePage: React.FC = () => {
             <br />
             are switching to Flexcar.
           </h2>
-          <button className="bg-white text-gray-900 px-4 xs:px-6 sm:px-8 py-2 xs:py-3 sm:py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors w-full sm:w-auto text-sm xs:text-base">
-            See our reviews
-          </button>
+                <button className="bg-white text-gray-900 px-4 xs:px-6 sm:px-8 py-2 xs:py-3 sm:py-4 rounded-full text-inter-16-semibold hover:bg-gray-100 transition-colors w-full sm:w-auto">
+                  See our reviews
+                </button>
         </div>
       </section>
 
@@ -396,9 +402,9 @@ const HomePage: React.FC = () => {
             Flexcar is the world's first ever month-to-month car lease. No down
             payments. No multi-year contracts. No B.S.
           </p>
-          <button className="bg-gradient-to-r from-teal-400 to-purple-600 text-white px-4 xs:px-6 sm:px-8 py-2 xs:py-3 sm:py-4 rounded-full font-semibold hover:shadow-lg transition-all w-full sm:w-auto text-sm xs:text-base">
-            Get your Flexcar
-          </button>
+                <button className="bg-gradient-to-r from-teal-400 to-purple-600 text-white px-4 xs:px-6 sm:px-8 py-2 xs:py-3 sm:py-4 rounded-full text-inter-16-semibold hover:shadow-lg transition-all w-full sm:w-auto">
+                  Get your Flexcar
+                </button>
         </div>
       </section>
 
@@ -429,9 +435,9 @@ const HomePage: React.FC = () => {
                 We love face to face. Online is good, in person is better. Find
                 a Flexcar location near you.
               </p>
-              <button className="bg-gray-900 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full font-semibold hover:bg-gray-800 transition-colors w-full sm:w-auto text-sm sm:text-base">
-                Find a hub near you
-              </button>
+                    <button className="bg-gray-900 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full text-inter-16-semibold hover:bg-gray-800 transition-colors w-full sm:w-auto">
+                      Find a hub near you
+                    </button>
             </div>
 
             <div className="bg-gray-100 rounded-2xl sm:rounded-3xl p-6 sm:p-8">
@@ -443,9 +449,9 @@ const HomePage: React.FC = () => {
                 Flexcar for Business gives you the freedom to scale without the
                 strings.
               </p>
-              <button className="bg-gray-900 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full font-semibold hover:bg-gray-800 transition-colors w-full sm:w-auto text-sm sm:text-base">
-                Contact Us
-              </button>
+                    <button className="bg-gray-900 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full text-inter-16-semibold hover:bg-gray-800 transition-colors w-full sm:w-auto">
+                      Contact Us
+                    </button>
             </div>
 
             <div className="bg-gray-100 rounded-2xl sm:rounded-3xl p-6 sm:p-8">
@@ -457,7 +463,7 @@ const HomePage: React.FC = () => {
                 tire? We'll fix it. No matter where you are, Flexcar is one
                 click away.
               </p>
-              <button className="bg-gray-900 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full font-semibold hover:bg-gray-800 transition-colors w-full sm:w-auto text-sm sm:text-base">
+              <button className="bg-gray-900 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full text-inter-16-semibold hover:bg-gray-800 transition-colors w-full sm:w-auto">
                 How it works
               </button>
             </div>
