@@ -22,12 +22,36 @@ const Banner: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <div className="text-left text-flexcar-neutral180" style={{color: '#DDDFE4', fontSize: '12px', fontFamily: 'Inter, Arial, sans-serif'}}>
-                <span className="text-inter-16-bold" style={{color: '#DDDFE4', fontSize: '12px', fontFamily: 'Inter, Arial, sans-serif'}}>
+              <div
+                className="text-left text-flexcar-neutral180"
+                   style={{
+                     color: '#DDDFE4',
+                     fontSize: '12px',
+                     fontFamily: 'Inter, Arial, sans-serif',
+                     fontWeight: 600,
+                   }}
+              >
+                <span
+                  className="text-inter-16-bold"
+                   style={{
+                     color: '#DDDFE4',
+                     fontSize: '12px',
+                     fontFamily: 'Inter, Arial, sans-serif',
+                     fontWeight: 600,
+                   }}
+                >
                   Luxury Unleashed
                 </span>{' '}
                 — The smartest way to get a 2025 Mercedes-Benz.{' '}
-                <span className="text-inter-16-bold whitespace-nowrap underline" style={{color: '#DDDFE4', fontSize: '12px', fontFamily: 'Inter, Arial, sans-serif'}}>
+                <span
+                  className="text-inter-16-bold whitespace-nowrap underline"
+                   style={{
+                     color: '#DDDFE4',
+                     fontSize: '12px',
+                     fontFamily: 'Inter, Arial, sans-serif',
+                     fontWeight: 600,
+                   }}
+                >
                   Learn more
                   <ArrowRight className="ml-1 inline h-[14px] w-[14px] align-text-bottom" />
                 </span>
@@ -35,7 +59,15 @@ const Banner: React.FC = () => {
             </div>
 
             {/* Desktop Version */}
-            <div className="body3 hidden flex-row items-center justify-center py-1 text-flexcar-neutral180 md:flex" style={{color: '#DDDFE4', fontSize: '12px', fontFamily: 'Inter, Arial, sans-serif'}}>
+            <div
+              className="body3 hidden flex-row items-center justify-center py-1 text-flexcar-neutral180 md:flex"
+                   style={{
+                     color: '#DDDFE4',
+                     fontSize: '12px',
+                     fontFamily: 'Inter, Arial, sans-serif',
+                     fontWeight: 600,
+                   }}
+            >
               <div className="w-[48px] flex items-center justify-center">
                 <div style={{ width: '100%', height: '100%', lineHeight: 0 }}>
                   <canvas
@@ -45,12 +77,36 @@ const Banner: React.FC = () => {
                   ></canvas>
                 </div>
               </div>
-              <div className="text-left text-flexcar-neutral180" style={{color: '#DDDFE4', fontSize: '12px', fontFamily: 'Inter, Arial, sans-serif'}}>
-                <span className="text-inter-16-bold" style={{color: '#DDDFE4', fontSize: '12px', fontFamily: 'Inter, Arial, sans-serif'}}>
+              <div
+                className="text-left text-flexcar-neutral180"
+                   style={{
+                     color: '#DDDFE4',
+                     fontSize: '12px',
+                     fontFamily: 'Inter, Arial, sans-serif',
+                     fontWeight: 600,
+                   }}
+              >
+                <span
+                  className="text-inter-16-bold"
+                   style={{
+                     color: '#DDDFE4',
+                     fontSize: '12px',
+                     fontFamily: 'Inter, Arial, sans-serif',
+                     fontWeight: 600,
+                   }}
+                >
                   Luxury Unleashed
                 </span>{' '}
                 — The smartest way to get a 2025 Mercedes-Benz.{' '}
-                <span className="text-inter-16-bold whitespace-nowrap underline" style={{color: '#DDDFE4', fontSize: '12px', fontFamily: 'Inter, Arial, sans-serif'}}>
+                <span
+                  className="text-inter-16-bold whitespace-nowrap underline"
+                   style={{
+                     color: '#DDDFE4',
+                     fontSize: '12px',
+                     fontFamily: 'Inter, Arial, sans-serif',
+                     fontWeight: 600,
+                   }}
+                >
                   Learn more
                   <ArrowRight className="ml-1 inline h-[14px] w-[14px] align-text-bottom" />
                 </span>
