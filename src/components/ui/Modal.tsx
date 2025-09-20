@@ -52,7 +52,7 @@ const Modal: React.FC<ModalProps> = ({
       onClick={handleBackdropClick}
     >
       <div
-        className={`bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 ${className}`}
+        className={`bg-white rounded-2xl max-w-xl w-full p-6 sm:p-8 ${className}`}
       >
         <div className="flex justify-between items-start mb-6">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
