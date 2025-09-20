@@ -115,7 +115,6 @@ export const VehicleProvider: React.FC<VehicleProviderProps> = ({
   const [state, dispatch] = useReducer(vehicleReducer, initialState);
 
   const searchVehicles = useCallback(async (zipCode: string) => {
-    console.log('🔍 searchVehicles called with zipCode:', zipCode);
     dispatch({ type: 'SET_LOADING', payload: true });
     dispatch({ type: 'SET_ERROR', payload: '' });
     dispatch({ type: 'SET_ZIP_CODE', payload: zipCode });
@@ -125,12 +124,7 @@ export const VehicleProvider: React.FC<VehicleProviderProps> = ({
       await new Promise(resolve => setTimeout(resolve, 1000));
 
       const vehicles = getVehiclesByZipCode(zipCode);
-      console.log(
-        '🚗 Found vehicles:',
-        vehicles.length,
-        'for zipCode:',
-        zipCode
-      );
+
       if (vehicles.length === 0) {
         console.log(
           '❌ No vehicles found for',

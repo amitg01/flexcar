@@ -85,9 +85,6 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
     ...availableColors.map(color => ({ value: color, label: color })),
   ];
 
-  console.log({ makeOptions, colorOptions });
-  console.log({ availableMakes, availableColors });
-
   // Show loading state while vehicles are being loaded
   if (state.isLoading || state.vehicles.length === 0) {
     return (
