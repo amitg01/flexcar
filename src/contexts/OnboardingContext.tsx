@@ -45,7 +45,6 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
       localStorage.setItem('flexcar-user-data', JSON.stringify(userData));
 
       // Handle user info submission
-      console.log('User info submitted:', userData);
       setShowModal(false);
 
       // Navigate to vehicle listing page
@@ -55,7 +54,7 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
 
   const handleLocateMe = () => {
     // Handle locate me functionality
-    console.log('Locate me clicked');
+    console.info('Locate me clicked');
     // You can implement geolocation API here
   };
 

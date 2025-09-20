@@ -8,25 +8,20 @@ const VehicleListingPage: React.FC = () => {
 
   // Load user data from localStorage and search vehicles
   useEffect(() => {
-    console.log('🏠 VehicleListingPage useEffect running');
     const userData = localStorage.getItem('flexcar-user-data');
-    console.log('👤 User data:', userData);
     if (userData) {
       try {
         const { zipCode } = JSON.parse(userData);
-        console.log('📍 Parsed zipCode:', zipCode);
         if (zipCode) {
           searchVehicles(zipCode);
         }
       } catch (error) {
         console.error('Error parsing user data:', error);
         // If user data is corrupted, load default vehicles
-        console.log('🔄 Loading default vehicles for 10001');
         searchVehicles('10001');
       }
     } else {
       // If no user data, load default vehicles instead of redirecting
-      console.log('🔄 No user data, loading default vehicles for 10001');
       searchVehicles('10001');
     }
   }, [searchVehicles]);

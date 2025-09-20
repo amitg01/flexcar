@@ -126,18 +126,11 @@ export const VehicleProvider: React.FC<VehicleProviderProps> = ({
       const vehicles = getVehiclesByZipCode(zipCode);
 
       if (vehicles.length === 0) {
-        console.log(
-          '❌ No vehicles found for',
-          zipCode,
-          '- trying default zipCode 10001'
-        );
         // Try default zipCode if no vehicles found for user's zipCode
         const defaultVehicles = getVehiclesByZipCode('10001');
         if (defaultVehicles.length > 0) {
-          console.log('✅ Found default vehicles:', defaultVehicles.length);
           dispatch({ type: 'SET_VEHICLES', payload: defaultVehicles });
         } else {
-          console.log('❌ No vehicles found even for default zipCode');
           dispatch({
             type: 'SET_ERROR',
             payload:
@@ -146,7 +139,6 @@ export const VehicleProvider: React.FC<VehicleProviderProps> = ({
           dispatch({ type: 'SET_VEHICLES', payload: [] });
         }
       } else {
-        console.log('✅ Setting vehicles:', vehicles.length);
         dispatch({ type: 'SET_VEHICLES', payload: vehicles });
       }
     } catch (error) {
