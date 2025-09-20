@@ -38,11 +38,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 xs:gap-6 sm:gap-8 mb-6 xs:mb-8 sm:mb-12">
           <div className="sm:col-span-2 md:col-span-1">
             <div className="flex items-center space-x-1 xs:space-x-2 mb-2 xs:mb-3 sm:mb-4">
-                    <img 
-                      src={BrandLogo} 
-                      alt="FlexCar" 
-                      className="h-10 w-[107px]"
-                    />
+              <img src={BrandLogo} alt="FlexCar" className="h-10 w-[107px]" />
             </div>
             <p className="text-xs xs:text-sm sm:text-base text-gray-400">
               Live large. Spend small.
