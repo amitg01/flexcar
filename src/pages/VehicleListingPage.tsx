@@ -5,6 +5,7 @@ import { VehicleGrid, FilterPanel, SortDropdown } from '@/components/features';
 import { useVehicle } from '@/hooks/useVehicle';
 import { useOnboarding } from '@/hooks/useOnboarding';
 import OnboardingModal from '@/pages/HomePage/OnboardingModal';
+import { VehicleGridSkeleton, FilterPanelSkeleton } from '@/components/ui';
 import type { SortOption } from '@/types/contexts/VehicleContext';
 
 const VehicleListingPage: React.FC = () => {
@@ -12,6 +13,7 @@ const VehicleListingPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { showModal } = useOnboarding();
   const isUpdatingFromURL = useRef(false);
+  const [isInitialLoad, setIsInitialLoad] = React.useState(true);
 
   useEffect(() => {
     const userData = localStorage.getItem('flexcar-user-data');
@@ -29,6 +31,13 @@ const VehicleListingPage: React.FC = () => {
       searchVehicles('10001');
     }
   }, [searchVehicles]);
+
+  // Set initial load to false once vehicles are loaded
+  useEffect(() => {
+    if (state.vehicles.length > 0 || state.error) {
+      setIsInitialLoad(false);
+    }
+  }, [state.vehicles.length, state.error]);
 
   // Load URL parameters on mount and when URL changes
   useEffect(() => {
@@ -122,36 +131,58 @@ const VehicleListingPage: React.FC = () => {
           <div className="flex flex-col lg:flex-row">
             <div className="flex-1 min-w-0 bg-white">
               <div className="p-4 lg:p-6">
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
-                  <div className="flex items-center gap-4">
-                    <h2 className="text-xl font-semibold text-gray-900">
-                      {state.filteredVehicles.length} results
-                    </h2>
-                    {state.isLoading && (
-                      <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                {isInitialLoad ? (
+                  <>
+                    {/* Skeleton for results header */}
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
+                      <div className="flex items-center gap-4">
+                        <div className="h-6 w-24 bg-gray-200 rounded animate-pulse"></div>
+                        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                      </div>
+                      <div className="w-full sm:w-auto">
+                        <div className="h-10 w-32 bg-gray-200 rounded animate-pulse"></div>
+                      </div>
+                    </div>
+
+                    {/* Skeleton for vehicle grid */}
+                    <div className="overflow-hidden">
+                      <VehicleGridSkeleton />
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
+                      <div className="flex items-center gap-4">
+                        <h2 className="text-xl font-semibold text-gray-900">
+                          {state.filteredVehicles.length} results
+                        </h2>
+                        {state.isLoading && (
+                          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                        )}
+                      </div>
+                      <div className="w-full sm:w-auto">
+                        <SortDropdown />
+                      </div>
+                    </div>
+
+                    {state.error && (
+                      <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+                        <p className="text-red-800">{state.error}</p>
+                      </div>
                     )}
-                  </div>
-                  <div className="w-full sm:w-auto">
-                    <SortDropdown />
-                  </div>
-                </div>
 
-                {state.error && (
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
-                    <p className="text-red-800">{state.error}</p>
-                  </div>
+                    <div className="overflow-hidden">
+                      <VehicleGrid />
+                    </div>
+                  </>
                 )}
-
-                <div className="overflow-hidden">
-                  <VehicleGrid />
-                </div>
               </div>
             </div>
 
             {/* Filters Sidebar - Right Side */}
             <div className="w-full lg:w-80 lg:border-l border-gray-200 lg:min-h-screen">
               <div className="p-4 lg:p-6">
-                <FilterPanel />
+                {isInitialLoad ? <FilterPanelSkeleton /> : <FilterPanel />}
               </div>
             </div>
           </div>
