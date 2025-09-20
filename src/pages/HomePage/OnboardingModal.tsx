@@ -14,6 +14,7 @@ const OnboardingModal: React.FC = () => {
     zipCode,
     age,
     creditScore,
+    isEditMode,
     setZipCode,
     setAge,
     setCreditScore,
@@ -29,16 +30,27 @@ const OnboardingModal: React.FC = () => {
       isOpen={showModal}
       onClose={handleCloseModal}
       showCloseButton={false}
-      title={currentStep === 1 ? 'Find Flexcars near you' : 'About you'}
+      title={
+        isEditMode
+          ? currentStep === 1
+            ? 'Update Location'
+            : 'Update Profile'
+          : currentStep === 1
+            ? 'Find Flexcars near you'
+            : 'About you'
+      }
       closeOnBackdropClick={true}
     >
       {currentStep === 1 ? (
         <>
           <div className="mb-6">
-            <div className="text-sm text-gray-500 mb-2">STEP 1 OF 2</div>
+            {!isEditMode && (
+              <div className="text-sm text-gray-500 mb-2">STEP 1 OF 2</div>
+            )}
             <p className="text-gray-600 text-sm sm:text-base">
-              Enter your ZIP code to see accurate availability and delivery
-              options in your area.
+              {isEditMode
+                ? 'Update your ZIP code to see accurate availability and delivery options in your area.'
+                : 'Enter your ZIP code to see accurate availability and delivery options in your area.'}
             </p>
           </div>
 
@@ -76,23 +88,30 @@ const OnboardingModal: React.FC = () => {
               className="w-full bg-gray-200 text-gray-700 py-3 px-4 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
               data-testid="zip-next-button"
             >
-              Next
+              {isEditMode ? 'Update Location' : 'Next'}
             </button>
           </form>
         </>
       ) : (
         <>
           <div className="mb-6">
-            <div className="flex items-center gap-2 mb-2">
-              <button
-                onClick={handleBackToStep1}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
-                data-testid="back-to-step1-button"
-              >
-                <ArrowLeft className="w-5 h-5" />
-              </button>
-              <div className="text-sm text-gray-500">STEP 2 OF 2</div>
-            </div>
+            {!isEditMode && (
+              <div className="flex items-center gap-2 mb-2">
+                <button
+                  onClick={handleBackToStep1}
+                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                  data-testid="back-to-step1-button"
+                >
+                  <ArrowLeft className="w-5 h-5" />
+                </button>
+                <div className="text-sm text-gray-500">STEP 2 OF 2</div>
+              </div>
+            )}
+            {isEditMode && (
+              <p className="text-gray-600 text-sm sm:text-base">
+                Update your age and credit score information.
+              </p>
+            )}
           </div>
 
           <form onSubmit={handleUserInfoSubmit} className="space-y-4">
@@ -127,7 +146,7 @@ const OnboardingModal: React.FC = () => {
               className="w-full bg-gray-200 text-gray-700 py-3 px-4 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
               data-testid="modal-view-cars-button"
             >
-              View cars
+              {isEditMode ? 'Update Profile' : 'View cars'}
             </button>
           </form>
         </>

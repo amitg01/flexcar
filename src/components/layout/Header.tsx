@@ -7,24 +7,21 @@ import { useOnboarding } from '@/hooks/useOnboarding';
 const Header: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { setShowModal, setCurrentStep } = useOnboarding();
+  const { openEditModal } = useOnboarding();
 
   const isInventoryPage = location.pathname === '/inventory';
 
   // Click handlers for user data elements
   const handleZipCodeClick = () => {
-    setCurrentStep(1); // Go to step 1 (zip code step)
-    setShowModal(true);
+    openEditModal(1); // Go to step 1 (zip code step) with prefilled data
   };
 
   const handleAgeClick = () => {
-    setCurrentStep(2); // Go to step 2 (user info step)
-    setShowModal(true);
+    openEditModal(2); // Go to step 2 (user info step) with prefilled data
   };
 
   const handleCreditScoreClick = () => {
-    setCurrentStep(2); // Go to step 2 (user info step)
-    setShowModal(true);
+    openEditModal(2); // Go to step 2 (user info step) with prefilled data
   };
 
   // Get user data from localStorage for inventory page

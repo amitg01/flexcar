@@ -16,6 +16,7 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
   const [zipCode, setZipCode] = useState('');
   const [age, setAge] = useState('');
   const [creditScore, setCreditScore] = useState('');
+  const [isEditMode, setIsEditMode] = useState(false);
 
   // Check localStorage on mount
   useEffect(() => {
@@ -46,9 +47,12 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
 
       // Handle user info submission
       setShowModal(false);
+      setIsEditMode(false);
 
-      // Navigate to vehicle listing page
-      navigate('/inventory');
+      // Only navigate to vehicle listing page if not in edit mode
+      if (!isEditMode) {
+        navigate('/inventory');
+      }
     }
   };
 
@@ -60,10 +64,30 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
 
   const handleCloseModal = () => {
     setShowModal(false);
+    setIsEditMode(false);
   };
 
   const handleBackToStep1 = () => {
     setCurrentStep(1);
+  };
+
+  const openEditModal = (step: number) => {
+    // Load existing user data from localStorage
+    const userData = localStorage.getItem('flexcar-user-data');
+    if (userData) {
+      try {
+        const parsedData = JSON.parse(userData);
+        setZipCode(parsedData.zipCode || '');
+        setAge(parsedData.age || '');
+        setCreditScore(parsedData.creditScore || '');
+      } catch (error) {
+        console.error('Error parsing user data:', error);
+      }
+    }
+
+    setCurrentStep(step);
+    setIsEditMode(true);
+    setShowModal(true);
   };
 
   const value: OnboardingContextType = {
@@ -72,16 +96,19 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
     zipCode,
     age,
     creditScore,
+    isEditMode,
     setShowModal,
     setCurrentStep,
     setZipCode,
     setAge,
     setCreditScore,
+    setIsEditMode,
     handleZipSubmit,
     handleUserInfoSubmit,
     handleLocateMe,
     handleCloseModal,
     handleBackToStep1,
+    openEditModal,
   };
 
   return (

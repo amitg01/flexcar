@@ -9,9 +9,12 @@ export interface OnboardingContextType {
   setAge: (age: string) => void;
   creditScore: string;
   setCreditScore: (score: string) => void;
+  isEditMode: boolean;
+  setIsEditMode: (isEdit: boolean) => void;
   handleZipSubmit: (e: React.FormEvent) => void;
   handleUserInfoSubmit: (e: React.FormEvent) => void;
   handleLocateMe: () => void;
   handleCloseModal: () => void;
   handleBackToStep1: () => void;
+  openEditModal: (step: number) => void;
 }
