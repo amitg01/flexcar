@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Button, FilterPanelSkeleton } from '@/components/ui';
+import { Button, FilterPanelSkeleton, Select } from '@/components/ui';
 import { useVehicle } from '@/hooks/useVehicle';
 
 interface FilterPanelProps {
@@ -7,7 +7,13 @@ interface FilterPanelProps {
 }
 
 const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
-  const { state, dispatch, clearFilters } = useVehicle();
+  const {
+    state,
+    dispatch,
+    clearFilters,
+    getAvailableMakes,
+    getAvailableColors,
+  } = useVehicle();
   const lastAppliedFilters = useRef({
     selectedMake: '',
     selectedColor: '',
@@ -64,6 +70,77 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
     dispatch({ type: 'SET_FILTER_COLOR', payload: '' });
   };
 
+  // Get available options for dropdowns
+  const availableMakes = getAvailableMakes();
+  const availableColors = getAvailableColors();
+
+  // Create options for dropdowns
+  const makeOptions = [
+    { value: '', label: 'All Makes' },
+    ...availableMakes.map(make => ({ value: make, label: make })),
+  ];
+
+  const colorOptions = [
+    { value: '', label: 'All Colors' },
+    ...availableColors.map(color => ({ value: color, label: color })),
+  ];
+
+  const bodyTypeOptions = [
+    { value: '', label: 'All Body Types' },
+    { value: 'sedan', label: 'Sedan' },
+    { value: 'suv', label: 'SUV' },
+    { value: 'truck', label: 'Truck' },
+    { value: 'coupe', label: 'Coupe' },
+    { value: 'hatchback', label: 'Hatchback' },
+    { value: 'convertible', label: 'Convertible' },
+  ];
+
+  const yearOptions = [
+    { value: '', label: 'All Years' },
+    { value: '2023', label: '2023' },
+    { value: '2022', label: '2022' },
+    { value: '2021', label: '2021' },
+    { value: '2020', label: '2020' },
+    { value: '2019', label: '2019' },
+  ];
+
+  const fuelTypeOptions = [
+    { value: '', label: 'All Fuel Types' },
+    { value: 'gasoline', label: 'Gasoline' },
+    { value: 'hybrid', label: 'Hybrid' },
+    { value: 'electric', label: 'Electric' },
+    { value: 'diesel', label: 'Diesel' },
+  ];
+
+  const priceRangeOptions = [
+    { value: '', label: 'All Price Ranges' },
+    { value: '0-200', label: 'Under $200/month' },
+    { value: '200-300', label: '$200 - $300/month' },
+    { value: '300-400', label: '$300 - $400/month' },
+    { value: '400-500', label: '$400 - $500/month' },
+    { value: '500-600', label: '$500 - $600/month' },
+    { value: '600+', label: 'Over $600/month' },
+  ];
+
+  const mileageOptions = [
+    { value: '', label: 'All Mileage' },
+    { value: '0-10000', label: 'Under 10,000 miles' },
+    { value: '10000-25000', label: '10,000 - 25,000 miles' },
+    { value: '25000-50000', label: '25,000 - 50,000 miles' },
+    { value: '50000-75000', label: '50,000 - 75,000 miles' },
+    { value: '75000+', label: 'Over 75,000 miles' },
+  ];
+
+  const mpgOptions = [
+    { value: '', label: 'All MPG Ratings' },
+    { value: '15-20', label: '15 - 20 MPG' },
+    { value: '20-25', label: '20 - 25 MPG' },
+    { value: '25-30', label: '25 - 30 MPG' },
+    { value: '30-35', label: '30 - 35 MPG' },
+    { value: '35-40', label: '35 - 40 MPG' },
+    { value: '40+', label: '40+ MPG' },
+  ];
+
   return (
     <div
       className={`bg-white rounded-lg border border-gray-200 p-6 h-fit ${className}`}
@@ -117,172 +194,102 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
       <div className="space-y-4">
         {/* Monthly Price Filter */}
         <div>
-          <button className="w-full flex items-center justify-between p-3 border border-gray-300 rounded-md hover:bg-gray-50">
-            <span className="text-sm font-medium text-gray-700">
-              Monthly price
-            </span>
-            <svg
-              className="w-4 h-4 text-gray-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </button>
+          <Select
+            label="Monthly Price"
+            value=""
+            onChange={() => {}} // TODO: Add price range filter to context
+            options={priceRangeOptions}
+            placeholder="Select price range"
+            id="price-range-filter"
+          />
         </div>
 
         {/* Body Type Filter */}
         <div>
-          <button className="w-full flex items-center justify-between p-3 border border-gray-300 rounded-md hover:bg-gray-50">
-            <span className="text-sm font-medium text-gray-700">Body type</span>
-            <svg
-              className="w-4 h-4 text-gray-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </button>
+          <Select
+            label="Body Type"
+            value=""
+            onChange={() => {}} // TODO: Add body type filter to context
+            options={bodyTypeOptions}
+            placeholder="Select body type"
+            id="body-type-filter"
+          />
         </div>
 
         {/* Make & Model Filter */}
         <div>
-          <button className="w-full flex items-center justify-between p-3 border border-gray-300 rounded-md hover:bg-gray-50">
-            <span className="text-sm font-medium text-gray-700">
-              Make & Model
-            </span>
-            <svg
-              className="w-4 h-4 text-gray-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </button>
+          <Select
+            label="Make & Model"
+            value={state.selectedMake}
+            onChange={e =>
+              dispatch({ type: 'SET_FILTER_MAKE', payload: e.target.value })
+            }
+            options={makeOptions}
+            placeholder="Select make"
+            id="make-filter"
+          />
         </div>
 
         {/* Model Year Filter */}
         <div>
-          <button className="w-full flex items-center justify-between p-3 border border-gray-300 rounded-md hover:bg-gray-50">
-            <span className="text-sm font-medium text-gray-700">
-              Model year
-            </span>
-            <svg
-              className="w-4 h-4 text-gray-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </button>
+          <Select
+            label="Model Year"
+            value=""
+            onChange={() => {}} // TODO: Add year filter to context
+            options={yearOptions}
+            placeholder="Select year"
+            id="year-filter"
+          />
         </div>
 
         {/* Mileage Filter */}
         <div>
-          <button className="w-full flex items-center justify-between p-3 border border-gray-300 rounded-md hover:bg-gray-50">
-            <span className="text-sm font-medium text-gray-700">Mileage</span>
-            <svg
-              className="w-4 h-4 text-gray-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </button>
+          <Select
+            label="Mileage"
+            value=""
+            onChange={() => {}} // TODO: Add mileage filter to context
+            options={mileageOptions}
+            placeholder="Select mileage range"
+            id="mileage-filter"
+          />
         </div>
 
         {/* Fuel Type Filter */}
         <div>
-          <button className="w-full flex items-center justify-between p-3 border border-gray-300 rounded-md hover:bg-gray-50">
-            <span className="text-sm font-medium text-gray-700">Fuel type</span>
-            <svg
-              className="w-4 h-4 text-gray-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </button>
+          <Select
+            label="Fuel Type"
+            value=""
+            onChange={() => {}} // TODO: Add fuel type filter to context
+            options={fuelTypeOptions}
+            placeholder="Select fuel type"
+            id="fuel-type-filter"
+          />
         </div>
 
         {/* MPG Filter */}
         <div>
-          <button className="w-full flex items-center justify-between p-3 border border-gray-300 rounded-md hover:bg-gray-50">
-            <span className="text-sm font-medium text-gray-700">
-              Miles per gallon (MPG)
-            </span>
-            <svg
-              className="w-4 h-4 text-gray-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </button>
+          <Select
+            label="Miles per gallon (MPG)"
+            value=""
+            onChange={() => {}} // TODO: Add MPG filter to context
+            options={mpgOptions}
+            placeholder="Select MPG range"
+            id="mpg-filter"
+          />
         </div>
 
         {/* Exterior Color Filter */}
         <div>
-          <button className="w-full flex items-center justify-between p-3 border border-gray-300 rounded-md hover:bg-gray-50">
-            <span className="text-sm font-medium text-gray-700">
-              Exterior color
-            </span>
-            <svg
-              className="w-4 h-4 text-gray-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </button>
+          <Select
+            label="Exterior Color"
+            value={state.selectedColor}
+            onChange={e =>
+              dispatch({ type: 'SET_FILTER_COLOR', payload: e.target.value })
+            }
+            options={colorOptions}
+            placeholder="Select color"
+            id="color-filter"
+          />
         </div>
       </div>
 

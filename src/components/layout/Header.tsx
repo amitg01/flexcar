@@ -1,10 +1,12 @@
 import React from 'react';
-import { Menu, MapPin, User, CreditCard, Calendar, Shield } from 'lucide-react';
+import { Menu, MapPin, User, CreditCard } from 'lucide-react';
 import BrandLogo from '@/assets/brand-logo.svg';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Header: React.FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+
   const isInventoryPage = location.pathname === '/inventory';
 
   // Get user data from localStorage for inventory page
@@ -28,46 +30,44 @@ const Header: React.FC = () => {
               src={BrandLogo}
               alt="FlexCar"
               className="h-10 w-[107px] cursor-pointer"
+              onClick={() => navigate('/')}
             />
+            {isInventoryPage && userData && (
+              <div className="flex items-center space-x-4 text-sm text-gray-600 ml-6">
+                <div className="flex items-center space-x-1 bg-gray-100 rounded-md p-2">
+                  <MapPin className="w-4 h-4" />
+                  <span className="text-sm font-semibold text-black">
+                    {userData.zipCode}
+                  </span>
+                </div>
+                <div className="flex items-center space-x-1 bg-gray-100 rounded-md p-2">
+                  <User className="w-4 h-4" />
+                  <span className="text-sm font-semibold text-black">
+                    {userData.age}
+                  </span>
+                </div>
+                <div className="flex items-center space-x-1 bg-gray-100 rounded-md p-2">
+                  <CreditCard className="w-4 h-4" />
+                  <span className="text-sm font-semibold text-black">
+                    {userData.creditScore}+
+                  </span>
+                </div>
+              </div>
+            )}
           </div>
 
-          {isInventoryPage && userData ? (
-            <div className="flex items-center space-x-4 text-sm text-gray-600">
-              <div className="flex items-center space-x-1">
-                <MapPin className="w-4 h-4" />
-                <span>{userData.zipCode}</span>
-              </div>
-              <div className="flex items-center space-x-1">
-                <User className="w-4 h-4" />
-                <span>{userData.age}</span>
-              </div>
-              <div className="flex items-center space-x-1">
-                <CreditCard className="w-4 h-4" />
-                <span>{userData.creditScore}+</span>
-              </div>
-              <div className="flex items-center space-x-1">
-                <Calendar className="w-4 h-4" />
-                <span>Standard Plan</span>
-              </div>
-              <div className="flex items-center space-x-1">
-                <Shield className="w-4 h-4" />
-                <span>Protection: Essential</span>
-              </div>
-            </div>
-          ) : (
-            <div className="flex items-center space-x-1 sm:space-x-4">
-              <span className="text-inter-16-semibold text-black hidden sm:inline cursor-pointer">
-                How it works
-              </span>
-              <span className="text-inter-16-semibold text-black xs:hidden cursor-pointer">
-                Log in
-              </span>
-              {/* Mobile menu button */}
-              <button className="sm:hidden p-1 ml-1">
-                <Menu className="w-4 h-4 text-gray-600" />
-              </button>
-            </div>
-          )}
+          <div className="flex items-center space-x-1 sm:space-x-4">
+            <span className="text-inter-16-semibold text-black hidden sm:inline cursor-pointer">
+              How it works
+            </span>
+            <span className="text-inter-16-semibold text-black xs:hidden cursor-pointer">
+              Log in
+            </span>
+            {/* Mobile menu button */}
+            <button className="sm:hidden p-1 ml-1">
+              <Menu className="w-4 h-4 text-gray-600" />
+            </button>
+          </div>
         </div>
       </div>
     </header>

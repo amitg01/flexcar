@@ -1,6 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const HeroSection: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleViewCarsClick = () => {
+    navigate('/inventory');
+  };
+
   return (
     <div className="flex w-full flex-row items-center justify-center">
       <div className="flex h-[623px] w-full max-w-[1440px] bg-gray-100 md:mx-4 md:h-[720px] md:bg-transparent">
@@ -46,6 +53,7 @@ const HeroSection: React.FC = () => {
               <button
                 className="font-sans text-base font-medium leading-6 hover:cursor-pointer flex h-12 w-[174px] items-center justify-center rounded-[40px] border border-solid border-gray-300 bg-white px-12 py-3 text-gray-900 shadow-lg ring-transparent hover:text-blue-600 hover:ring-transparent active:text-blue-600 md:h-14"
                 data-testid="hero-view-cars-button"
+                onClick={handleViewCarsClick}
               >
                 View cars
               </button>

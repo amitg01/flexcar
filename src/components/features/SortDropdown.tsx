@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useVehicle } from '@/hooks/useVehicle';
+import { Select } from '@/components/ui';
 import type { SortOption } from '@/types/contexts/VehicleContext';
 
 interface SortDropdownProps {
@@ -27,21 +28,13 @@ const SortDropdown: React.FC<SortDropdownProps> = ({ className = '' }) => {
 
   return (
     <div className={`flex items-center gap-3 ${className}`}>
-      <label htmlFor="sort-select" className="text-gray-700 font-medium">
-        Sort by
-      </label>
-      <select
-        id="sort-select"
+      <Select
+        label="Sort by"
         value={state.sortBy}
         onChange={e => handleSortChange(e.target.value)}
-        className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 min-w-[200px]"
-      >
-        {sortOptions.map(option => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
+        options={sortOptions}
+        className="min-w-[200px]"
+      />
     </div>
   );
 };
