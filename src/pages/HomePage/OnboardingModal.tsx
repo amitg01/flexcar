@@ -21,6 +21,8 @@ const OnboardingModal: React.FC = () => {
     age,
     creditScore,
     isEditMode,
+    handleZipSubmit,
+    handleUserInfoSubmit,
     handleLocateMe,
     handleCloseModal,
     handleBackToStep1,
@@ -56,8 +58,6 @@ const OnboardingModal: React.FC = () => {
       });
     }
   }, [zipCode, age, creditScore, isEditMode, reset]);
-
-  const { handleZipSubmit, handleUserInfoSubmit } = useOnboarding();
 
   const onSubmit = (data: OnboardingFormData) => {
     if (currentStep === 1) {

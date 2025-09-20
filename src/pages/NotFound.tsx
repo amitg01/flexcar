@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button, EmptyState } from '@/components/ui';
+import { EmptyState } from '@/components/ui';
 
 const NotFound: React.FC = () => {
   return (
@@ -29,22 +28,6 @@ const NotFound: React.FC = () => {
             onClick: () => (window.location.href = '/'),
           }}
         />
-
-        <div className="mt-8 space-y-4">
-          <p className="text-gray-600">You can also try:</p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link to="/">
-              <Button variant="primary" size="sm">
-                Search Vehicles
-              </Button>
-            </Link>
-            <Link to="/about">
-              <Button variant="secondary" size="sm">
-                About FlexCar
-              </Button>
-            </Link>
-          </div>
-        </div>
       </div>
     </div>
   );

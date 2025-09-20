@@ -16,15 +16,19 @@ const Button: React.FC<ButtonProps> = ({
   children,
   ...props
 }) => {
-  const baseClasses = 'font-semibold rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
-  
+  const baseClasses =
+    'font-semibold rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
+
   const variantClasses = {
-    primary: 'bg-flexcar-blue text-white hover:bg-blue-700 focus:ring-flexcar-blue disabled:bg-gray-400 disabled:cursor-not-allowed',
-    secondary: 'bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500',
+    primary:
+      'bg-black text-white hover:bg-black/80 focus:ring-black disabled:bg-gray-400 disabled:cursor-not-allowed',
+    secondary:
+      'bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500',
     danger: 'bg-red-500 text-white hover:bg-red-600 focus:ring-red-500',
-    ghost: 'text-flexcar-blue hover:text-blue-700 hover:bg-blue-50 focus:ring-flexcar-blue',
+    ghost:
+      'text-flexcar-blue hover:text-blue-700 hover:bg-blue-50 focus:ring-flexcar-blue',
   };
-  
+
   const sizeClasses = {
     sm: 'px-3 py-1.5 text-sm',
     md: 'px-4 py-2 text-base',
