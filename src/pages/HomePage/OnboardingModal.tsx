@@ -85,7 +85,7 @@ const OnboardingModal: React.FC = () => {
     <Modal
       isOpen={showModal}
       onClose={handleCloseModal}
-      showCloseButton={false}
+      showCloseButton={isEditMode}
       title={
         isEditMode
           ? currentStep === 1
@@ -95,7 +95,7 @@ const OnboardingModal: React.FC = () => {
             ? 'Find Flexcars near you'
             : 'About you'
       }
-      closeOnBackdropClick={true}
+      closeOnBackdropClick={isEditMode}
     >
       {currentStep === 1 ? (
         <>
