@@ -3,11 +3,14 @@ import { useSearchParams } from 'react-router-dom';
 import { Header, Footer } from '@/components/layout';
 import { VehicleGrid, FilterPanel, SortDropdown } from '@/components/features';
 import { useVehicle } from '@/hooks/useVehicle';
+import { useOnboarding } from '@/hooks/useOnboarding';
+import OnboardingModal from '@/pages/HomePage/OnboardingModal';
 import type { SortOption } from '@/types/contexts/VehicleContext';
 
 const VehicleListingPage: React.FC = () => {
   const { state, dispatch, searchVehicles } = useVehicle();
   const [searchParams, setSearchParams] = useSearchParams();
+  const { showModal } = useOnboarding();
   const isUpdatingFromURL = useRef(false);
 
   useEffect(() => {
@@ -111,6 +114,7 @@ const VehicleListingPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      {showModal && <OnboardingModal />}
       <Header />
 
       <div className="w-full overflow-hidden">

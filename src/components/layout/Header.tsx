@@ -2,12 +2,30 @@ import React from 'react';
 import { Menu, MapPin, User, CreditCard } from 'lucide-react';
 import BrandLogo from '@/assets/brand-logo.svg';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useOnboarding } from '@/hooks/useOnboarding';
 
 const Header: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { setShowModal, setCurrentStep } = useOnboarding();
 
   const isInventoryPage = location.pathname === '/inventory';
+
+  // Click handlers for user data elements
+  const handleZipCodeClick = () => {
+    setCurrentStep(1); // Go to step 1 (zip code step)
+    setShowModal(true);
+  };
+
+  const handleAgeClick = () => {
+    setCurrentStep(2); // Go to step 2 (user info step)
+    setShowModal(true);
+  };
+
+  const handleCreditScoreClick = () => {
+    setCurrentStep(2); // Go to step 2 (user info step)
+    setShowModal(true);
+  };
 
   // Get user data from localStorage for inventory page
   const userData = isInventoryPage
@@ -34,23 +52,38 @@ const Header: React.FC = () => {
             />
             {isInventoryPage && userData && (
               <div className="flex items-center space-x-4 text-sm text-gray-600 ml-6">
-                <div className="flex items-center space-x-1 bg-gray-100 rounded-md p-2">
+                <div
+                  className="flex items-center space-x-1 bg-gray-100 rounded-md p-2 cursor-pointer hover:bg-gray-200 transition-colors"
+                  onClick={handleZipCodeClick}
+                  title="Click to change location"
+                >
                   <MapPin className="w-4 h-4" />
                   <span className="text-sm font-semibold text-black">
                     {userData.zipCode}
                   </span>
                 </div>
                 <div className="flex items-center space-x-1 bg-gray-100 rounded-md p-2">
-                  <User className="w-4 h-4" />
-                  <span className="text-sm font-semibold text-black">
-                    {userData.age}
-                  </span>
-                </div>
-                <div className="flex items-center space-x-1 bg-gray-100 rounded-md p-2">
-                  <CreditCard className="w-4 h-4" />
-                  <span className="text-sm font-semibold text-black">
-                    {userData.creditScore}+
-                  </span>
+                  <div
+                    className="flex items-center space-x-1 cursor-pointer hover:bg-gray-200 transition-colors rounded px-1 py-1 -mx-1 -my-1"
+                    onClick={handleAgeClick}
+                    title="Click to change age"
+                  >
+                    <User className="w-4 h-4" />
+                    <span className="text-sm font-semibold text-black">
+                      {userData.age}
+                    </span>
+                  </div>
+                  <span className="text-sm font-semibold text-gray-400">|</span>
+                  <div
+                    className="flex items-center space-x-1 cursor-pointer hover:bg-gray-200 transition-colors rounded px-1 py-1 -mx-1 -my-1"
+                    onClick={handleCreditScoreClick}
+                    title="Click to change credit score"
+                  >
+                    <CreditCard className="w-4 h-4" />
+                    <span className="text-sm font-semibold text-black">
+                      {userData.creditScore}+
+                    </span>
+                  </div>
                 </div>
               </div>
             )}
