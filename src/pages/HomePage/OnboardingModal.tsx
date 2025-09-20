@@ -1,7 +1,7 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Modal } from '@/components/ui';
+import { Modal, Select } from '@/components/ui';
 import { MapPin, ArrowLeft, HelpCircle } from 'lucide-react';
 import { useOnboarding } from '@/hooks/useOnboarding';
 import {
@@ -30,6 +30,7 @@ const OnboardingModal: React.FC = () => {
     register,
     handleSubmit,
     watch,
+    control,
     formState: { errors },
     reset,
   } = useForm<OnboardingFormData>({
@@ -183,22 +184,22 @@ const OnboardingModal: React.FC = () => {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Age
-                </label>
-                <select
-                  {...register('age')}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none ${
-                    errors.age ? 'border-red-500' : 'border-gray-300'
-                  }`}
-                >
-                  <option value="">Select one</option>
-                  {AGE_OPTIONS.map(option => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
+                <Controller
+                  name="age"
+                  control={control}
+                  render={({ field }) => (
+                    <Select
+                      label="Age"
+                      value={field.value}
+                      onChange={field.onChange}
+                      options={[
+                        { value: '', label: 'Select one' },
+                        ...AGE_OPTIONS,
+                      ]}
+                      className={errors.age ? 'border-red-500' : ''}
+                    />
+                  )}
+                />
                 {errors.age && (
                   <p className="mt-1 text-sm text-red-600">
                     {errors.age.message}
@@ -207,22 +208,22 @@ const OnboardingModal: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Credit score
-                </label>
-                <select
-                  {...register('creditScore')}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none ${
-                    errors.creditScore ? 'border-red-500' : 'border-gray-300'
-                  }`}
-                >
-                  <option value="">Select one</option>
-                  {CREDIT_SCORE_OPTIONS.map(option => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
+                <Controller
+                  name="creditScore"
+                  control={control}
+                  render={({ field }) => (
+                    <Select
+                      label="Credit score"
+                      value={field.value}
+                      onChange={field.onChange}
+                      options={[
+                        { value: '', label: 'Select one' },
+                        ...CREDIT_SCORE_OPTIONS,
+                      ]}
+                      className={errors.creditScore ? 'border-red-500' : ''}
+                    />
+                  )}
+                />
                 {errors.creditScore && (
                   <p className="mt-1 text-sm text-red-600">
                     {errors.creditScore.message}
