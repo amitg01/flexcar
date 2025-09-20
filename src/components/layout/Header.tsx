@@ -8,11 +8,7 @@ const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-1 sm:space-x-2">
-            <img 
-              src={BrandLogo} 
-              alt="FlexCar" 
-              className="h-5 sm:h-8 w-auto"
-            />
+            <img src={BrandLogo} alt="FlexCar" className="h-10 w-[107px]" />
           </div>
           <div className="flex items-center space-x-1 sm:space-x-4">
             <span className="text-inter-16-semibold text-black hidden sm:inline">
