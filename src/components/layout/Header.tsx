@@ -1,5 +1,6 @@
 import React from 'react';
 import { Menu } from 'lucide-react';
+import BrandLogo from '../../assets/brand-logo.svg';
 
 const Header: React.FC = () => {
   return (
@@ -7,14 +8,11 @@ const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-1 sm:space-x-2">
-            <div className="w-5 h-5 sm:w-8 sm:h-8 bg-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white text-inter-16-bold text-xs sm:text-sm">
-                F
-              </span>
-            </div>
-            <span className="text-base sm:text-2xl text-inter-16-bold text-purple-600">
-              FLEXCAR
-            </span>
+            <img 
+              src={BrandLogo} 
+              alt="FlexCar" 
+              className="h-5 sm:h-8 w-auto"
+            />
           </div>
           <div className="flex items-center space-x-1 sm:space-x-4">
             <span className="text-inter-16-semibold text-black hidden sm:inline">

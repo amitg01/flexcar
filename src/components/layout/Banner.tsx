@@ -41,7 +41,11 @@ const Banner: React.FC = () => {
                     fontWeight: 600,
                   }}
                 >
-                  <img src={MercedesIcon} alt="Mercedes" className="inline w-4 h-4 mr-1" />
+                  <img
+                    src={MercedesIcon}
+                    alt="Mercedes"
+                    className="inline w-4 h-4 mr-1"
+                  />
                   Luxury Unleashed
                 </span>{' '}
                 — The smartest way to get a 2025 Mercedes-Benz.{' '}
@@ -97,7 +101,11 @@ const Banner: React.FC = () => {
                     fontWeight: 600,
                   }}
                 >
-                  <img src={MercedesIcon} alt="Mercedes" className="inline w-4 h-4 mr-1" />
+                  <img
+                    src={MercedesIcon}
+                    alt="Mercedes"
+                    className="inline w-4 h-4 mr-1"
+                  />
                   Luxury Unleashed
                 </span>{' '}
                 — The smartest way to get a 2025 Mercedes-Benz.{' '}

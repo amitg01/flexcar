@@ -1,4 +1,5 @@
 import React from 'react';
+import BrandLogo from '../../assets/brand-logo.svg';
 
 const Footer: React.FC = () => {
   const flexcarLinks = [
@@ -35,21 +36,18 @@ const Footer: React.FC = () => {
     <footer className="bg-gray-900 text-white py-8 xs:py-12 sm:py-16">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 xs:gap-6 sm:gap-8 mb-6 xs:mb-8 sm:mb-12">
-          <div className="sm:col-span-2 md:col-span-1">
-            <div className="flex items-center space-x-1 xs:space-x-2 mb-2 xs:mb-3 sm:mb-4">
-              <div className="w-5 h-5 xs:w-6 xs:h-6 sm:w-8 sm:h-8 bg-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xs sm:text-sm">
-                  F
-                </span>
-              </div>
-              <span className="text-base xs:text-lg sm:text-2xl font-bold text-white">
-                FLEXCAR
-              </span>
-            </div>
-            <p className="text-xs xs:text-sm sm:text-base text-gray-400">
-              Live large. Spend small.
-            </p>
-          </div>
+                <div className="sm:col-span-2 md:col-span-1">
+                  <div className="flex items-center space-x-1 xs:space-x-2 mb-2 xs:mb-3 sm:mb-4">
+                    <img 
+                      src={BrandLogo} 
+                      alt="FlexCar" 
+                      className="h-5 xs:h-6 sm:h-8 w-auto"
+                    />
+                  </div>
+                  <p className="text-xs xs:text-sm sm:text-base text-gray-400">
+                    Live large. Spend small.
+                  </p>
+                </div>
 
           <div>
             <h4 className="font-bold mb-2 xs:mb-3 sm:mb-4 text-xs xs:text-sm sm:text-base">
