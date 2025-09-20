@@ -40,14 +40,56 @@ const Header: React.FC = () => {
     <header className="bg-white py-2 sm:py-4 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-          {/* Logo and hamburger on same line on mobile */}
+          {/* Logo, user data, and hamburger on same line on mobile */}
           <div className="flex items-center justify-between sm:justify-start">
-            <img
-              src={BrandLogo}
-              alt="FlexCar"
-              className="h-10 w-[107px] cursor-pointer"
-              onClick={() => navigate('/')}
-            />
+            <div className="flex items-center space-x-1 sm:space-x-2">
+              <img
+                src={BrandLogo}
+                alt="FlexCar"
+                className="h-10 w-[107px] cursor-pointer"
+                onClick={() => navigate('/')}
+              />
+              {/* User data elements - next to logo on desktop, below on mobile */}
+              {isInventoryPage && userData && (
+                <div className="hidden sm:flex items-center space-x-4 text-sm text-gray-600 ml-6">
+                  <div
+                    className="flex items-center space-x-1 bg-gray-100 rounded-md p-2 cursor-pointer hover:bg-gray-200 transition-colors"
+                    onClick={handleZipCodeClick}
+                    title="Click to change location"
+                  >
+                    <MapPin className="w-4 h-4" />
+                    <span className="text-sm font-semibold text-black">
+                      {userData.zipCode}
+                    </span>
+                  </div>
+                  <div className="flex items-center space-x-1 bg-gray-100 rounded-md p-2">
+                    <div
+                      className="flex items-center space-x-1 cursor-pointer hover:bg-gray-200 transition-colors rounded px-1 py-1 -mx-1 -my-1"
+                      onClick={handleAgeClick}
+                      title="Click to change age"
+                    >
+                      <User className="w-4 h-4" />
+                      <span className="text-sm font-semibold text-black">
+                        {userData.age}
+                      </span>
+                    </div>
+                    <span className="text-sm font-semibold text-gray-400">
+                      |
+                    </span>
+                    <div
+                      className="flex items-center space-x-1 cursor-pointer hover:bg-gray-200 transition-colors rounded px-1 py-1 -mx-1 -my-1"
+                      onClick={handleCreditScoreClick}
+                      title="Click to change credit score"
+                    >
+                      <CreditCard className="w-4 h-4" />
+                      <span className="text-sm font-semibold text-black">
+                        {userData.creditScore}+
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
             {/* Mobile menu button */}
             <button className="sm:hidden p-1 ml-1">
               <Menu className="w-4 h-4 text-gray-600" />
@@ -56,7 +98,7 @@ const Header: React.FC = () => {
 
           {/* User data elements - wrap to next line on mobile */}
           {isInventoryPage && userData && (
-            <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 text-sm text-gray-600 mt-2 sm:mt-0 sm:ml-6">
+            <div className="flex sm:hidden flex-col items-start space-y-2 text-sm text-gray-600 mt-2">
               <div
                 className="flex items-center space-x-1 bg-gray-100 rounded-md p-2 cursor-pointer hover:bg-gray-200 transition-colors"
                 onClick={handleZipCodeClick}
