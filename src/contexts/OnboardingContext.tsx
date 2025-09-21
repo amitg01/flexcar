@@ -37,11 +37,35 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
   // Show modal when zip code modal is open
   useEffect(() => {
     if (isZipCodeModalOpen) {
+      // Load existing user data from localStorage
+      const userData = localStorage.getItem('flexcar-user-data');
+      if (userData) {
+        try {
+          const parsedData = JSON.parse(userData);
+          setZipCode(parsedData.zipCode || '');
+          setAge(parsedData.age || '');
+          setCreditScore(parsedData.creditScore || '');
+        } catch (error) {
+          console.error('Error parsing user data:', error);
+        }
+      }
+
       setShowModal(true);
       setIsEditMode(true);
       setCurrentStep(1);
     }
   }, [isZipCodeModalOpen]);
+
+  // Reset zip code modal state when onboarding modal is closed
+  useEffect(() => {
+    if (!showModal && isEditMode) {
+      // Small delay to ensure the modal close animation completes
+      const timer = setTimeout(() => {
+        closeZipCodeModal();
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [showModal, isEditMode, closeZipCodeModal]);
 
   const handleZipSubmit = (formData: {
     zipCode: string;
@@ -109,6 +133,7 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
   const handleCloseModal = () => {
     setShowModal(false);
     setIsEditMode(false);
+    closeZipCodeModal();
   };
 
   const handleBackToStep1 = () => {

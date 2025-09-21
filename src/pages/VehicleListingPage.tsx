@@ -1,7 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Header, Footer } from '@/components/layout';
-import { VehicleGrid, FilterPanel, SortDropdown } from '@/components/features';
+import {
+  VehicleGrid,
+  FilterPanel,
+  FilterButton,
+  FilterModal,
+  SortDropdown,
+} from '@/components/features';
 import { useVehicle } from '@/hooks/useVehicle';
 import { useOnboarding } from '@/hooks/useOnboarding';
 import { useZipCodeModal } from '@/contexts/ZipCodeModalContextInstance';
@@ -16,6 +22,7 @@ const VehicleListingPage: React.FC = () => {
   const { openZipCodeModal } = useZipCodeModal();
   const isUpdatingFromURL = useRef(false);
   const [isInitialLoad, setIsInitialLoad] = React.useState(true);
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
   useEffect(() => {
     const userData = localStorage.getItem('flexcar-user-data');
@@ -143,7 +150,7 @@ const VehicleListingPage: React.FC = () => {
                   </div>
                 ) : (
                   <>
-                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
+                    <div className="flex flex-row justify-between items-center gap-4 mb-6">
                       <div className="flex items-center gap-4">
                         <h2 className="text-xl font-semibold text-gray-900">
                           {state.filteredVehicles.length} results
@@ -152,8 +159,15 @@ const VehicleListingPage: React.FC = () => {
                           <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
                         )}
                       </div>
-                      <div className="w-full sm:w-auto">
-                        <SortDropdown />
+                      <div className="flex items-center gap-3">
+                        <div className="lg:hidden">
+                          <FilterButton
+                            onClick={() => setIsFilterModalOpen(true)}
+                          />
+                        </div>
+                        <div className="flex-shrink-0">
+                          <SortDropdown />
+                        </div>
                       </div>
                     </div>
 
@@ -197,7 +211,7 @@ const VehicleListingPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="w-full lg:w-80 lg:border rounded-lg border-gray-200">
+            <div className="hidden lg:block w-full lg:w-80 lg:border rounded-lg border-gray-200">
               <div className="p-4 lg:p-6">
                 <FilterPanel />
               </div>
@@ -207,6 +221,11 @@ const VehicleListingPage: React.FC = () => {
       </div>
 
       <Footer />
+
+      <FilterModal
+        isOpen={isFilterModalOpen}
+        onClose={() => setIsFilterModalOpen(false)}
+      />
     </div>
   );
 };
