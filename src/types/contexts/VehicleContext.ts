@@ -1,7 +1,6 @@
 import type { Vehicle } from '@/data/vehicles';
 
 export type SortOption =
-  | 'popularity'
   | 'price-high-low'
   | 'price-low-high'
   | 'make-alphabetical';

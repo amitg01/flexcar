@@ -11,7 +11,6 @@ const SortDropdown: React.FC<SortDropdownProps> = ({ className = '' }) => {
   const { state, dispatch } = useVehicle();
 
   const sortOptions = [
-    { value: 'popularity', label: 'Popularity' },
     { value: 'price-high-low', label: 'Price: High to Low' },
     { value: 'price-low-high', label: 'Price: Low to High' },
     { value: 'make-alphabetical', label: 'Make: A to Z' },

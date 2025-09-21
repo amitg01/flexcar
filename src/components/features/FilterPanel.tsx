@@ -17,11 +17,10 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
   const lastAppliedFilters = useRef({
     selectedMake: '',
     selectedColor: '',
-    sortBy: 'popularity',
+    sortBy: 'price',
     vehiclesLength: 0,
   });
 
-  // Apply filters and sorting when filters change
   useEffect(() => {
     const currentFilters = {
       selectedMake: state.selectedMake,
@@ -30,7 +29,6 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
       vehiclesLength: state.vehicles.length,
     };
 
-    // Only apply filters if something actually changed
     if (
       lastAppliedFilters.current.selectedMake !== currentFilters.selectedMake ||
       lastAppliedFilters.current.selectedColor !==
@@ -50,7 +48,6 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
     dispatch,
   ]);
 
-  // Show skeleton while loading
   if (state.isLoading && state.vehicles.length === 0) {
     return <FilterPanelSkeleton className={className} />;
   }
@@ -77,11 +74,9 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
     dispatch({ type: 'SET_FILTER_COLOR', payload: '' });
   };
 
-  // Get available options for dropdowns
   const availableMakes = getAvailableMakes() || [];
   const availableColors = getAvailableColors() || [];
 
-  // Create options for dropdowns
   const makeOptions = [
     { value: '', label: 'All Makes' },
     ...availableMakes.map(make => ({ value: make, label: make })),
@@ -92,7 +87,6 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
     ...availableColors.map(color => ({ value: color, label: color })),
   ];
 
-  // Show loading state while vehicles are being loaded
   if (state.isLoading || state.vehicles.length === 0) {
     return (
       <div
@@ -159,10 +153,9 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
       )}
 
       <div className="space-y-4">
-        {/* Make & Model Filter */}
         <div>
           <Select
-            label="Make & Model"
+            label="Make"
             value={state.selectedMake}
             onChange={e =>
               dispatch({ type: 'SET_FILTER_MAKE', payload: e.target.value })
@@ -173,7 +166,6 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
           />
         </div>
 
-        {/* Exterior Color Filter */}
         <div>
           <Select
             label="Exterior Color"

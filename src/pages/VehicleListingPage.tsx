@@ -43,7 +43,7 @@ const VehicleListingPage: React.FC = () => {
   useEffect(() => {
     const make = searchParams.get('make') || '';
     const color = searchParams.get('color') || '';
-    const sort = searchParams.get('sort') || 'popularity';
+    const sort = searchParams.get('sort') || 'price-high-low';
 
     // Only update if values are different and we're not already updating from URL
     if (!isUpdatingFromURL.current) {
@@ -100,8 +100,8 @@ const VehicleListingPage: React.FC = () => {
     }
 
     // Update sort parameter
-    if (state.sortBy !== (currentParams.get('sort') || 'popularity')) {
-      if (state.sortBy !== 'popularity') {
+    if (state.sortBy !== (currentParams.get('sort') || 'price-high-low')) {
+      if (state.sortBy !== 'price-high-low') {
         currentParams.set('sort', state.sortBy);
       } else {
         currentParams.delete('sort');

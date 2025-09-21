@@ -17,7 +17,7 @@ const initialState: VehicleState = {
   filteredVehicles: [],
   selectedMake: '',
   selectedColor: '',
-  sortBy: 'popularity',
+  sortBy: 'price-high-low',
   zipCode: '',
   isLoading: false,
   error: null,
@@ -82,9 +82,6 @@ const vehicleReducer = (
       // Apply sorting
       filtered.sort((a, b) => {
         switch (state.sortBy) {
-          case 'popularity':
-            // For demo purposes, sort by price (lower price = more popular)
-            return a.price - b.price;
           case 'price-high-low':
             return b.price - a.price;
           case 'price-low-high':
