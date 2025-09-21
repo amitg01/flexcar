@@ -75,9 +75,8 @@ const Header: React.FC = () => {
 
   return (
     <header className="bg-white py-2 sm:py-4 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+      <div className="max-w-[1440px] px-4 mx-auto">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-          {/* Logo, user data, and hamburger on same line on mobile */}
           <div className="flex items-center justify-between sm:justify-start">
             <div className="flex items-center space-x-1 sm:space-x-2">
               <img
@@ -86,7 +85,6 @@ const Header: React.FC = () => {
                 className="h-10 w-[107px] cursor-pointer"
                 onClick={() => navigate('/')}
               />
-              {/* User data elements - next to logo on desktop, below on mobile */}
               {isInventoryPage && userData && (
                 <div className="hidden sm:flex items-center space-x-4 text-sm text-gray-600 ml-6">
                   <div
@@ -127,7 +125,6 @@ const Header: React.FC = () => {
                 </div>
               )}
             </div>
-            {/* Mobile menu button */}
             <button
               className="sm:hidden p-1 ml-1 hover:bg-gray-100 rounded-md transition-colors"
               onClick={toggleMobileMenu}
@@ -141,7 +138,6 @@ const Header: React.FC = () => {
             </button>
           </div>
 
-          {/* User data elements - wrap to next line on mobile */}
           {isInventoryPage && userData && (
             <div className="flex sm:hidden flex-col items-start space-y-2 text-sm text-gray-600 mt-2">
               <div
@@ -180,7 +176,6 @@ const Header: React.FC = () => {
             </div>
           )}
 
-          {/* Desktop navigation - hidden on mobile */}
           <div className="hidden sm:flex items-center space-x-4">
             <span className="text-inter-16-semibold text-black cursor-pointer">
               How it works
@@ -191,7 +186,6 @@ const Header: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile menu overlay */}
         {isMobileMenuOpen && (
           <div
             className="fixed inset-0 bg-black bg-opacity-50 z-40 sm:hidden"
@@ -199,14 +193,12 @@ const Header: React.FC = () => {
           />
         )}
 
-        {/* Mobile menu */}
         <div
           className={`fixed top-0 right-0 h-full w-80 bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out sm:hidden ${
             isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
           <div className="flex flex-col h-full">
-            {/* Mobile menu header */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200">
               <img src={BrandLogo} alt="FlexCar" className="h-8 w-[85px]" />
               <button
@@ -218,7 +210,6 @@ const Header: React.FC = () => {
               </button>
             </div>
 
-            {/* Mobile menu navigation */}
             <div className="flex-1 p-4">
               <nav className="space-y-4">
                 <button
@@ -247,7 +238,6 @@ const Header: React.FC = () => {
                 </button>
               </nav>
 
-              {/* Mobile user data section */}
               {isInventoryPage && userData && (
                 <div className="mt-8 pt-6 border-t border-gray-200">
                   <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">

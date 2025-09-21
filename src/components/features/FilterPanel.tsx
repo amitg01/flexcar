@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Button, FilterPanelSkeleton, Select } from '@/components/ui';
+import { FilterPanelSkeleton, Select } from '@/components/ui';
 import { useVehicle } from '@/hooks/useVehicle';
 
 interface FilterPanelProps {
@@ -58,6 +58,13 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
   const hasActiveFilters =
     state.selectedMake !== '' || state.selectedColor !== '';
 
+  const getActiveFilterCount = () => {
+    let count = 0;
+    if (state.selectedMake) count++;
+    if (state.selectedColor) count++;
+    return count;
+  };
+
   const handleClearFilters = () => {
     clearFilters();
   };
@@ -107,7 +114,9 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
       className={`bg-white rounded-lg border border-gray-200 p-6 h-fit ${className}`}
     >
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
+        <h2 className="text-lg font-semibold text-gray-900">
+          Filters {hasActiveFilters && `(${getActiveFilterCount()})`}
+        </h2>
         {hasActiveFilters && (
           <button
             onClick={handleClearFilters}
@@ -117,6 +126,37 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
           </button>
         )}
       </div>
+
+      {hasActiveFilters && (
+        <div className="mb-6 pb-6 border-b border-gray-200">
+          <div className="flex flex-wrap gap-2">
+            {state.selectedMake && (
+              <div className="flex items-center bg-white border border-gray-300 rounded-full px-3 py-1 text-sm">
+                <span className="text-gray-700">{state.selectedMake}</span>
+                <button
+                  onClick={handleRemoveMakeFilter}
+                  className="ml-2 text-gray-400 hover:text-gray-600"
+                >
+                  ×
+                </button>
+              </div>
+            )}
+            {state.selectedColor && (
+              <div className="flex items-center bg-white border border-gray-300 rounded-full px-3 py-1 text-sm">
+                <span className="text-gray-700">
+                  {state.selectedColor} (Exterior)
+                </span>
+                <button
+                  onClick={handleRemoveColorFilter}
+                  className="ml-2 text-gray-400 hover:text-gray-600"
+                >
+                  ×
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       <div className="space-y-4">
         {/* Make & Model Filter */}
@@ -147,46 +187,6 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
           />
         </div>
       </div>
-
-      {hasActiveFilters && (
-        <div className="mt-6 pt-6 border-t border-gray-200">
-          <h3 className="text-sm font-semibold text-gray-700 mb-2">
-            Active Filters:
-          </h3>
-          <div className="space-y-1">
-            {state.selectedMake && (
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-gray-600">
-                  Make: {state.selectedMake}
-                </span>
-                <Button
-                  onClick={handleRemoveMakeFilter}
-                  variant="ghost"
-                  size="sm"
-                  className="text-red-500 hover:text-red-700 p-1"
-                >
-                  ×
-                </Button>
-              </div>
-            )}
-            {state.selectedColor && (
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-gray-600">
-                  Color: {state.selectedColor}
-                </span>
-                <Button
-                  onClick={handleRemoveColorFilter}
-                  variant="ghost"
-                  size="sm"
-                  className="text-red-500 hover:text-red-700 p-1"
-                >
-                  ×
-                </Button>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
     </div>
   );
 };

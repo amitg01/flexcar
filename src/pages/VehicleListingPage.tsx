@@ -130,7 +130,7 @@ const VehicleListingPage: React.FC = () => {
         <div className="max-w-[1440px] mx-auto px-4">
           <div className="flex flex-col lg:flex-row">
             <div className="flex-1 min-w-0 bg-white">
-              <div className="p-4 lg:p-6">
+              <div className="py-4 lg:py-6 pr-4 lg:pr-6">
                 {isInitialLoad ? (
                   <div className="flex items-center justify-center min-h-[400px]">
                     <div className="text-center">
@@ -168,8 +168,7 @@ const VehicleListingPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Filters Sidebar - Right Side */}
-            <div className="w-full lg:w-80 lg:border-l border-gray-200 lg:min-h-screen">
+            <div className="w-full lg:w-80 lg:border rounded-lg border-gray-200">
               <div className="p-4 lg:p-6">
                 <FilterPanel />
               </div>
