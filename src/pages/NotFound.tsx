@@ -14,6 +14,8 @@ const NotFound: React.FC = () => {
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
+              role="img"
+              aria-label="404 error icon"
             >
               <path
                 strokeLinecap="round"

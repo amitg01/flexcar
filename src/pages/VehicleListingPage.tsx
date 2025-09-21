@@ -41,12 +41,12 @@ const VehicleListingPage: React.FC = () => {
     }
   }, [searchVehicles]);
 
-  // Set initial load to false once vehicles are loaded or there's an error
+  // Set initial load to false once vehicles are loaded, there's an error, or loading is complete
   useEffect(() => {
-    if (state.vehicles.length > 0 || state.error) {
+    if (state.vehicles.length > 0 || state.error || !state.isLoading) {
       setIsInitialLoad(false);
     }
-  }, [state.vehicles.length, state.error]);
+  }, [state.vehicles.length, state.error, state.isLoading]);
 
   // Load URL parameters on mount and when URL changes
   useEffect(() => {

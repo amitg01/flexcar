@@ -123,13 +123,6 @@ describe('VehicleContext', () => {
     expect(result.current.state.isLoading).toBe(false);
   });
 
-  it.skip('should set loading state during search', async () => {
-    // This test is complex due to async timing issues with the loading state
-    // The loading state is set in the searchVehicles function but the test
-    // environment doesn't handle the async nature properly
-    // TODO: Fix this test when we have more time to debug the async timing
-  });
-
   it('should filter vehicles by make', async () => {
     const { result } = renderHook(() => TestComponent(), { wrapper });
 
