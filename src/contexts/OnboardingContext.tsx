@@ -2,6 +2,8 @@ import React, { useState, useEffect, type ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { OnboardingContextType } from '@/types/contexts/OnboardingContext.types';
 import { OnboardingContext } from './OnboardingContextInstance';
+import { useZipCodeModal } from './ZipCodeModalContextInstance';
+import { useVehicle } from '@/hooks/useVehicle';
 
 interface OnboardingProviderProps {
   children: ReactNode;
@@ -11,6 +13,8 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
   children,
 }) => {
   const navigate = useNavigate();
+  const { isZipCodeModalOpen, closeZipCodeModal } = useZipCodeModal();
+  const { searchVehicles } = useVehicle();
   const [showModal, setShowModal] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [zipCode, setZipCode] = useState('');
@@ -30,6 +34,15 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
     }
   }, []);
 
+  // Show modal when zip code modal is open
+  useEffect(() => {
+    if (isZipCodeModalOpen) {
+      setShowModal(true);
+      setIsEditMode(true);
+      setCurrentStep(1);
+    }
+  }, [isZipCodeModalOpen]);
+
   const handleZipSubmit = (formData: {
     zipCode: string;
     age: string;
@@ -38,7 +51,26 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
     setZipCode(formData.zipCode);
     setAge(formData.age);
     setCreditScore(formData.creditScore);
-    setCurrentStep(2);
+
+    // If in edit mode, close modal and update vehicles
+    if (isEditMode) {
+      // Store updated user data in localStorage
+      const userData = {
+        zipCode: formData.zipCode,
+        age: formData.age,
+        creditScore: formData.creditScore,
+      };
+      localStorage.setItem('flexcar-user-data', JSON.stringify(userData));
+
+      setShowModal(false);
+      setIsEditMode(false);
+      closeZipCodeModal();
+
+      // Trigger vehicle search with new zip code
+      searchVehicles(formData.zipCode);
+    } else {
+      setCurrentStep(2);
+    }
   };
 
   const handleUserInfoSubmit = (formData: {

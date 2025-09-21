@@ -4,14 +4,16 @@ import { Header, Footer } from '@/components/layout';
 import { VehicleGrid, FilterPanel, SortDropdown } from '@/components/features';
 import { useVehicle } from '@/hooks/useVehicle';
 import { useOnboarding } from '@/hooks/useOnboarding';
+import { useZipCodeModal } from '@/contexts/ZipCodeModalContextInstance';
 import OnboardingModal from '@/pages/HomePage/OnboardingModal';
-import { LoadingSpinner } from '@/components/ui';
+import { LoadingSpinner, EmptyState } from '@/components/ui';
 import type { SortOption } from '@/types/contexts/VehicleContext';
 
 const VehicleListingPage: React.FC = () => {
   const { state, dispatch, searchVehicles } = useVehicle();
   const [searchParams, setSearchParams] = useSearchParams();
   const { showModal } = useOnboarding();
+  const { openZipCodeModal } = useZipCodeModal();
   const isUpdatingFromURL = useRef(false);
   const [isInitialLoad, setIsInitialLoad] = React.useState(true);
 
@@ -32,7 +34,7 @@ const VehicleListingPage: React.FC = () => {
     }
   }, [searchVehicles]);
 
-  // Set initial load to false once vehicles are loaded
+  // Set initial load to false once vehicles are loaded or there's an error
   useEffect(() => {
     if (state.vehicles.length > 0 || state.error) {
       setIsInitialLoad(false);
@@ -70,6 +72,7 @@ const VehicleListingPage: React.FC = () => {
         isUpdatingFromURL.current = false;
       }, 100);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams, dispatch, state.vehicles.length]);
 
   // Update URL when filters or sort change (but not when updating from URL)
@@ -126,9 +129,9 @@ const VehicleListingPage: React.FC = () => {
       {showModal && <OnboardingModal />}
       <Header />
 
-      <div className="w-full overflow-hidden">
+      <div className="w-full">
         <div className="max-w-[1440px] mx-auto px-4">
-          <div className="flex flex-col lg:flex-row">
+          <div className="flex flex-col lg:flex-row lg:items-start">
             <div className="flex-1 min-w-0 bg-white">
               <div className="py-4 lg:py-6 pr-4 lg:pr-6">
                 {isInitialLoad ? (
@@ -160,9 +163,35 @@ const VehicleListingPage: React.FC = () => {
                       </div>
                     )}
 
-                    <div className="overflow-hidden">
-                      <VehicleGrid />
-                    </div>
+                    {state.vehicles.length === 0 && !state.isLoading ? (
+                      <EmptyState
+                        icon={
+                          <svg
+                            className="mx-auto h-16 w-16 text-gray-400"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={1}
+                              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                            />
+                          </svg>
+                        }
+                        title="No vehicles available"
+                        description="We couldn't find any vehicles for this location. Try one of the suggested ZIP codes to see available vehicles."
+                        action={{
+                          label: 'Try Different ZIP Code',
+                          onClick: openZipCodeModal,
+                        }}
+                      />
+                    ) : (
+                      <div className="overflow-hidden">
+                        <VehicleGrid />
+                      </div>
+                    )}
                   </>
                 )}
               </div>

@@ -41,7 +41,8 @@ const vehicleReducer = (
         vehicles: action.payload,
         filteredVehicles: action.payload,
         isLoading: false,
-        error: null,
+        // Don't clear error if vehicles array is empty (no vehicles found)
+        error: action.payload.length > 0 ? null : state.error,
       };
 
     case 'SET_ZIP_CODE':
@@ -123,18 +124,12 @@ export const VehicleProvider: React.FC<VehicleProviderProps> = ({
       const vehicles = getVehiclesByZipCode(zipCode);
 
       if (vehicles.length === 0) {
-        // Try default zipCode if no vehicles found for user's zipCode
-        const defaultVehicles = getVehiclesByZipCode('10001');
-        if (defaultVehicles.length > 0) {
-          dispatch({ type: 'SET_VEHICLES', payload: defaultVehicles });
-        } else {
-          dispatch({
-            type: 'SET_ERROR',
-            payload:
-              'No vehicles found for this ZIP code. Please try another location.',
-          });
-          dispatch({ type: 'SET_VEHICLES', payload: [] });
-        }
+        dispatch({
+          type: 'SET_ERROR',
+          payload:
+            'No vehicles found for this ZIP code. Try 10001 (NYC), 90210 (Beverly Hills), 60601 (Chicago), 33101 (Miami), or 94102 (San Francisco) to see demo vehicles.',
+        });
+        dispatch({ type: 'SET_VEHICLES', payload: [] });
       } else {
         dispatch({ type: 'SET_VEHICLES', payload: vehicles });
       }

@@ -3,18 +3,20 @@ import { Menu, MapPin, User, CreditCard, X } from 'lucide-react';
 import BrandLogo from '@/assets/brand-logo.svg';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useOnboarding } from '@/hooks/useOnboarding';
+import { useZipCodeModal } from '@/contexts/ZipCodeModalContextInstance';
 
 const Header: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { openEditModal } = useOnboarding();
+  const { openZipCodeModal } = useZipCodeModal();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const isInventoryPage = location.pathname === '/inventory';
 
   // Click handlers for user data elements
   const handleZipCodeClick = () => {
-    openEditModal(1); // Go to step 1 (zip code step) with prefilled data
+    openZipCodeModal();
   };
 
   const handleAgeClick = () => {

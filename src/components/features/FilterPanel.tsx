@@ -87,7 +87,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ className = '' }) => {
     ...availableColors.map(color => ({ value: color, label: color })),
   ];
 
-  if (state.isLoading || state.vehicles.length === 0) {
+  if (state.isLoading) {
     return (
       <div
         className={`bg-white rounded-lg border border-gray-200 p-6 h-fit ${className}`}

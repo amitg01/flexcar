@@ -180,7 +180,7 @@ export const vehicles: Vehicle[] = [
     price: 27000,
     image:
       'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=400&h=300&fit=crop',
-    zipCode: '90210',
+    zipCode: '10001',
   },
   {
     id: '14',
@@ -193,7 +193,7 @@ export const vehicles: Vehicle[] = [
     price: 42000,
     image:
       'https://images.unsplash.com/photo-1549317336-206569e8475c?w=400&h=300&fit=crop',
-    zipCode: '90210',
+    zipCode: '10001',
   },
   {
     id: '15',
@@ -206,7 +206,7 @@ export const vehicles: Vehicle[] = [
     price: 65000,
     image:
       'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop',
-    zipCode: '90210',
+    zipCode: '10001',
   },
   // Additional vehicles for virtualization testing
   {
@@ -350,7 +350,7 @@ export const vehicles: Vehicle[] = [
     mileage: 2000,
     price: 120000,
     image: 'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=Porsche+911',
-    zipCode: '90210',
+    zipCode: '10001',
   },
   {
     id: '27',
@@ -362,7 +362,7 @@ export const vehicles: Vehicle[] = [
     mileage: 5000,
     price: 250000,
     image: 'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=Ferrari+488',
-    zipCode: '90210',
+    zipCode: '10001',
   },
   {
     id: '28',
@@ -375,7 +375,7 @@ export const vehicles: Vehicle[] = [
     price: 220000,
     image:
       'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=Lamborghini+Huracan',
-    zipCode: '90210',
+    zipCode: '10001',
   },
   {
     id: '29',
@@ -388,7 +388,7 @@ export const vehicles: Vehicle[] = [
     price: 300000,
     image:
       'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=McLaren+720S',
-    zipCode: '90210',
+    zipCode: '10001',
   },
   {
     id: '30',
@@ -401,7 +401,271 @@ export const vehicles: Vehicle[] = [
     price: 200000,
     image:
       'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=Bentley+Continental',
+    zipCode: '10001',
+  },
+  // Beverly Hills, CA (90210) vehicles
+  {
+    id: '31',
+    make: 'Tesla',
+    model: 'Model S',
+    trim: 'Plaid',
+    year: 2023,
+    color: 'White',
+    mileage: 5000,
+    price: 95000,
+    image:
+      'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=400&h=300&fit=crop',
     zipCode: '90210',
+  },
+  {
+    id: '32',
+    make: 'Porsche',
+    model: '911',
+    trim: 'Carrera S',
+    year: 2023,
+    color: 'Black',
+    mileage: 2000,
+    price: 125000,
+    image:
+      'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=300&fit=crop',
+    zipCode: '90210',
+  },
+  {
+    id: '33',
+    make: 'BMW',
+    model: 'M3',
+    trim: 'Competition',
+    year: 2023,
+    color: 'Silver',
+    mileage: 3000,
+    price: 85000,
+    image:
+      'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop',
+    zipCode: '90210',
+  },
+  {
+    id: '34',
+    make: 'Mercedes-Benz',
+    model: 'S-Class',
+    trim: 'AMG S63',
+    year: 2023,
+    color: 'Black',
+    mileage: 1500,
+    price: 150000,
+    image:
+      'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=400&h=300&fit=crop',
+    zipCode: '90210',
+  },
+  {
+    id: '35',
+    make: 'Audi',
+    model: 'R8',
+    trim: 'V10 Performance',
+    year: 2023,
+    color: 'Red',
+    mileage: 1000,
+    price: 180000,
+    image:
+      'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop',
+    zipCode: '90210',
+  },
+  // Chicago, IL (60601) vehicles
+  {
+    id: '36',
+    make: 'Ford',
+    model: 'Mustang',
+    trim: 'GT',
+    year: 2023,
+    color: 'Blue',
+    mileage: 8000,
+    price: 45000,
+    image:
+      'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop',
+    zipCode: '60601',
+  },
+  {
+    id: '37',
+    make: 'Chevrolet',
+    model: 'Camaro',
+    trim: 'SS',
+    year: 2023,
+    color: 'Yellow',
+    mileage: 6000,
+    price: 42000,
+    image:
+      'https://images.unsplash.com/photo-1549317336-206569e8475c?w=400&h=300&fit=crop',
+    zipCode: '60601',
+  },
+  {
+    id: '38',
+    make: 'Dodge',
+    model: 'Charger',
+    trim: 'R/T',
+    year: 2023,
+    color: 'Black',
+    mileage: 7000,
+    price: 38000,
+    image:
+      'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop',
+    zipCode: '60601',
+  },
+  {
+    id: '39',
+    make: 'Jeep',
+    model: 'Wrangler',
+    trim: 'Rubicon',
+    year: 2023,
+    color: 'Green',
+    mileage: 5000,
+    price: 55000,
+    image:
+      'https://images.unsplash.com/photo-1549317336-206569e8475c?w=400&h=300&fit=crop',
+    zipCode: '60601',
+  },
+  {
+    id: '40',
+    make: 'Subaru',
+    model: 'WRX',
+    trim: 'STI',
+    year: 2023,
+    color: 'Blue',
+    mileage: 4000,
+    price: 40000,
+    image:
+      'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop',
+    zipCode: '60601',
+  },
+  // Miami, FL (33101) vehicles
+  {
+    id: '41',
+    make: 'Lamborghini',
+    model: 'Huracán',
+    trim: 'EVO',
+    year: 2023,
+    color: 'Orange',
+    mileage: 2000,
+    price: 220000,
+    image:
+      'https://images.unsplash.com/photo-1544829099-b9a0c7c2c4c4?w=400&h=300&fit=crop',
+    zipCode: '33101',
+  },
+  {
+    id: '42',
+    make: 'Ferrari',
+    model: '488',
+    trim: 'GTB',
+    year: 2023,
+    color: 'Red',
+    mileage: 1500,
+    price: 280000,
+    image:
+      'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop',
+    zipCode: '33101',
+  },
+  {
+    id: '43',
+    make: 'McLaren',
+    model: '720S',
+    trim: 'Spider',
+    year: 2023,
+    color: 'White',
+    mileage: 1000,
+    price: 320000,
+    image:
+      'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop',
+    zipCode: '33101',
+  },
+  {
+    id: '44',
+    make: 'Aston Martin',
+    model: 'DB11',
+    trim: 'V8',
+    year: 2023,
+    color: 'Silver',
+    mileage: 3000,
+    price: 200000,
+    image:
+      'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=400&h=300&fit=crop',
+    zipCode: '33101',
+  },
+  {
+    id: '45',
+    make: 'Maserati',
+    model: 'Ghibli',
+    trim: 'Trofeo',
+    year: 2023,
+    color: 'Black',
+    mileage: 2500,
+    price: 85000,
+    image:
+      'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=300&fit=crop',
+    zipCode: '33101',
+  },
+  // San Francisco, CA (94102) vehicles
+  {
+    id: '46',
+    make: 'Tesla',
+    model: 'Model 3',
+    trim: 'Performance',
+    year: 2023,
+    color: 'Blue',
+    mileage: 12000,
+    price: 55000,
+    image:
+      'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=400&h=300&fit=crop',
+    zipCode: '94102',
+  },
+  {
+    id: '47',
+    make: 'Volvo',
+    model: 'XC90',
+    trim: 'T8 Inscription',
+    year: 2023,
+    color: 'White',
+    mileage: 8000,
+    price: 75000,
+    image:
+      'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop',
+    zipCode: '94102',
+  },
+  {
+    id: '48',
+    make: 'Polestar',
+    model: '2',
+    trim: 'Performance',
+    year: 2023,
+    color: 'Gray',
+    mileage: 6000,
+    price: 65000,
+    image:
+      'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=400&h=300&fit=crop',
+    zipCode: '94102',
+  },
+  {
+    id: '49',
+    make: 'Rivian',
+    model: 'R1T',
+    trim: 'Adventure',
+    year: 2023,
+    color: 'Green',
+    mileage: 4000,
+    price: 85000,
+    image:
+      'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop',
+    zipCode: '94102',
+  },
+  {
+    id: '50',
+    make: 'Lucid',
+    model: 'Air',
+    trim: 'Dream Edition',
+    year: 2023,
+    color: 'Silver',
+    mileage: 2000,
+    price: 170000,
+    image:
+      'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=400&h=300&fit=crop',
+    zipCode: '94102',
   },
 ];
 
