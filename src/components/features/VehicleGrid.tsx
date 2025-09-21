@@ -1,25 +1,15 @@
 import React, { Suspense, lazy } from 'react';
 import { EmptyState, VehicleGridSkeleton } from '@/components/ui';
-import ResponsiveVirtualizedGrid from './ResponsiveVirtualizedGrid';
 import { useVehicle } from '@/hooks/useVehicle';
-import type { Vehicle } from '@/data/vehicles';
 
 // Lazy load VehicleCard for better performance
 const VehicleCard = lazy(() => import('./VehicleCard'));
 
 interface VehicleGridProps {
-  onVehicleClick?: (vehicle: Vehicle) => void;
   className?: string;
-  useVirtualization?: boolean;
-  virtualizationThreshold?: number;
 }
 
-const VehicleGrid: React.FC<VehicleGridProps> = ({
-  onVehicleClick,
-  className = '',
-  useVirtualization: _useVirtualization = true, // eslint-disable-line @typescript-eslint/no-unused-vars
-  virtualizationThreshold: _virtualizationThreshold = 20, // eslint-disable-line @typescript-eslint/no-unused-vars
-}) => {
+const VehicleGrid: React.FC<VehicleGridProps> = ({ className = '' }) => {
   const { state, clearFilters } = useVehicle();
 
   if (state.isLoading) {
@@ -40,19 +30,7 @@ const VehicleGrid: React.FC<VehicleGridProps> = ({
     );
   }
 
-  // Use virtualization for large datasets - disabled for now due to display issues
-  const shouldUseVirtualization = false;
-
-  if (shouldUseVirtualization) {
-    return (
-      <ResponsiveVirtualizedGrid
-        onVehicleClick={onVehicleClick}
-        className={className}
-      />
-    );
-  }
-
-  // Regular grid for smaller datasets
+  // Regular grid layout
   return (
     <div className={`w-full ${className}`}>
       <div className="mb-4 text-sm text-gray-600">

@@ -208,7 +208,7 @@ export const vehicles: Vehicle[] = [
       'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop',
     zipCode: '10001',
   },
-  // Additional vehicles for virtualization testing
+  // Additional vehicles for demo purposes
   {
     id: '16',
     make: 'Audi',
