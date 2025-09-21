@@ -6,7 +6,12 @@ const FilterPanelSkeleton: React.FC<{ className?: string }> = ({
   className = '',
 }) => {
   return (
-    <Card variant="elevated" padding="lg" className={`h-fit ${className}`}>
+    <Card
+      variant="elevated"
+      padding="lg"
+      className={`h-fit ${className}`}
+      data-testid="filter-panel-skeleton"
+    >
       {/* Header skeleton */}
       <div className="flex justify-between items-center mb-6">
         <Skeleton height={24} width="20%" />

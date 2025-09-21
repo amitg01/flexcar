@@ -34,7 +34,10 @@ const LazyImage: React.FC<LazyImageProps> = ({
     <div className="relative">
       {!imageLoaded && (
         <div className="w-full h-48 bg-gray-200 rounded-t-lg flex items-center justify-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+          <div
+            data-testid="loading-spinner"
+            className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"
+          ></div>
         </div>
       )}
       <img
@@ -102,7 +105,10 @@ const VehicleCard: React.FC<VehicleCardProps> = ({
         <Suspense
           fallback={
             <div className="w-full h-48 bg-gray-200 rounded-t-lg flex items-center justify-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+              <div
+                data-testid="loading-spinner"
+                className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"
+              ></div>
             </div>
           }
         >

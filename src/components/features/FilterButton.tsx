@@ -26,7 +26,7 @@ const FilterButton: React.FC<FilterButtonProps> = ({
   return (
     <Button
       onClick={onClick}
-      variant="outline"
+      variant="secondary"
       className={`flex items-center gap-2 ${className}`}
     >
       <svg
