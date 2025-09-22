@@ -20,7 +20,7 @@ export const vehicles: Vehicle[] = [
     year: 2022,
     color: 'Silver',
     mileage: 15000,
-    price: 28500,
+    price: 270,
     image:
       'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=400&h=300&fit=crop',
     zipCode: '10001',
@@ -33,7 +33,7 @@ export const vehicles: Vehicle[] = [
     year: 2023,
     color: 'White',
     mileage: 8000,
-    price: 26500,
+    price: 242,
     image:
       'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop',
     zipCode: '10001',
@@ -46,7 +46,7 @@ export const vehicles: Vehicle[] = [
     year: 2021,
     color: 'Black',
     mileage: 25000,
-    price: 42000,
+    price: 321,
     image:
       'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=400&h=300&fit=crop',
     zipCode: '10001',
@@ -59,7 +59,7 @@ export const vehicles: Vehicle[] = [
     year: 2022,
     color: 'Blue',
     mileage: 12000,
-    price: 45000,
+    price: 450,
     image:
       'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=400&h=300&fit=crop',
     zipCode: '10001',
@@ -72,7 +72,7 @@ export const vehicles: Vehicle[] = [
     year: 2023,
     color: 'Silver',
     mileage: 5000,
-    price: 48000,
+    price: 472,
     image:
       'https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?w=400&h=300&fit=crop',
     zipCode: '10001',
@@ -85,7 +85,7 @@ export const vehicles: Vehicle[] = [
     year: 2023,
     color: 'White',
     mileage: 10000,
-    price: 35000,
+    price: 277,
     image:
       'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop',
     zipCode: '10001',
@@ -98,7 +98,7 @@ export const vehicles: Vehicle[] = [
     year: 2022,
     color: 'Black',
     mileage: 20000,
-    price: 32000,
+    price: 202,
     image:
       'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=400&h=300&fit=crop',
     zipCode: '10001',
@@ -111,7 +111,7 @@ export const vehicles: Vehicle[] = [
     year: 2023,
     color: 'White',
     mileage: 5000,
-    price: 45000,
+    price: 442,
     image:
       'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop',
     zipCode: '10001',
@@ -124,7 +124,7 @@ export const vehicles: Vehicle[] = [
     year: 2022,
     color: 'Gray',
     mileage: 22000,
-    price: 28000,
+    price: 249,
     image:
       'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=400&h=300&fit=crop',
     zipCode: '10001',
@@ -137,7 +137,7 @@ export const vehicles: Vehicle[] = [
     year: 2021,
     color: 'Red',
     mileage: 30000,
-    price: 38000,
+    price: 322,
     image:
       'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=300&fit=crop',
     zipCode: '10001',
@@ -150,7 +150,7 @@ export const vehicles: Vehicle[] = [
     year: 2023,
     color: 'Blue',
     mileage: 7000,
-    price: 24000,
+    price: 351,
     image:
       'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop',
     zipCode: '10001',
@@ -165,7 +165,7 @@ export const vehicles: Vehicle[] = [
     year: 2023,
     color: 'Silver',
     mileage: 8000,
-    price: 48000,
+    price: 465,
     image:
       'https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
@@ -178,7 +178,7 @@ export const vehicles: Vehicle[] = [
     year: 2022,
     color: 'Black',
     mileage: 15000,
-    price: 45000,
+    price: 490,
     image:
       'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
@@ -191,7 +191,7 @@ export const vehicles: Vehicle[] = [
     year: 2023,
     color: 'Red',
     mileage: 6000,
-    price: 38000,
+    price: 432,
     image:
       'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
@@ -204,7 +204,7 @@ export const vehicles: Vehicle[] = [
     year: 2022,
     color: 'Blue',
     mileage: 18000,
-    price: 41000,
+    price: 399,
     image:
       'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
@@ -217,7 +217,7 @@ export const vehicles: Vehicle[] = [
     year: 2023,
     color: 'Gray',
     mileage: 4000,
-    price: 43000,
+    price: 403,
     image:
       'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
@@ -230,7 +230,7 @@ export const vehicles: Vehicle[] = [
     year: 2022,
     color: 'Silver',
     mileage: 14000,
-    price: 55000,
+    price: 360,
     image:
       'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
@@ -243,7 +243,7 @@ export const vehicles: Vehicle[] = [
     year: 2023,
     color: 'Blue',
     mileage: 7000,
-    price: 49000,
+    price: 342,
     image:
       'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
@@ -257,7 +257,7 @@ export const vehicles: Vehicle[] = [
     year: 2023,
     color: 'Orange',
     mileage: 1000,
-    price: 220000,
+    price: 355,
     image:
       'https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
@@ -270,7 +270,7 @@ export const vehicles: Vehicle[] = [
     year: 2022,
     color: 'Black',
     mileage: 3000,
-    price: 300000,
+    price: 285,
     image:
       'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
@@ -283,7 +283,7 @@ export const vehicles: Vehicle[] = [
     year: 2023,
     color: 'White',
     mileage: 1500,
-    price: 200000,
+    price: 336,
     image:
       'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
@@ -297,7 +297,7 @@ export const vehicles: Vehicle[] = [
     year: 2023,
     color: 'Silver',
     mileage: 3000,
-    price: 85000,
+    price: 585,
     image:
       'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '90210',
@@ -310,7 +310,7 @@ export const vehicles: Vehicle[] = [
     year: 2023,
     color: 'Black',
     mileage: 1500,
-    price: 150000,
+    price: 580,
     image:
       'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '90210',
@@ -323,7 +323,7 @@ export const vehicles: Vehicle[] = [
     year: 2023,
     color: 'Red',
     mileage: 1000,
-    price: 180000,
+    price: 520,
     image:
       'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '90210',
@@ -337,7 +337,7 @@ export const vehicles: Vehicle[] = [
     year: 2023,
     color: 'Blue',
     mileage: 8000,
-    price: 45000,
+    price: 428,
     image:
       'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '60601',
@@ -350,7 +350,7 @@ export const vehicles: Vehicle[] = [
     year: 2023,
     color: 'Green',
     mileage: 5000,
-    price: 55000,
+    price: 250,
     image:
       'https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '60601',
@@ -364,7 +364,7 @@ export const vehicles: Vehicle[] = [
     year: 2023,
     color: 'Red',
     mileage: 1500,
-    price: 280000,
+    price: 279,
     image:
       'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '33101',
@@ -377,7 +377,7 @@ export const vehicles: Vehicle[] = [
     year: 2023,
     color: 'White',
     mileage: 1000,
-    price: 320000,
+    price: 384,
     image:
       'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '33101',
@@ -390,7 +390,7 @@ export const vehicles: Vehicle[] = [
     year: 2023,
     color: 'Silver',
     mileage: 3000,
-    price: 200000,
+    price: 306,
     image:
       'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '33101',
@@ -403,7 +403,7 @@ export const vehicles: Vehicle[] = [
     year: 2023,
     color: 'Black',
     mileage: 2500,
-    price: 85000,
+    price: 669,
     image:
       'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '33101',
@@ -417,7 +417,7 @@ export const vehicles: Vehicle[] = [
     year: 2023,
     color: 'Blue',
     mileage: 12000,
-    price: 55000,
+    price: 392,
     image:
       'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '94102',
@@ -430,7 +430,7 @@ export const vehicles: Vehicle[] = [
     year: 2023,
     color: 'White',
     mileage: 8000,
-    price: 75000,
+    price: 268,
     image:
       'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '94102',
