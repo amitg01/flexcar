@@ -11,24 +11,33 @@ const Input: React.FC<InputProps> = ({
   error,
   helperText,
   className = '',
+  type = 'text',
+  id,
   ...props
 }) => {
+  const inputId =
+    id ||
+    (label ? `input-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
+
   return (
     <div className="w-full">
       {label && (
-        <label className="block text-sm font-semibold text-gray-700 mb-2">
+        <label
+          htmlFor={inputId}
+          className="block text-sm font-semibold text-gray-700 mb-2"
+        >
           {label}
         </label>
       )}
       <input
+        id={inputId}
+        type={type}
         className={`w-full px-3 py-2 border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-flexcar-blue focus:border-flexcar-blue ${
           error ? 'border-red-500 focus:ring-red-500' : 'border-gray-300'
         } ${className}`}
         {...props}
       />
-      {error && (
-        <p className="text-red-500 text-sm mt-1">{error}</p>
-      )}
+      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
       {helperText && !error && (
         <p className="text-gray-500 text-sm mt-1">{helperText}</p>
       )}

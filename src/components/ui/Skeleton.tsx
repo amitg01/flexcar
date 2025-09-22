@@ -28,12 +28,13 @@ const Skeleton: React.FC<SkeletonProps> = ({
   };
 
   const style: React.CSSProperties = {
-    width: width || '100%',
-    height: height || '1rem',
+    width: width !== undefined ? width : '100%',
+    height: height !== undefined ? height : '1rem',
   };
 
   return (
     <div
+      data-testid="skeleton"
       className={`
         bg-gray-200 
         ${getRoundedClass()}

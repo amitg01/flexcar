@@ -61,7 +61,7 @@ export const vehicles: Vehicle[] = [
     mileage: 12000,
     price: 45000,
     image:
-      'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=400&h=300&fit=crop',
     zipCode: '10001',
   },
   {
@@ -73,19 +73,6 @@ export const vehicles: Vehicle[] = [
     color: 'Silver',
     mileage: 5000,
     price: 48000,
-    image:
-      'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=400&h=300&fit=crop',
-    zipCode: '10001',
-  },
-  {
-    id: '6',
-    make: 'Audi',
-    model: 'A4',
-    trim: 'Premium',
-    year: 2022,
-    color: 'Red',
-    mileage: 18000,
-    price: 42000,
     image:
       'https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?w=400&h=300&fit=crop',
     zipCode: '10001',
@@ -100,7 +87,7 @@ export const vehicles: Vehicle[] = [
     mileage: 10000,
     price: 35000,
     image:
-      'https://images.unsplash.com/photo-1549317336-206569e8475c?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop',
     zipCode: '10001',
   },
   {
@@ -113,7 +100,7 @@ export const vehicles: Vehicle[] = [
     mileage: 20000,
     price: 32000,
     image:
-      'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=400&h=300&fit=crop',
     zipCode: '10001',
   },
   {
@@ -126,7 +113,7 @@ export const vehicles: Vehicle[] = [
     mileage: 5000,
     price: 45000,
     image:
-      'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop',
     zipCode: '10001',
   },
   {
@@ -139,7 +126,7 @@ export const vehicles: Vehicle[] = [
     mileage: 22000,
     price: 28000,
     image:
-      'https://images.unsplash.com/photo-1549317336-206569e8475c?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=400&h=300&fit=crop',
     zipCode: '10001',
   },
   {
@@ -152,7 +139,7 @@ export const vehicles: Vehicle[] = [
     mileage: 30000,
     price: 38000,
     image:
-      'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=300&fit=crop',
     zipCode: '10001',
   },
   {
@@ -165,63 +152,11 @@ export const vehicles: Vehicle[] = [
     mileage: 7000,
     price: 24000,
     image:
-      'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop',
     zipCode: '10001',
   },
   // Additional vehicles for different ZIP codes
-  {
-    id: '13',
-    make: 'Toyota',
-    model: 'Prius',
-    trim: 'LE',
-    year: 2022,
-    color: 'Green',
-    mileage: 15000,
-    price: 27000,
-    image:
-      'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=400&h=300&fit=crop',
-    zipCode: '10001',
-  },
-  {
-    id: '14',
-    make: 'Honda',
-    model: 'Pilot',
-    trim: 'EX-L',
-    year: 2023,
-    color: 'Black',
-    mileage: 8000,
-    price: 42000,
-    image:
-      'https://images.unsplash.com/photo-1549317336-206569e8475c?w=400&h=300&fit=crop',
-    zipCode: '10001',
-  },
-  {
-    id: '15',
-    make: 'BMW',
-    model: 'X5',
-    trim: 'xDrive40i',
-    year: 2022,
-    color: 'White',
-    mileage: 12000,
-    price: 65000,
-    image:
-      'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop',
-    zipCode: '10001',
-  },
   // Additional vehicles for demo purposes
-  {
-    id: '16',
-    make: 'Audi',
-    model: 'A4',
-    trim: 'Premium',
-    year: 2022,
-    color: 'White',
-    mileage: 12000,
-    price: 42000,
-    image:
-      'https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
-    zipCode: '10001',
-  },
   {
     id: '17',
     make: 'Mercedes-Benz',
@@ -232,7 +167,7 @@ export const vehicles: Vehicle[] = [
     mileage: 8000,
     price: 48000,
     image:
-      'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
+      'https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
   },
   {
@@ -258,7 +193,7 @@ export const vehicles: Vehicle[] = [
     mileage: 6000,
     price: 38000,
     image:
-      'https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
+      'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
   },
   {
@@ -271,7 +206,7 @@ export const vehicles: Vehicle[] = [
     mileage: 18000,
     price: 41000,
     image:
-      'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
+      'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
   },
   {
@@ -284,33 +219,7 @@ export const vehicles: Vehicle[] = [
     mileage: 4000,
     price: 43000,
     image:
-      'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
-    zipCode: '10001',
-  },
-  {
-    id: '22',
-    make: 'Genesis',
-    model: 'G80',
-    trim: '2.5T',
-    year: 2022,
-    color: 'White',
-    mileage: 10000,
-    price: 47000,
-    image:
-      'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
-    zipCode: '10001',
-  },
-  {
-    id: '23',
-    make: 'Cadillac',
-    model: 'CT5',
-    trim: 'Luxury',
-    year: 2023,
-    color: 'Black',
-    mileage: 3000,
-    price: 52000,
-    image:
-      'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
+      'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
   },
   {
@@ -323,7 +232,7 @@ export const vehicles: Vehicle[] = [
     mileage: 14000,
     price: 55000,
     image:
-      'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
+      'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
   },
   {
@@ -336,34 +245,10 @@ export const vehicles: Vehicle[] = [
     mileage: 7000,
     price: 49000,
     image:
-      'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
+      'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
   },
   // More vehicles for 90210
-  {
-    id: '26',
-    make: 'Porsche',
-    model: '911',
-    trim: 'Carrera',
-    year: 2023,
-    color: 'Red',
-    mileage: 2000,
-    price: 120000,
-    image: 'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=Porsche+911',
-    zipCode: '10001',
-  },
-  {
-    id: '27',
-    make: 'Ferrari',
-    model: '488',
-    trim: 'GTB',
-    year: 2022,
-    color: 'Yellow',
-    mileage: 5000,
-    price: 250000,
-    image: 'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=Ferrari+488',
-    zipCode: '10001',
-  },
   {
     id: '28',
     make: 'Lamborghini',
@@ -374,7 +259,7 @@ export const vehicles: Vehicle[] = [
     mileage: 1000,
     price: 220000,
     image:
-      'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=Lamborghini+Huracan',
+      'https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
   },
   {
@@ -387,7 +272,7 @@ export const vehicles: Vehicle[] = [
     mileage: 3000,
     price: 300000,
     image:
-      'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=McLaren+720S',
+      'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
   },
   {
@@ -400,36 +285,10 @@ export const vehicles: Vehicle[] = [
     mileage: 1500,
     price: 200000,
     image:
-      'https://via.placeholder.com/400x300/0049B7/FFFFFF?text=Bentley+Continental',
+      'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '10001',
   },
   // Beverly Hills, CA (90210) vehicles
-  {
-    id: '31',
-    make: 'Tesla',
-    model: 'Model S',
-    trim: 'Plaid',
-    year: 2023,
-    color: 'White',
-    mileage: 5000,
-    price: 95000,
-    image:
-      'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=400&h=300&fit=crop',
-    zipCode: '90210',
-  },
-  {
-    id: '32',
-    make: 'Porsche',
-    model: '911',
-    trim: 'Carrera S',
-    year: 2023,
-    color: 'Black',
-    mileage: 2000,
-    price: 125000,
-    image:
-      'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=300&fit=crop',
-    zipCode: '90210',
-  },
   {
     id: '33',
     make: 'BMW',
@@ -440,7 +299,7 @@ export const vehicles: Vehicle[] = [
     mileage: 3000,
     price: 85000,
     image:
-      'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '90210',
   },
   {
@@ -453,7 +312,7 @@ export const vehicles: Vehicle[] = [
     mileage: 1500,
     price: 150000,
     image:
-      'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '90210',
   },
   {
@@ -466,7 +325,7 @@ export const vehicles: Vehicle[] = [
     mileage: 1000,
     price: 180000,
     image:
-      'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '90210',
   },
   // Chicago, IL (60601) vehicles
@@ -480,33 +339,7 @@ export const vehicles: Vehicle[] = [
     mileage: 8000,
     price: 45000,
     image:
-      'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop',
-    zipCode: '60601',
-  },
-  {
-    id: '37',
-    make: 'Chevrolet',
-    model: 'Camaro',
-    trim: 'SS',
-    year: 2023,
-    color: 'Yellow',
-    mileage: 6000,
-    price: 42000,
-    image:
-      'https://images.unsplash.com/photo-1549317336-206569e8475c?w=400&h=300&fit=crop',
-    zipCode: '60601',
-  },
-  {
-    id: '38',
-    make: 'Dodge',
-    model: 'Charger',
-    trim: 'R/T',
-    year: 2023,
-    color: 'Black',
-    mileage: 7000,
-    price: 38000,
-    image:
-      'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '60601',
   },
   {
@@ -519,36 +352,10 @@ export const vehicles: Vehicle[] = [
     mileage: 5000,
     price: 55000,
     image:
-      'https://images.unsplash.com/photo-1549317336-206569e8475c?w=400&h=300&fit=crop',
-    zipCode: '60601',
-  },
-  {
-    id: '40',
-    make: 'Subaru',
-    model: 'WRX',
-    trim: 'STI',
-    year: 2023,
-    color: 'Blue',
-    mileage: 4000,
-    price: 40000,
-    image:
-      'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '60601',
   },
   // Miami, FL (33101) vehicles
-  {
-    id: '41',
-    make: 'Lamborghini',
-    model: 'Huracán',
-    trim: 'EVO',
-    year: 2023,
-    color: 'Orange',
-    mileage: 2000,
-    price: 220000,
-    image:
-      'https://images.unsplash.com/photo-1544829099-b9a0c7c2c4c4?w=400&h=300&fit=crop',
-    zipCode: '33101',
-  },
   {
     id: '42',
     make: 'Ferrari',
@@ -559,7 +366,7 @@ export const vehicles: Vehicle[] = [
     mileage: 1500,
     price: 280000,
     image:
-      'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '33101',
   },
   {
@@ -572,7 +379,7 @@ export const vehicles: Vehicle[] = [
     mileage: 1000,
     price: 320000,
     image:
-      'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '33101',
   },
   {
@@ -585,7 +392,7 @@ export const vehicles: Vehicle[] = [
     mileage: 3000,
     price: 200000,
     image:
-      'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '33101',
   },
   {
@@ -598,7 +405,7 @@ export const vehicles: Vehicle[] = [
     mileage: 2500,
     price: 85000,
     image:
-      'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '33101',
   },
   // San Francisco, CA (94102) vehicles
@@ -612,7 +419,7 @@ export const vehicles: Vehicle[] = [
     mileage: 12000,
     price: 55000,
     image:
-      'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '94102',
   },
   {
@@ -625,46 +432,7 @@ export const vehicles: Vehicle[] = [
     mileage: 8000,
     price: 75000,
     image:
-      'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop',
-    zipCode: '94102',
-  },
-  {
-    id: '48',
-    make: 'Polestar',
-    model: '2',
-    trim: 'Performance',
-    year: 2023,
-    color: 'Gray',
-    mileage: 6000,
-    price: 65000,
-    image:
-      'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=400&h=300&fit=crop',
-    zipCode: '94102',
-  },
-  {
-    id: '49',
-    make: 'Rivian',
-    model: 'R1T',
-    trim: 'Adventure',
-    year: 2023,
-    color: 'Green',
-    mileage: 4000,
-    price: 85000,
-    image:
-      'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop',
-    zipCode: '94102',
-  },
-  {
-    id: '50',
-    make: 'Lucid',
-    model: 'Air',
-    trim: 'Dream Edition',
-    year: 2023,
-    color: 'Silver',
-    mileage: 2000,
-    price: 170000,
-    image:
-      'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop&crop=center&auto=format&q=80',
     zipCode: '94102',
   },
 ];
