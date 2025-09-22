@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { ZipCodeModalContext } from '../contexts/ZipCodeModalContextTypes';
+import { ZipCodeModalContext } from '../types/contexts/ZipCodeModalContext.types';
 
 export const useZipCodeModal = () => {
   const context = useContext(ZipCodeModalContext);

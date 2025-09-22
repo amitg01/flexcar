@@ -2,7 +2,7 @@ import React, { useState, type ReactNode } from 'react';
 import {
   ZipCodeModalContext,
   type ZipCodeModalContextType,
-} from './ZipCodeModalContextTypes';
+} from '../types/contexts/ZipCodeModalContext.types';
 
 interface ZipCodeModalProviderProps {
   children: ReactNode;
