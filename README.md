@@ -8,7 +8,7 @@ A React + TypeScript web application for searching and filtering vehicles by ZIP
 
 ### 📹 Application Demo Video
 
-[![Watch Video](https://cdn.loom.com/sessions/thumbnails/a2d5f82d4e4544b68e7a995798349d79-with-play.gif)](https://www.loom.com/share/a2d5f82d4e4544b68e7a995798349d79?sid=aff9b982-769e-442f-80f6-7b5b8b3a7154)
+[![Watch Video](https://cdn.loom.com/sessions/thumbnails/a2d5f82d4e4544b68e7a995798349d79-958f1209b94d0175-full-play.gif)](https://www.loom.com/share/a2d5f82d4e4544b68e7a995798349d79?sid=aff9b982-769e-442f-80f6-7b5b8b3a7154)
 
 _Watch the complete application walkthrough showing all features and functionality_
 
