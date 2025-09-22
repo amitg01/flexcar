@@ -2,6 +2,15 @@
 
 A React + TypeScript web application for searching and filtering vehicles by ZIP code, built as a take-home challenge solution.
 
+## 🚀 Live Demo
+
+**[View Live Application](https://flexcar-demo.netlify.app)**
+
+Try the application with these demo ZIP codes:
+
+- **10001** (New York, NY) - 15 vehicles available
+- **90210** (Beverly Hills, CA) - 15 vehicles available
+
 ## Features
 
 - **ZIP Code Search**: Search for vehicles available in specific ZIP codes
