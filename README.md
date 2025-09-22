@@ -16,8 +16,8 @@ _Watch the complete application walkthrough showing all features and functionali
 
 Test the application with these demo ZIP codes:
 
-- **10001** (New York, NY) - 15 vehicles available
-- **90210** (Beverly Hills, CA) - 15 vehicles available
+- **10001** (New York, NY)
+- **90210** (Beverly Hills, CA)
 
 ## Features
 
