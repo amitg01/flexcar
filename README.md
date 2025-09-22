@@ -8,9 +8,11 @@ A React + TypeScript web application for searching and filtering vehicles by ZIP
 
 ### 📹 Application Demo Video
 
-<iframe src="https://www.loom.com/embed/8e1270a18d6948c396218f7730028b50?sid=05b2310d-12e9-431c-92d2-fd1b69aaad1f" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="width: 100%; height: 400px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);"></iframe>
+[![FlexCar Demo Video](https://img.shields.io/badge/🎥_Watch_Demo_Video-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.loom.com/share/8e1270a18d6948c396218f7730028b50?sid=05b2310d-12e9-431c-92d2-fd1b69aaad1f)
 
 _Watch the complete application walkthrough showing all features and functionality_
+
+**Direct Link:** [https://www.loom.com/share/8e1270a18d6948c396218f7730028b50](https://www.loom.com/share/8e1270a18d6948c396218f7730028b50?sid=05b2310d-12e9-431c-92d2-fd1b69aaad1f)
 
 ### 🧪 Try the Application
 
