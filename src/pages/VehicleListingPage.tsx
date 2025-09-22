@@ -132,11 +132,11 @@ const VehicleListingPage: React.FC = () => {
   ]);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white flex flex-col">
       {showModal && <OnboardingModal />}
       <Header />
 
-      <div className="w-full">
+      <div className="flex-1 w-full">
         <div className="max-w-[1440px] mx-auto px-4">
           <div className="flex flex-col lg:flex-row lg:items-start">
             <div className="flex-1 min-w-0 bg-white">

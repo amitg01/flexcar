@@ -17,19 +17,20 @@ const HomePage: React.FC = () => {
   const { showModal } = useOnboarding();
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white flex flex-col">
       {showModal && <OnboardingModal />}
       <Banner />
       <Header />
-      <HeroSection />
-      <VideoSection />
-      <FreedomSection />
-      <VehicleCategoriesSection />
-      <BenefitsSection />
-      <ReviewsSection />
-      <CTASection />
-      <AppDownloadSection />
-
+      <div className="flex-1">
+        <HeroSection />
+        <VideoSection />
+        <FreedomSection />
+        <VehicleCategoriesSection />
+        <BenefitsSection />
+        <ReviewsSection />
+        <CTASection />
+        <AppDownloadSection />
+      </div>
       <Footer />
     </div>
   );
