@@ -48,6 +48,13 @@ const VehicleListingPage: React.FC = () => {
     }
   }, [state.vehicles.length, state.error, state.isLoading]);
 
+  // Reset initial load when ZIP code changes (new search)
+  useEffect(() => {
+    if (state.isLoading) {
+      setIsInitialLoad(true);
+    }
+  }, [state.isLoading]);
+
   // Load URL parameters on mount and when URL changes
   useEffect(() => {
     const make = searchParams.get('make') || '';
@@ -141,7 +148,7 @@ const VehicleListingPage: React.FC = () => {
           <div className="flex flex-col lg:flex-row lg:items-start">
             <div className="flex-1 min-w-0 bg-white">
               <div className="py-4 lg:py-6 pr-4 lg:pr-6">
-                {isInitialLoad ? (
+                {isInitialLoad || state.isLoading ? (
                   <div className="flex items-center justify-center min-h-[400px]">
                     <div className="text-center">
                       <LoadingSpinner size="lg" />
@@ -155,9 +162,6 @@ const VehicleListingPage: React.FC = () => {
                         <h2 className="text-xl font-semibold text-gray-900">
                           {state.filteredVehicles.length} results
                         </h2>
-                        {state.isLoading && (
-                          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
-                        )}
                       </div>
                       <div className="flex items-center gap-3">
                         <div className="lg:hidden">
@@ -177,16 +181,7 @@ const VehicleListingPage: React.FC = () => {
                       </div>
                     )}
 
-                    {state.isLoading ? (
-                      <div className="flex items-center justify-center min-h-[400px]">
-                        <div className="text-center">
-                          <LoadingSpinner size="lg" />
-                          <p className="mt-4 text-gray-600">
-                            Loading vehicles...
-                          </p>
-                        </div>
-                      </div>
-                    ) : state.vehicles.length === 0 ? (
+                    {state.vehicles.length === 0 ? (
                       <EmptyState
                         icon={
                           <svg
