@@ -41,9 +41,9 @@ const VehicleListingPage: React.FC = () => {
     }
   }, [searchVehicles]);
 
-  // Set initial load to false once vehicles are loaded, there's an error, or loading is complete
+  // Set initial load to false once we have any meaningful state change
   useEffect(() => {
-    if (state.vehicles.length > 0 || state.error || !state.isLoading) {
+    if (state.vehicles.length > 0 || state.error || state.isLoading) {
       setIsInitialLoad(false);
     }
   }, [state.vehicles.length, state.error, state.isLoading]);
@@ -177,7 +177,16 @@ const VehicleListingPage: React.FC = () => {
                       </div>
                     )}
 
-                    {state.vehicles.length === 0 && !state.isLoading ? (
+                    {state.isLoading ? (
+                      <div className="flex items-center justify-center min-h-[400px]">
+                        <div className="text-center">
+                          <LoadingSpinner size="lg" />
+                          <p className="mt-4 text-gray-600">
+                            Loading vehicles...
+                          </p>
+                        </div>
+                      </div>
+                    ) : state.vehicles.length === 0 ? (
                       <EmptyState
                         icon={
                           <svg

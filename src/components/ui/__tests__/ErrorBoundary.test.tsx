@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import '@testing-library/jest-dom';
 import ErrorBoundary from '../ErrorBoundary';
+import { afterEach } from 'node:test';
 
 // Mock console.error to avoid noise in tests
 const mockConsoleError = vi
