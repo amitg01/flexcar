@@ -152,17 +152,6 @@ The application includes 15 mock vehicles across 2 ZIP codes (10001 and 90210) w
 - Safari (latest)
 - Edge (latest)
 
-## Future Enhancements
-
-- API integration for real vehicle data
-- User authentication and favorites
-- Advanced filtering options (price range, year range)
-- Vehicle comparison feature
-- Image gallery for each vehicle
-- Pagination for large result sets
-- Search history
-- Location-based recommendations
-
 ## License
 
 This project is created as part of a take-home challenge and is for demonstration purposes only.
