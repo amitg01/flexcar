@@ -224,7 +224,7 @@ describe('VehicleListingPage', () => {
           ...defaultVehicleState,
           vehicles: [],
           isLoading: false,
-          error: null,
+          error: 'No vehicles found for this ZIP code',
         },
         ...defaultVehicleActions,
       });
@@ -404,7 +404,7 @@ describe('VehicleListingPage', () => {
           ...defaultVehicleState,
           vehicles: [],
           isLoading: false,
-          error: null,
+          error: 'No vehicles found for this ZIP code',
         },
         ...defaultVehicleActions,
         searchVehicles: mockSearchVehicles,
@@ -496,7 +496,7 @@ describe('VehicleListingPage', () => {
           ...defaultVehicleState,
           vehicles: [],
           isLoading: false,
-          error: null,
+          error: 'No vehicles found for this ZIP code',
         },
         ...defaultVehicleActions,
       });
